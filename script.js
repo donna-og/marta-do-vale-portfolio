@@ -478,6 +478,28 @@ const setupHeaderScroll = () => {
   window.addEventListener('scroll', onScroll, { passive: true });
 };
 
+const setupLangToggle = () => {
+  if (!window.MDV_I18N) return;
+  const toggle = document.querySelector('[data-lang-toggle]');
+  const opts = document.querySelectorAll('[data-lang-opt]');
+  if (!toggle || !opts.length) return;
+
+  const sync = (lang) => {
+    opts.forEach((el) => {
+      el.classList.toggle('is-active', el.dataset.langOpt === lang);
+    });
+    toggle.setAttribute('aria-label', `Language: ${lang.toUpperCase()}`);
+  };
+
+  toggle.addEventListener('click', () => {
+    const next = window.MDV_I18N.getLang() === 'en' ? 'pt' : 'en';
+    window.MDV_I18N.setLang(next);
+  });
+
+  document.addEventListener('mdv:langchange', (event) => sync(event.detail.lang));
+  sync(window.MDV_I18N.getLang());
+};
+
 const onReady = (fn) => {
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
   else fn();
@@ -486,4 +508,6 @@ const onReady = (fn) => {
 onReady(() => {
   setupReveals();
   setupHeaderScroll();
+  setupLangToggle();
+  if (window.MDV_I18N) window.MDV_I18N.apply();
 });
