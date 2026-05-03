@@ -65,16 +65,16 @@
           </div>
         </div>
 
-        <div class="relative md:min-h-[42rem]" data-reveal style="--reveal-delay: 120ms">
+        <div class="relative md:min-h-[42rem]" data-hero-parallax data-reveal style="--reveal-delay: 120ms">
           <div class="grid gap-4 md:absolute md:inset-x-0 md:top-0 md:grid-cols-[1.08fr_0.92fr]">
-            <figure class="overflow-hidden rounded-[30px] border border-white/10 bg-white/5 shadow-luxe">
+            <figure class="overflow-hidden rounded-[30px] border border-white/10 bg-white/5 shadow-luxe" data-parallax-layer="front">
               <img src="assets/images/hero-living-room.jpg" alt="Cinematic living-room set by Marta do Vale" fetchpriority="high" decoding="async" class="h-[22rem] w-full object-cover md:h-[34rem]" />
             </figure>
             <div class="grid gap-4 md:pt-10">
-              <figure class="overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-luxe">
+              <figure class="overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-luxe" data-parallax-layer="mid">
                 <img src="assets/images/hero-neon-stage.jpg" alt="Neon-lit sculptural set design" loading="lazy" decoding="async" class="h-[10rem] w-full object-cover md:h-[14rem]" />
               </figure>
-              <figure class="overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-luxe md:ml-8">
+              <figure class="overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-luxe md:ml-8" data-parallax-layer="back">
                 <img src="assets/images/candle-table.jpg" alt="Warm ensemble frame around a candlelit table" loading="lazy" decoding="async" class="h-[10rem] w-full object-cover md:h-[14rem]" />
               </figure>
             </div>
@@ -92,6 +92,8 @@
         </div>
       </section>
 
+      <div class="depth-divider depth-divider--warm" aria-hidden="true"></div>
+
       <section id="films" class="mx-auto w-[min(calc(100%-1.5rem),1240px)] py-8 sm:w-[min(calc(100%-2rem),1240px)] md:py-10">
         <div class="mb-8 grid gap-4 md:grid-cols-[0.9fr_1.1fr] md:items-end">
           <div data-reveal>
@@ -105,6 +107,8 @@
 
         <div id="film-grid" class="grid grid-cols-1 gap-4 md:auto-flow-dense md:grid-cols-12 md:auto-rows-[120px]"></div>
       </section>
+
+      <div class="depth-divider depth-divider--cool" aria-hidden="true"></div>
 
       <section id="about" class="mx-auto grid w-[min(calc(100%-1.5rem),1240px)] gap-4 py-10 sm:w-[min(calc(100%-2rem),1240px)] md:grid-cols-[1.02fr_0.98fr] md:py-14">
         <div class="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-luxe" data-reveal>
@@ -145,19 +149,23 @@
         <p class="mt-4 max-w-xl text-[1rem] leading-7 text-cream/68">For commercial and cinema work, Marta can be reached directly through the channels below.</p>
 
         <div class="mt-8 grid gap-4 md:grid-cols-2">
-          <a class="glass-panel rounded-[24px] p-5 transition hover:-translate-y-0.5" href="mailto:hellomartadovale@gmail.com" data-reveal>
+          <a class="glass-panel overflow-hidden rounded-[24px] p-5 transition hover:-translate-y-0.5" href="mailto:hellomartadovale@gmail.com" data-tilt data-sheen data-reveal>
+            <span class="card-sheen" aria-hidden="true"></span>
             <p class="text-[0.72rem] uppercase tracking-[0.22em] text-accent">Email</p>
             <p class="mt-3 font-serif text-[1.5rem] leading-[0.95] tracking-[-0.03em]">hellomartadovale@gmail.com</p>
           </a>
-          <a class="glass-panel rounded-[24px] p-5 transition hover:-translate-y-0.5" href="https://api.whatsapp.com/send?phone=351918373368" target="_blank" rel="noreferrer" data-reveal style="--reveal-delay: 90ms">
+          <a class="glass-panel overflow-hidden rounded-[24px] p-5 transition hover:-translate-y-0.5" href="https://api.whatsapp.com/send?phone=351918373368" target="_blank" rel="noreferrer" data-tilt data-sheen data-reveal style="--reveal-delay: 90ms">
+            <span class="card-sheen" aria-hidden="true"></span>
             <p class="text-[0.72rem] uppercase tracking-[0.22em] text-accent">Phone / WhatsApp</p>
             <p class="mt-3 font-serif text-[1.5rem] leading-[0.95] tracking-[-0.03em]">+351 918 373 368</p>
           </a>
-          <a class="glass-panel rounded-[24px] p-5 transition hover:-translate-y-0.5" href="https://www.imdb.com/name/nm6185805/" target="_blank" rel="noreferrer" data-reveal style="--reveal-delay: 180ms">
+          <a class="glass-panel overflow-hidden rounded-[24px] p-5 transition hover:-translate-y-0.5" href="https://www.imdb.com/name/nm6185805/" target="_blank" rel="noreferrer" data-tilt data-sheen data-reveal style="--reveal-delay: 180ms">
+            <span class="card-sheen" aria-hidden="true"></span>
             <p class="text-[0.72rem] uppercase tracking-[0.22em] text-accent">IMDb</p>
             <p class="mt-3 text-[1rem] leading-7 text-cream/72">Selected credits and professional profile.</p>
           </a>
-          <a class="glass-panel rounded-[24px] p-5 transition hover:-translate-y-0.5" href="https://www.instagram.com/martadovale.art?igsh=MTZ1ZWg0cjI0amUwbA==" target="_blank" rel="noreferrer" data-reveal style="--reveal-delay: 270ms">
+          <a class="glass-panel overflow-hidden rounded-[24px] p-5 transition hover:-translate-y-0.5" href="https://www.instagram.com/martadovale.art?igsh=MTZ1ZWg0cjI0amUwbA==" target="_blank" rel="noreferrer" data-tilt data-sheen data-reveal style="--reveal-delay: 270ms">
+            <span class="card-sheen" aria-hidden="true"></span>
             <p class="text-[0.72rem] uppercase tracking-[0.22em] text-accent">Instagram</p>
             <p class="mt-3 text-[1rem] leading-7 text-cream/72">Visual updates, process, and recent work.</p>
           </a>
@@ -174,5 +182,6 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="motion.js"></script>
   </body>
 </html>
