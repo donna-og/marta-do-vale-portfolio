@@ -238,13 +238,15 @@ scrollLinks.forEach((link) => {
   });
 });
 
-filmGrid.innerHTML = films.map((film) => `
+filmGrid.innerHTML = films.map((film, idx) => `
   <button
     type="button"
     class="group overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.04] text-left shadow-luxe transition duration-300 hover:-translate-y-0.5 md:relative ${film.size}"
     data-kind="${film.kind}"
     data-video-id="${film.videoId || ''}"
     data-video-src="${film.videoSrc || ''}"
+    data-reveal
+    style="--reveal-delay: ${(idx % 4) * 90}ms"
     aria-label="Play ${film.title}"
   >
     <div class="grid min-h-[11rem] grid-cols-[136px_minmax(0,1fr)] md:block md:h-full">
@@ -396,4 +398,91 @@ document.addEventListener('keydown', (event) => {
   if (event.key !== 'Escape') return;
   if (!videoModal.classList.contains('hidden')) closeVideoModal();
   if (!contactModal.classList.contains('hidden')) closeContactModal();
+});
+
+const marqueeItems = [
+  'Audi', 'Burger King', 'Adidas × SL Benfica', 'Auchan', 'BPI', 'Delta Q',
+  'Super Bock', 'Cetelem', 'Cornetto', 'Polícia Judiciária', 'Bricomarché',
+  'GoldEnergy', 'Buondi', 'Bollycão', 'Sport TV', 'Rubis Gás', 'Diamantino',
+  'All the Dreams in the World', 'Pela Boca Morre o Peixe', 'Lura'
+];
+
+const marqueeMarkup = marqueeItems.map((item) => `<span class="marquee__item">${item}</span>`).join('');
+const marqueeA = document.getElementById('marquee-group-a');
+const marqueeB = document.getElementById('marquee-group-b');
+if (marqueeA && marqueeB) {
+  marqueeA.innerHTML = marqueeMarkup;
+  marqueeB.innerHTML = marqueeMarkup;
+}
+
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+const setupReveals = () => {
+  if (reducedMotion.matches || !('IntersectionObserver' in window)) {
+    document.documentElement.classList.remove('js-reveals');
+    return;
+  }
+
+  document.documentElement.classList.add('js-reveals');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      el.style.willChange = 'opacity, transform';
+      el.classList.add('is-revealed');
+      observer.unobserve(el);
+      const cleanup = () => {
+        el.style.willChange = '';
+        el.removeEventListener('transitionend', cleanup);
+      };
+      el.addEventListener('transitionend', cleanup);
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
+};
+
+const setupHeaderScroll = () => {
+  const header = document.querySelector('.header-shell');
+  if (!header) return;
+
+  const apply = (t) => {
+    header.style.setProperty('--header-bg-opacity', (0.45 + (0.92 - 0.45) * t).toFixed(3));
+    header.style.setProperty('--header-blur', `${(12 + 16 * t).toFixed(1)}px`);
+    header.style.setProperty('--wordmark-scale', (1 - 0.15 * t).toFixed(3));
+    header.style.setProperty('--eyebrow-opacity', (0.6 - 0.25 * t).toFixed(3));
+  };
+
+  if (reducedMotion.matches) {
+    apply(0);
+    return;
+  }
+
+  let ticking = false;
+  const update = () => {
+    const range = Math.min(window.innerHeight * 0.6, 600);
+    const t = Math.max(0, Math.min(1, window.scrollY / range));
+    apply(t);
+    ticking = false;
+  };
+
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  };
+
+  update();
+  window.addEventListener('scroll', onScroll, { passive: true });
+};
+
+const onReady = (fn) => {
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
+  else fn();
+};
+
+onReady(() => {
+  setupReveals();
+  setupHeaderScroll();
 });
