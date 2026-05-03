@@ -5,7 +5,7 @@ const films = [
     kind: 'youtube',
     videoId: 'gLew21SCHho',
     poster: 'assets/posters/17-dcf30e-b42094eba406450ba4a4e67afbed8766-mv2-jpg.jpg',
-    size: 'md:col-span-8 md:row-span-4'
+    size: 'md:col-span-7 md:row-span-4'
   },
   {
     title: 'BURGUER KING',
@@ -13,7 +13,7 @@ const films = [
     kind: 'youtube',
     videoId: 'J5piUQ29V-c',
     poster: 'assets/posters/22-dcf30e-e4aee655d28c408fb446ef55dd5a88b2-mv2-jpg.jpg',
-    size: 'md:col-span-4 md:row-span-2'
+    size: 'md:col-span-5 md:row-span-2'
   },
   {
     title: 'AUDI X LEO NEUGEBAUER',
@@ -21,7 +21,7 @@ const films = [
     kind: 'youtube',
     videoId: 'MXnyb9T8XtM',
     poster: 'assets/posters/10-dcf30e-82fd0ef459ba437a87ccd09b454560e9-mv2-jpg.jpg',
-    size: 'md:col-span-4 md:row-span-2'
+    size: 'md:col-span-5 md:row-span-2'
   },
   {
     title: 'ADIDAS X S. L. BENFICA',
@@ -37,7 +37,7 @@ const films = [
     kind: 'mp4',
     videoSrc: 'https://video.wixstatic.com/video/dcf30e_9194b77da18f4054b8d43ccd0a168cc9/720p/mp4/file.mp4',
     poster: 'assets/posters/13-dcf30e-9194b77da18f4054b8d43ccd0a168cc9f000-jpg.jpg',
-    size: 'md:col-span-8 md:row-span-2'
+    size: 'md:col-span-4 md:row-span-4'
   },
   {
     title: 'BUONDI',
@@ -209,15 +209,11 @@ const player = document.getElementById('video-player');
 const closeButton = document.querySelector('.video-close');
 const scrollLinks = document.querySelectorAll('[data-scroll-target]');
 
-if ('scrollRestoration' in history) {
-  history.scrollRestoration = 'manual';
-}
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
 window.addEventListener('load', () => {
   const url = new URL(window.location.href);
-  if (url.hash) {
-    history.replaceState(null, '', `${url.pathname}${url.search}`);
-  }
+  if (url.hash) history.replaceState(null, '', `${url.pathname}${url.search}`);
   window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
 });
 
@@ -242,19 +238,21 @@ scrollLinks.forEach((link) => {
 filmGrid.innerHTML = films.map((film) => `
   <button
     type="button"
-    class="group relative overflow-hidden rounded-[26px] border border-white/10 bg-white/5 text-left shadow-luxe transition hover:-translate-y-0.5 ${film.size || 'md:col-span-4 md:row-span-2'}"
+    class="group relative overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.04] text-left shadow-luxe transition duration-300 hover:-translate-y-0.5 ${film.size}"
     data-kind="${film.kind}"
     data-video-id="${film.videoId || ''}"
     data-video-src="${film.videoSrc || ''}"
     aria-label="Play ${film.title}"
   >
-    <img src="${film.poster}" alt="${film.title} poster" loading="lazy" data-fallback="${fallbackImage}" class="h-[22rem] w-full object-cover transition duration-500 group-hover:scale-[1.03] md:h-full" />
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/85"></div>
-    <span class="absolute left-4 top-4 z-10 rounded-full bg-accent/90 px-3 py-2 text-[0.68rem] font-medium uppercase tracking-[0.18em] text-black shadow">Playable film</span>
-    <span class="absolute right-4 top-4 z-10 rounded-full border border-white/20 bg-black/50 px-3 py-2 text-[0.68rem] font-medium uppercase tracking-[0.18em] text-cream">Tap to play</span>
-    <div class="absolute inset-x-4 bottom-4 z-10">
-      <h3 class="font-serif text-[1.6rem] leading-[0.95] tracking-[-0.02em] text-cream">${film.title}</h3>
-      ${film.subtitle ? `<p class="mt-1 text-sm leading-5 text-cream/75">${film.subtitle}</p>` : ''}
+    <img src="${film.poster}" alt="${film.title} poster" loading="lazy" data-fallback="${fallbackImage}" class="h-[22rem] w-full object-cover transition duration-500 group-hover:scale-[1.02] md:h-full" />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/5 via-black/10 to-black/90"></div>
+    <div class="absolute inset-x-4 top-4 z-10 flex items-start justify-between gap-3">
+      <span class="text-[0.72rem] uppercase tracking-[0.22em] text-cream/70">Film</span>
+      <span class="text-[0.72rem] uppercase tracking-[0.22em] text-cream/55">Play</span>
+    </div>
+    <div class="absolute inset-x-4 bottom-4 z-10 max-w-[18rem]">
+      <h3 class="font-serif text-[1.65rem] leading-[0.92] tracking-[-0.03em] text-cream">${film.title}</h3>
+      ${film.subtitle ? `<p class="mt-1 text-[0.82rem] uppercase tracking-[0.16em] text-cream/60">${film.subtitle}</p>` : ''}
     </div>
   </button>
 `).join('');
