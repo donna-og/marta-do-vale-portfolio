@@ -44,9 +44,15 @@
           <span class="header-eyebrow mt-0.5 text-[0.78rem] uppercase tracking-[0.28em] text-cream">Art Direction</span>
         </a>
         <nav class="flex flex-wrap items-center gap-x-5 gap-y-1 text-[0.8rem] uppercase tracking-[0.22em] text-cream/60 md:text-[0.82rem]">
-          <a href="#films" data-scroll-target="films" class="inline-flex min-h-[44px] items-center transition hover:text-cream">Selected Work</a>
-          <a href="#about" data-scroll-target="about" class="inline-flex min-h-[44px] items-center transition hover:text-cream">About</a>
-          <button type="button" data-contact-open class="inline-flex min-h-[44px] items-center transition hover:text-cream">Contact</button>
+          <a href="#cinema" data-scroll-target="cinema" data-i18n="nav.cinema" class="inline-flex min-h-[44px] items-center transition hover:text-cream">Cinema</a>
+          <a href="#commercial" data-scroll-target="commercial" data-i18n="nav.commercial" class="inline-flex min-h-[44px] items-center transition hover:text-cream">Commercial</a>
+          <a href="#about" data-scroll-target="about" data-i18n="nav.about" class="inline-flex min-h-[44px] items-center transition hover:text-cream">About</a>
+          <button type="button" data-contact-open data-i18n="nav.contact" class="inline-flex min-h-[44px] items-center transition hover:text-cream">Contact</button>
+          <button type="button" data-lang-toggle class="lang-toggle min-h-[44px] text-[0.78rem] uppercase tracking-[0.22em]" aria-label="Language" data-i18n-attr="aria-label:nav.langLabel">
+            <span class="lang-toggle__opt" data-lang-opt="en">EN</span>
+            <span class="text-cream/30" aria-hidden="true">/</span>
+            <span class="lang-toggle__opt" data-lang-opt="pt">PT</span>
+          </button>
         </nav>
       </div>
     </header>
@@ -60,7 +66,7 @@
             Marta do Vale builds frames that feel lived-in, tactile, and exact — balancing atmosphere, craft, and story across commercial and cinema work.
           </p>
           <div class="mt-8 flex flex-wrap gap-3">
-            <a href="#films" data-scroll-target="films" class="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-[0.78rem] uppercase tracking-[0.22em] transition hover:border-accent hover:text-accent">View selected work</a>
+            <a href="#cinema" data-scroll-target="cinema" class="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-[0.78rem] uppercase tracking-[0.22em] transition hover:border-accent hover:text-accent">View selected work</a>
             <button type="button" data-contact-open class="inline-flex items-center rounded-full border border-white/10 px-5 py-3 text-[0.78rem] uppercase tracking-[0.22em] text-cream/72 transition hover:border-white/25 hover:text-cream">Contact Marta</button>
           </div>
         </div>
@@ -94,14 +100,119 @@
 
       <div class="depth-divider depth-divider--warm" aria-hidden="true"></div>
 
-      <section id="films" class="mx-auto w-[min(calc(100%-1.5rem),1240px)] py-8 sm:w-[min(calc(100%-2rem),1240px)] md:py-10">
+      <section id="cinema" class="mx-auto w-[min(calc(100%-1.5rem),1240px)] py-10 sm:w-[min(calc(100%-2rem),1240px)] md:py-16">
+        <div class="mb-10 grid gap-4 md:mb-14 md:grid-cols-[0.9fr_1.1fr] md:items-end md:gap-10">
+          <div data-reveal>
+            <p class="mb-4 text-[0.78rem] uppercase tracking-[0.28em] text-accent" data-i18n="cinema.eyebrow">Selected films</p>
+            <h2 class="max-w-[10ch] font-serif text-[clamp(2.7rem,5vw,4.9rem)] leading-[0.9] tracking-[-0.04em] text-balance" data-i18n="cinema.heading">Cinema</h2>
+          </div>
+          <p class="max-w-xl justify-self-end text-[0.98rem] leading-7 text-cream/68" data-reveal style="--reveal-delay: 120ms" data-i18n="cinema.sub">
+            Marta’s cinema credits include a Cannes Critics’ Week winner and a MOTELx Best Short.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10">
+          <article class="flex flex-col" data-reveal>
+            <div class="film-still film-still--diamantino">
+              <div class="film-still__label">
+                <span>Diamantino</span>
+                <span>2018</span>
+              </div>
+            </div>
+            <div class="glass-panel relative mt-5 overflow-hidden rounded-[28px] p-6 md:p-8" data-tilt data-sheen>
+              <span class="card-sheen" aria-hidden="true"></span>
+              <p class="text-[0.72rem] uppercase tracking-[0.28em] text-cream/55" data-i18n="cinema.diamantino.meta">2018 · Art Department · Dir. Gabriel Abrantes &amp; Daniel Schmidt</p>
+              <h3 class="mt-4 font-serif text-[2.1rem] leading-[0.95] tracking-[-0.03em] md:text-[2.4rem]" data-i18n="cinema.diamantino.title">Diamantino</h3>
+              <p class="mt-3 text-[0.72rem] uppercase tracking-[0.28em] text-accent" data-i18n="cinema.diamantino.festival">Grand Prize · Semaine de la Critique · Cannes 2018</p>
+              <p class="mt-4 text-[1rem] leading-7 text-cream/72" data-i18n="cinema.diamantino.caption">A genre-bending political satire whose visual identity is its punchline.</p>
+              <a href="https://www.imdb.com/title/tt6522668/" target="_blank" rel="noreferrer noopener" class="mt-6 inline-flex items-center gap-2 text-[0.72rem] uppercase tracking-[0.22em] text-accent transition hover:text-cream">
+                <span data-i18n="cinema.diamantino.action">View on IMDb</span>
+                <span aria-hidden="true" class="transition-transform">→</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="flex flex-col md:mt-16" data-reveal style="--reveal-delay: 90ms">
+            <div class="film-still film-still--dreams">
+              <div class="film-still__label">
+                <span>All the Dreams in the World</span>
+                <span>2017</span>
+              </div>
+            </div>
+            <div class="glass-panel relative mt-5 overflow-hidden rounded-[28px] p-6 md:p-8" data-tilt data-sheen>
+              <span class="card-sheen" aria-hidden="true"></span>
+              <p class="text-[0.72rem] uppercase tracking-[0.28em] text-cream/55" data-i18n="cinema.dreams.meta">2017 · Production Designer (with Mathieu Lazare Fromenteze) · Dir. Laurence Ferreira Barbosa</p>
+              <h3 class="mt-4 font-serif text-[2.1rem] leading-[0.95] tracking-[-0.03em] md:text-[2.4rem]" data-i18n="cinema.dreams.title">All the Dreams in the World</h3>
+              <p class="mt-2 font-serif text-[1.15rem] italic leading-[1.2] tracking-[-0.01em] text-cream/55" data-i18n="cinema.dreams.titleAlt">Todos os Sonhos do Mundo · Prod. Paulo Branco / Leopardo Filmes</p>
+              <p class="mt-4 text-[1rem] leading-7 text-cream/72" data-i18n="cinema.dreams.caption">A France–Portugal feature about the Portuguese diaspora — design that straddles two countries.</p>
+              <a href="https://leopardofilmes.com/en/film/all-the-dreams-in-the-world/" target="_blank" rel="noreferrer noopener" class="mt-6 inline-flex items-center gap-2 text-[0.72rem] uppercase tracking-[0.22em] text-accent transition hover:text-cream">
+                <span data-i18n="cinema.dreams.action">Producer page</span>
+                <span aria-hidden="true" class="transition-transform">→</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="flex flex-col" data-reveal>
+            <div class="film-still film-still--peixe">
+              <div class="film-still__label">
+                <span>Pela Boca Morre o Peixe</span>
+                <span>2014</span>
+              </div>
+            </div>
+            <div class="glass-panel relative mt-5 overflow-hidden rounded-[28px] p-6 md:p-8" data-tilt data-sheen>
+              <span class="card-sheen" aria-hidden="true"></span>
+              <p class="text-[0.72rem] uppercase tracking-[0.28em] text-cream/55" data-i18n="cinema.peixe.meta">2014 · Art Department · Dir. João P. Nunes</p>
+              <h3 class="mt-4 font-serif text-[2.1rem] leading-[0.95] tracking-[-0.03em] md:text-[2.4rem]" data-i18n="cinema.peixe.title">Pela Boca Morre o Peixe</h3>
+              <p class="mt-3 text-[0.72rem] uppercase tracking-[0.28em] text-accent" data-i18n="cinema.peixe.festival">Best Short Film · MOTELx 2014</p>
+              <p class="mt-4 text-[1rem] leading-7 text-cream/72" data-i18n="cinema.peixe.caption">A Kafka-inflected horror short about a hunter who becomes the hunted.</p>
+              <a href="https://www.imdb.com/title/tt3728222/" target="_blank" rel="noreferrer noopener" class="mt-6 inline-flex items-center gap-2 text-[0.72rem] uppercase tracking-[0.22em] text-accent transition hover:text-cream">
+                <span data-i18n="cinema.peixe.action">View on IMDb</span>
+                <span aria-hidden="true" class="transition-transform">→</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="flex flex-col md:mt-16" data-reveal style="--reveal-delay: 90ms">
+            <div class="film-still film-still--lura">
+              <div class="film-still__label">
+                <span>Lura</span>
+                <span>2013</span>
+              </div>
+            </div>
+            <div class="glass-panel relative mt-5 overflow-hidden rounded-[28px] p-6 md:p-8" data-tilt data-sheen>
+              <span class="card-sheen" aria-hidden="true"></span>
+              <p class="text-[0.72rem] uppercase tracking-[0.28em] text-cream/55" data-i18n="cinema.lura.meta">2013 · Art Director · Dir. Luís Brás</p>
+              <h3 class="mt-4 font-serif text-[2.1rem] leading-[0.95] tracking-[-0.03em] md:text-[2.4rem]" data-i18n="cinema.lura.title">Lura</h3>
+              <p class="mt-4 text-[1rem] leading-7 text-cream/72" data-i18n="cinema.lura.caption">Her earliest credit on record — adventure drama, short form.</p>
+              <a href="https://www.imdb.com/title/tt3531016/" target="_blank" rel="noreferrer noopener" class="mt-6 inline-flex items-center gap-2 text-[0.72rem] uppercase tracking-[0.22em] text-accent transition hover:text-cream">
+                <span data-i18n="cinema.lura.action">View on IMDb</span>
+                <span aria-hidden="true" class="transition-transform">→</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section aria-label="Festival credentials" class="mx-auto w-[min(calc(100%-1.5rem),1240px)] py-8 sm:w-[min(calc(100%-2rem),1240px)] md:py-10">
+        <p class="mx-auto max-w-4xl text-center text-[0.7rem] uppercase leading-[2] tracking-[0.32em] text-cream/60" data-reveal>
+          <span data-i18n="festivals.0">Cannes Critics’ Week 2018</span>
+          <span aria-hidden="true" class="mx-3 text-accent/75">·</span>
+          <span data-i18n="festivals.1">MOTELx 2014 Best Short</span>
+          <span aria-hidden="true" class="mx-3 text-accent/75">·</span>
+          <span data-i18n="festivals.2">Leopardo Filmes — Paulo Branco</span>
+          <span aria-hidden="true" class="mx-3 text-accent/75">·</span>
+          <span data-i18n="festivals.3">In cinema since 2011</span>
+        </p>
+      </section>
+
+      <section id="commercial" class="mx-auto w-[min(calc(100%-1.5rem),1240px)] py-8 sm:w-[min(calc(100%-2rem),1240px)] md:py-10">
         <div class="mb-8 grid gap-4 md:grid-cols-[0.9fr_1.1fr] md:items-end">
           <div data-reveal>
-            <p class="mb-4 text-[0.78rem] uppercase tracking-[0.28em] text-accent">Selected work</p>
-            <h2 class="max-w-[8ch] font-serif text-[clamp(2.7rem,5vw,4.9rem)] leading-[0.9] tracking-[-0.04em] text-balance">A tighter field of work, designed to let the images lead.</h2>
+            <p class="mb-4 text-[0.78rem] uppercase tracking-[0.28em] text-accent" data-i18n="commercial.eyebrow">Selected campaigns</p>
+            <h2 class="max-w-[10ch] font-serif text-[clamp(2.7rem,5vw,4.9rem)] leading-[0.9] tracking-[-0.04em] text-balance" data-i18n="commercial.heading">Commercial</h2>
           </div>
-          <p class="max-w-xl justify-self-end text-[0.98rem] leading-7 text-cream/68" data-reveal style="--reveal-delay: 120ms">
-            Mobile reads as a clean list. Desktop opens into a more composed grid — more dynamic than before, but still restrained enough to keep the attention on Marta’s eye.
+          <p class="max-w-xl justify-self-end text-[0.98rem] leading-7 text-cream/68" data-reveal style="--reveal-delay: 120ms" data-i18n="commercial.sub">
+            From automotive prestige to public-service campaigns — the through-line is the set.
           </p>
         </div>
 
@@ -214,7 +325,7 @@
       </section>
     </main>
 
-    <button type="button" data-contact-open aria-label="Open contact details" class="glass-panel fixed bottom-[calc(env(safe-area-inset-bottom,0px)+1rem)] right-4 z-40 inline-flex min-h-[44px] items-center rounded-full px-5 py-3 text-[0.78rem] uppercase tracking-[0.22em] text-cream/84 transition hover:-translate-y-0.5 hover:text-cream md:right-6">
+    <button type="button" data-contact-open aria-label="Open contact details" class="glass-panel fixed bottom-[calc(env(safe-area-inset-bottom,0px)+1rem)] right-4 z-40 inline-flex min-h-[44px] items-center rounded-full px-5 py-3 text-[0.78rem] uppercase tracking-[0.22em] text-cream/84 transition hover:-translate-y-0.5 hover:text-cream md:right-6" data-i18n="cta.contactFloating">
       Contact Marta
     </button>
 
@@ -282,6 +393,7 @@
       </div>
     </div>
 
+    <script src="src/i18n.js"></script>
     <script src="script.js"></script>
     <script src="motion.js"></script>
   </body>
