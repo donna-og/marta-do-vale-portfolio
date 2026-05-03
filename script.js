@@ -1,16 +1,27 @@
-const filters = document.querySelectorAll('.filter');
-const tiles = document.querySelectorAll('.tile');
+const modal = document.querySelector('.video-modal');
+const frame = document.getElementById('video-frame');
+const closeButton = document.querySelector('.video-close');
+const filmCards = document.querySelectorAll('.film-card');
 
-filters.forEach((button) => {
-  button.addEventListener('click', () => {
-    filters.forEach((item) => item.classList.remove('active'));
-    button.classList.add('active');
+const closeModal = () => {
+  modal.hidden = true;
+  frame.src = '';
+  document.body.style.overflow = '';
+};
 
-    const filter = button.dataset.filter;
-    tiles.forEach((tile) => {
-      const tags = tile.dataset.tags || '';
-      const show = filter === 'all' || tags.includes(filter);
-      tile.classList.toggle('hidden', !show);
-    });
+filmCards.forEach((card) => {
+  card.addEventListener('click', () => {
+    frame.src = card.dataset.video;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
   });
+});
+
+closeButton.addEventListener('click', closeModal);
+modal.addEventListener('click', (event) => {
+  if (event.target === modal) closeModal();
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && !modal.hidden) closeModal();
 });
