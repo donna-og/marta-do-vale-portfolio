@@ -245,26 +245,26 @@ filmGrid.innerHTML = films.map((film, idx) => `
     data-kind="${film.kind}"
     data-video-id="${film.videoId || ''}"
     data-video-src="${film.videoSrc || ''}"
+    data-film-title="${film.title}"
     data-tilt
     data-reveal
     style="--reveal-delay: ${(idx % 4) * 90}ms"
-    aria-label="Play ${film.title}"
   >
     <div class="grid min-h-[11rem] grid-cols-[136px_minmax(0,1fr)] md:block md:h-full">
-      <img src="${film.poster}" alt="${film.title} poster" loading="lazy" decoding="async" data-fallback="${fallbackImage}" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02] md:h-full" />
+      <img src="${film.poster}" data-film-poster loading="lazy" decoding="async" data-fallback="${fallbackImage}" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02] md:h-full" />
       <div class="flex flex-col justify-between p-4 md:hidden">
         <div>
-          <p class="text-[0.68rem] uppercase tracking-[0.22em] text-accent">Film</p>
+          <p class="text-[0.68rem] uppercase tracking-[0.22em] text-accent" data-i18n="film.tile.eyebrow">Film</p>
           <h3 class="mt-2 font-serif text-[1.35rem] leading-[0.95] tracking-[-0.03em] text-cream">${film.title}</h3>
           ${film.subtitle ? `<p class="mt-2 text-[0.72rem] uppercase tracking-[0.16em] text-cream/58">${film.subtitle}</p>` : ''}
         </div>
-        <p class="mt-4 text-[0.72rem] uppercase tracking-[0.22em] text-cream/50">Tap to play</p>
+        <p class="mt-4 text-[0.72rem] uppercase tracking-[0.22em] text-cream/50" data-i18n="film.tile.tap">Tap to play</p>
       </div>
     </div>
 
     <div class="absolute inset-0 hidden bg-gradient-to-b from-black/5 via-black/10 to-black/90 md:block"></div>
     <div class="absolute inset-x-4 top-4 z-10 hidden items-start justify-between gap-3 md:flex">
-      <span class="text-[0.72rem] uppercase tracking-[0.22em] text-cream/70">Film</span>
+      <span class="text-[0.72rem] uppercase tracking-[0.22em] text-cream/70" data-i18n="film.tile.eyebrow">Film</span>
     </div>
     <div class="absolute inset-x-4 bottom-4 z-10 hidden max-w-[18rem] md:block">
       <h3 class="font-serif text-[1.65rem] leading-[0.92] tracking-[-0.03em] text-cream">${film.title}</h3>
@@ -272,6 +272,20 @@ filmGrid.innerHTML = films.map((film, idx) => `
     </div>
   </button>
 `).join('');
+
+const updateFilmCardLabels = () => {
+  const t = window.MDV_I18N ? window.MDV_I18N.t : (k) => k;
+  const playPrefix = t('film.tile.playPrefix') || 'Play';
+  document.querySelectorAll('#film-grid [data-film-title]').forEach((card) => {
+    const title = card.getAttribute('data-film-title') || '';
+    card.setAttribute('aria-label', `${playPrefix} ${title}`.trim());
+    const img = card.querySelector('[data-film-poster]');
+    if (img) img.setAttribute('alt', title);
+  });
+};
+
+updateFilmCardLabels();
+document.addEventListener('mdv:langchange', updateFilmCardLabels);
 
 document.querySelectorAll('img[data-fallback]').forEach((img) => {
   img.addEventListener('error', () => {

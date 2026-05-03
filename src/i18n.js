@@ -1,6 +1,12 @@
 (function (global) {
   const dict = {
     en: {
+      'meta.title': 'Marta do Vale — Art Direction',
+      'meta.description': 'Marta do Vale is a Lisbon-based art director and production designer creating cinematic visual worlds for films and commercials.',
+
+      'brand.home': 'Marta do Vale — home',
+      'brand.eyebrow': 'Art Direction',
+
       'nav.cinema': 'Cinema',
       'nav.commercial': 'Commercial',
       'nav.about': 'About',
@@ -8,6 +14,19 @@
       'nav.langLabel': 'Language',
 
       'cta.contactFloating': 'Contact Marta',
+
+      'image.alt.heroLiving': 'Cinematic living-room set by Marta do Vale',
+      'image.alt.heroNeon': 'Neon-lit sculptural set design',
+      'image.alt.heroCandle': 'Warm ensemble frame around a candlelit table',
+      'image.alt.aboutStudy': 'Styled study interior with layered props and warm light',
+
+      'film.tile.eyebrow': 'Film',
+      'film.tile.tap': 'Tap to play',
+      'film.tile.playPrefix': 'Play',
+
+      'modal.video.label': 'Selected film player',
+      'modal.video.close': 'Close video',
+      'modal.contact.close': 'Close contact',
 
       'hero.eyebrow': 'Commercial · Cinema · Lisbon',
       'hero.headline': 'Every commercial, a short film. Every short film, a Cannes entry.',
@@ -76,6 +95,12 @@
       'contact.closing': 'Lisbon, Portugal · Available worldwide.'
     },
     pt: {
+      'meta.title': 'Marta do Vale — Direção de Arte',
+      'meta.description': 'Marta do Vale é diretora de arte e cenógrafa em Lisboa — mundos visuais cinematográficos para cinema e publicidade.',
+
+      'brand.home': 'Marta do Vale — início',
+      'brand.eyebrow': 'Direção de Arte',
+
       'nav.cinema': 'Cinema',
       'nav.commercial': 'Comercial',
       'nav.about': 'Sobre',
@@ -83,6 +108,19 @@
       'nav.langLabel': 'Idioma',
 
       'cta.contactFloating': 'Falar com a Marta',
+
+      'image.alt.heroLiving': 'Cenário cinematográfico de sala de estar de Marta do Vale',
+      'image.alt.heroNeon': 'Cenário escultórico iluminado a néon',
+      'image.alt.heroCandle': 'Enquadramento caloroso à volta de uma mesa à luz das velas',
+      'image.alt.aboutStudy': 'Escritório com adereços trabalhados e luz quente',
+
+      'film.tile.eyebrow': 'Filme',
+      'film.tile.tap': 'Toca para ver',
+      'film.tile.playPrefix': 'Ver',
+
+      'modal.video.label': 'Reprodução do filme selecionado',
+      'modal.video.close': 'Fechar vídeo',
+      'modal.contact.close': 'Fechar contacto',
 
       'hero.eyebrow': 'Comercial · Cinema · Lisboa',
       'hero.headline': 'Cada publicidade, uma curta. Cada curta, um filme de Cannes.',
@@ -203,6 +241,13 @@
         const value = t(key);
         if (value) el.setAttribute(attr, value);
       }
+    }
+    const title = t('meta.title');
+    if (title) document.title = title;
+    const desc = t('meta.description');
+    if (desc) {
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute('content', desc);
     }
     document.documentElement.setAttribute('lang', currentLang);
   }
