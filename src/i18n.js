@@ -9,6 +9,22 @@
 
       'cta.contactFloating': 'Contact Marta',
 
+      'hero.eyebrow': 'Commercial · Cinema · Lisbon',
+      'hero.headline': 'Every commercial, a short film. Every short film, a Cannes entry.',
+      'hero.lede': "Lisbon-born scenographer. In cinema since 2011, in advertising since 2016. Cannes Critics' Week credit on Diamantino (2018). Direct line — no agent.",
+      'hero.cta.work': 'View selected work',
+      'hero.cta.contact': 'Contact Marta',
+      'hero.card.since.eyebrow': 'Working since',
+      'hero.card.since.body': 'Cinema 2011 · Commercials 2016',
+      'hero.card.trained.eyebrow': 'Trained',
+      'hero.card.trained.body': 'Arroio · Faculdade de Arquitetura · ESTC',
+
+      'about.eyebrow': 'About',
+      'about.headline': 'Scenographer by training. Art director by trade.',
+      'about.p1': "Lisbon-born, August 1990. Marta trained as a scenographer — Escola Artística António Arroio, then a bachelor's in Scenography at Faculdade de Arquitetura, then a master's in Scene Design at ESTC. She didn't drift into film design from graphics. She came in as an architect of the stage and the frame.",
+      'about.p2': "In the cinema arts department since 2011, in advertising since 2016. Pela Boca Morre o Peixe took Best Short at MOTELx 2014. Todos os Sonhos do Mundo, produced by Paulo Branco's Leopardo Filmes, followed in 2017. Then Diamantino — the political satire she helped dress — won the Grand Prize at Semaine de la Critique, Cannes 2018. The range runs from Kafkaesque horror short to Cannes-winning satire to high-gloss automotive.",
+      'about.p3': "Today she runs the art department on set, bilingually, on Lisbon-based productions. Cinema and commercials aren't separate practices — the cinema craft is what makes the commercials worth watching. Direct line. No agent.",
+
       'cinema.eyebrow': 'Selected films',
       'cinema.heading': 'Cinema',
       'cinema.sub': "Marta's cinema credits include a Cannes Critics' Week winner and a MOTELx Best Short.",
@@ -67,6 +83,22 @@
       'nav.langLabel': 'Idioma',
 
       'cta.contactFloating': 'Falar com a Marta',
+
+      'hero.eyebrow': 'Comercial · Cinema · Lisboa',
+      'hero.headline': 'Cada publicidade, uma curta. Cada curta, um filme de Cannes.',
+      'hero.lede': 'Cenógrafa lisboeta. No cinema desde 2011, na publicidade desde 2016. Crédito na Semana da Crítica de Cannes com Diamantino (2018). Contacto direto — sem agente.',
+      'hero.cta.work': 'Ver trabalho selecionado',
+      'hero.cta.contact': 'Falar com a Marta',
+      'hero.card.since.eyebrow': 'Em atividade desde',
+      'hero.card.since.body': 'Cinema 2011 · Publicidade 2016',
+      'hero.card.trained.eyebrow': 'Formação',
+      'hero.card.trained.body': 'Arroio · Faculdade de Arquitetura · ESTC',
+
+      'about.eyebrow': 'Sobre',
+      'about.headline': 'Cenógrafa de formação. Diretora de arte de profissão.',
+      'about.p1': 'Lisboeta, nascida em agosto de 1990. A Marta formou-se cenógrafa — Escola Artística António Arroio, depois licenciatura em Cenografia na Faculdade de Arquitetura e mestrado em Design de Cena na ESTC. Não chegou ao cinema vinda do design gráfico. Entrou como arquiteta do palco e do enquadramento.',
+      'about.p2': 'No departamento de arte do cinema desde 2011, na publicidade desde 2016. Pela Boca Morre o Peixe arrecadou o Melhor Curta-Metragem no MOTELx 2014. Todos os Sonhos do Mundo, produzido pela Leopardo Filmes de Paulo Branco, chegou em 2017. Depois Diamantino — a sátira política que ajudou a vestir — venceu o Grande Prémio da Semaine de la Critique, Cannes 2018. O alcance vai do horror kafkiano à sátira premiada em Cannes ao alto-glamour automóvel.',
+      'about.p3': 'Hoje dirige o departamento de arte em rodagem, bilíngue, em produções com base em Lisboa. Cinema e publicidade não são duas práticas separadas — é o ofício do cinema que torna a publicidade digna de se ver. Contacto direto. Sem agente.',
 
       'cinema.eyebrow': 'Filmes selecionados',
       'cinema.heading': 'Cinema',
