@@ -182,6 +182,18 @@ const frame = document.getElementById('video-frame');
 const player = document.getElementById('video-player');
 const closeButton = document.querySelector('.video-close');
 
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
+window.addEventListener('load', () => {
+  const url = new URL(window.location.href);
+  if (url.hash === '#films') {
+    history.replaceState(null, '', `${url.pathname}${url.search}`);
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }
+});
+
 filmGrid.innerHTML = films.map((film) => `
   <button class="film-card" data-kind="${film.kind}" data-video-id="${film.videoId || ''}" data-video-src="${film.videoSrc || ''}" aria-label="Play ${film.title}">
     <img src="${film.poster}" alt="${film.title} poster" loading="lazy" />
