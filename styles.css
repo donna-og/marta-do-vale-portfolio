@@ -364,17 +364,35 @@ button { font: inherit; }
 
 @media (max-width: 760px) {
   .site-header { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
-  .hero { min-height: auto; gap: 1.5rem; }
-  .hero h1 { font-size: clamp(3.4rem, 16vw, 5rem); }
+  .hero {
+    min-height: auto;
+    gap: 1.25rem;
+    padding-top: 1rem;
+  }
+  .hero-copy {
+    order: -1;
+  }
+  .hero h1 {
+    font-size: clamp(3.2rem, 15vw, 4.8rem);
+    max-width: 6ch;
+  }
+  .hero-note {
+    margin-top: 0.9rem;
+  }
+  .hero-link {
+    margin-top: 1.25rem;
+  }
   .hero-media {
     grid-template-columns: 1fr;
     min-height: auto;
+    gap: 0;
   }
   .hero-stack-secondary {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: none;
+    display: none;
   }
-  .hero-frame-main { min-height: 18rem; }
+  .hero-frame-main {
+    min-height: 24rem;
+  }
   .hero-frame-secondary { min-height: 10rem; }
   .hero-frame-accent { transform: none; }
   .montage-grid,
