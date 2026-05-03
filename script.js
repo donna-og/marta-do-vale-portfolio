@@ -245,6 +245,7 @@ filmGrid.innerHTML = films.map((film, idx) => `
     data-kind="${film.kind}"
     data-video-id="${film.videoId || ''}"
     data-video-src="${film.videoSrc || ''}"
+    data-tilt
     data-reveal
     style="--reveal-delay: ${(idx % 4) * 90}ms"
     aria-label="Play ${film.title}"
