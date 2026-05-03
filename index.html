@@ -105,43 +105,7 @@
           <h2>Press play.</h2>
         </div>
 
-        <div class="film-grid">
-          <button class="film-card" data-video="https://www.youtube.com/embed/gLew21SCHho?autoplay=1&rel=0" aria-label="Play AUDI E-TRON GT QUATTRO">
-            <img src="assets/images/green-room.jpg" alt="AUDI E-TRON GT QUATTRO poster" />
-            <span class="play-pill">Play</span>
-            <span class="film-title">AUDI E-TRON GT QUATTRO</span>
-          </button>
-
-          <button class="film-card" data-video="https://www.youtube.com/embed/ifKgXisikBM?autoplay=1&rel=0" aria-label="Play BURGER KING">
-            <img src="assets/images/hero-neon-stage.jpg" alt="BURGER KING poster" />
-            <span class="play-pill">Play</span>
-            <span class="film-title">BURGER KING</span>
-          </button>
-
-          <button class="film-card" data-video="https://www.youtube.com/embed/B-02IVnjFYo?autoplay=1&rel=0" aria-label="Play GOLD ENERGY">
-            <img src="assets/images/candle-table.jpg" alt="GOLD ENERGY poster" />
-            <span class="play-pill">Play</span>
-            <span class="film-title">GOLD ENERGY</span>
-          </button>
-
-          <button class="film-card" data-video="https://www.youtube.com/embed/cCstYAr7m5Q?autoplay=1&rel=0" aria-label="Play DELTA Q">
-            <img src="assets/images/period-detective.jpg" alt="DELTA Q poster" />
-            <span class="play-pill">Play</span>
-            <span class="film-title">DELTA Q</span>
-          </button>
-
-          <button class="film-card" data-video="https://www.youtube.com/embed/N2nX3rAkyAA?autoplay=1&rel=0" aria-label="Play ADIDAS X S.L. BENFICA">
-            <img src="assets/images/food-still.jpg" alt="ADIDAS X S.L. BENFICA poster" />
-            <span class="play-pill">Play</span>
-            <span class="film-title">ADIDAS X S.L. BENFICA</span>
-          </button>
-
-          <button class="film-card" data-video="https://www.youtube.com/embed/aENR1rFbuw4?autoplay=1&rel=0" aria-label="Play CETELEM 2024">
-            <img src="assets/images/cocktail-bar.jpg" alt="CETELEM 2024 poster" />
-            <span class="play-pill">Play</span>
-            <span class="film-title">CETELEM 2024</span>
-          </button>
-        </div>
+        <div class="film-grid" id="film-grid"></div>
       </section>
 
       <section class="section about" id="about">
@@ -185,7 +149,9 @@
           title="Selected film"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
+          hidden
         ></iframe>
+        <video id="video-player" controls playsinline hidden></video>
       </div>
     </div>
 
