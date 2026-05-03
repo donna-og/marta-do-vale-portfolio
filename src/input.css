@@ -63,3 +63,13 @@
     font-family: 'Inter', system-ui, sans-serif;
   }
 }
+
+@layer utilities {
+  .glass-panel {
+    @apply border border-white/10 bg-white/10 backdrop-blur-2xl shadow-luxe;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}

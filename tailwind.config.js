@@ -4,6 +4,7 @@ module.exports = {
     'md:col-span-3',
     'md:col-span-4',
     'md:col-span-5',
+    'md:col-span-7',
     'md:row-span-2',
     'md:row-span-3',
     'md:row-span-4',

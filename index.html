@@ -18,7 +18,7 @@
     <meta property="og:image" content="assets/images/hero-living-room.jpg" />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="min-h-screen bg-[#0b0b0d] pb-28 font-sans text-cream md:pb-32">
+  <body class="min-h-screen bg-[#0b0b0d] pb-28 font-sans text-cream md:pb-20">
     <div class="pointer-events-none fixed inset-0 opacity-[0.08] mix-blend-soft-light [background-image:radial-gradient(rgba(255,255,255,.8)_0.45px,transparent_0.45px)] [background-size:4px_4px]"></div>
     <div class="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_top_right,rgba(126,98,59,0.14),transparent_24%),radial-gradient(circle_at_20%_10%,rgba(99,110,126,0.12),transparent_28%),linear-gradient(180deg,#111214_0%,#09090b_100%)]"></div>
 
@@ -28,35 +28,51 @@
           <span class="font-serif text-[2rem] tracking-[0.01em]">Marta do Vale</span>
           <span class="mt-0.5 text-[0.78rem] uppercase tracking-[0.28em] text-cream/60">Art Direction</span>
         </a>
-        <nav class="flex flex-wrap gap-5 text-[0.8rem] uppercase tracking-[0.22em] text-cream/60 md:text-[0.82rem]">
+        <nav class="flex flex-wrap items-center gap-5 text-[0.8rem] uppercase tracking-[0.22em] text-cream/60 md:text-[0.82rem]">
           <a href="#films" data-scroll-target="films" class="transition hover:text-cream">Selected Work</a>
           <a href="#about" data-scroll-target="about" class="transition hover:text-cream">About</a>
-          <a href="#contact" data-scroll-target="contact" class="transition hover:text-cream">Contact</a>
+          <button type="button" data-contact-open class="transition hover:text-cream">Contact</button>
         </nav>
       </div>
     </header>
 
     <main id="top" class="relative z-10">
-      <section class="mx-auto grid w-[min(calc(100%-1.5rem),1240px)] gap-8 py-10 sm:w-[min(calc(100%-2rem),1240px)] md:grid-cols-[0.78fr_1.22fr] md:items-end md:gap-10 md:py-14">
+      <section class="mx-auto grid w-[min(calc(100%-1.5rem),1240px)] gap-8 py-10 sm:w-[min(calc(100%-2rem),1240px)] md:grid-cols-[0.76fr_1.24fr] md:items-center md:gap-10 md:py-16">
         <div class="max-w-xl">
           <p class="mb-5 text-[0.78rem] uppercase tracking-[0.28em] text-accent">Commercial · Cinema · Lisbon</p>
-          <h1 class="max-w-[7ch] font-serif text-[clamp(3.6rem,14vw,7.2rem)] leading-[0.88] tracking-[-0.04em] text-cream">Art direction with atmosphere.</h1>
+          <h1 class="max-w-[7ch] font-serif text-[clamp(3.8rem,14vw,7.6rem)] leading-[0.86] tracking-[-0.05em] text-cream text-balance">Production design with cinematic taste.</h1>
           <p class="mt-6 max-w-md text-[1rem] leading-7 text-cream/72 sm:text-[1.05rem]">
-            Marta do Vale shapes frames through scenography, set dressing, and production design that feel tactile, cinematic, and exact.
+            Marta do Vale builds frames that feel lived-in, tactile, and exact — balancing atmosphere, craft, and story across commercial and cinema work.
           </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#films" data-scroll-target="films" class="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-[0.78rem] uppercase tracking-[0.22em] transition hover:border-accent hover:text-accent">View selected work</a>
+            <button type="button" data-contact-open class="inline-flex items-center rounded-full border border-white/10 px-5 py-3 text-[0.78rem] uppercase tracking-[0.22em] text-cream/72 transition hover:border-white/25 hover:text-cream">Contact Marta</button>
+          </div>
         </div>
 
-        <div class="grid gap-4 md:grid-cols-[1.15fr_0.85fr]">
-          <figure class="overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-luxe">
-            <img src="assets/images/hero-living-room.jpg" alt="Cinematic living-room set by Marta do Vale" class="h-[24rem] w-full object-cover md:h-[36rem]" />
-          </figure>
-          <div class="grid gap-4 md:grid-rows-2">
-            <figure class="overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-luxe">
-              <img src="assets/images/hero-neon-stage.jpg" alt="Neon-lit sculptural set design" class="h-[11rem] w-full object-cover md:h-full" />
+        <div class="relative min-h-[30rem] md:min-h-[42rem]">
+          <div class="absolute inset-x-0 top-0 grid gap-4 md:grid-cols-[1.08fr_0.92fr]">
+            <figure class="overflow-hidden rounded-[30px] border border-white/10 bg-white/5 shadow-luxe">
+              <img src="assets/images/hero-living-room.jpg" alt="Cinematic living-room set by Marta do Vale" class="h-[22rem] w-full object-cover md:h-[34rem]" />
             </figure>
-            <figure class="overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-luxe md:translate-y-4">
-              <img src="assets/images/candle-table.jpg" alt="Warm ensemble frame around a candlelit table" class="h-[11rem] w-full object-cover md:h-full" />
-            </figure>
+            <div class="grid gap-4 md:pt-10">
+              <figure class="overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-luxe">
+                <img src="assets/images/hero-neon-stage.jpg" alt="Neon-lit sculptural set design" class="h-[10rem] w-full object-cover md:h-[14rem]" />
+              </figure>
+              <figure class="overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-luxe md:ml-8">
+                <img src="assets/images/candle-table.jpg" alt="Warm ensemble frame around a candlelit table" class="h-[10rem] w-full object-cover md:h-[14rem]" />
+              </figure>
+            </div>
+          </div>
+
+          <div class="glass-panel absolute -bottom-2 left-0 max-w-[17rem] rounded-[24px] p-4 md:left-10 md:bottom-2">
+            <p class="text-[0.72rem] uppercase tracking-[0.24em] text-accent">What she does</p>
+            <p class="mt-3 font-serif text-[1.45rem] leading-[0.95] tracking-[-0.03em]">Scenography, set dressing, art direction, production design.</p>
+          </div>
+
+          <div class="glass-panel absolute right-0 top-10 max-w-[14rem] rounded-[24px] p-4 md:right-6 md:top-20">
+            <p class="text-[0.72rem] uppercase tracking-[0.24em] text-accent">Since 2011</p>
+            <p class="mt-3 text-[0.95rem] leading-6 text-cream/75">Building visual worlds with practical on-set discipline and a sharp sense of atmosphere.</p>
           </div>
         </div>
       </section>
@@ -65,14 +81,14 @@
         <div class="mb-8 grid gap-4 md:grid-cols-[0.9fr_1.1fr] md:items-end">
           <div>
             <p class="mb-4 text-[0.78rem] uppercase tracking-[0.28em] text-accent">Selected work</p>
-            <h2 class="max-w-[8ch] font-serif text-[clamp(2.7rem,5vw,4.9rem)] leading-[0.9] tracking-[-0.04em]">Moving image, presented with restraint.</h2>
+            <h2 class="max-w-[8ch] font-serif text-[clamp(2.7rem,5vw,4.9rem)] leading-[0.9] tracking-[-0.04em] text-balance">A tighter field of work, designed to let the images lead.</h2>
           </div>
           <p class="max-w-xl justify-self-end text-[0.98rem] leading-7 text-cream/68">
-            A single film-led selection. On mobile, a clean vertical list. On desktop, a composed field of work — quieter, sharper, and more in service of Marta than the interface.
+            Mobile reads as a clean list. Desktop opens into a more composed grid — more dynamic than before, but still restrained enough to keep the attention on Marta’s eye.
           </p>
         </div>
 
-        <div id="film-grid" class="grid grid-cols-1 gap-4 md:auto-flow-dense md:grid-cols-12 md:auto-rows-[118px]"></div>
+        <div id="film-grid" class="grid grid-cols-1 gap-4 md:auto-flow-dense md:grid-cols-12 md:auto-rows-[120px]"></div>
       </section>
 
       <section id="about" class="mx-auto grid w-[min(calc(100%-1.5rem),1240px)] gap-4 py-10 sm:w-[min(calc(100%-2rem),1240px)] md:grid-cols-[1.02fr_0.98fr] md:py-14">
@@ -93,17 +109,36 @@
       </section>
     </main>
 
-    <div id="contact" class="fixed inset-x-2 bottom-[calc(env(safe-area-inset-bottom,0px)+0.75rem)] z-40 mx-auto grid w-[min(25rem,calc(100%-1rem))] grid-cols-4 gap-3 rounded-[28px] border border-white/15 bg-[#08080a]/84 p-3 shadow-[0_20px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:inset-x-0">
-      <a class="flex min-h-[4.1rem] items-center justify-center rounded-[20px] bg-white/5 p-3 transition hover:bg-white/10" href="mailto:hellomartadovale@gmail.com" aria-label="Email Marta">
-        <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6"><path d="M3 6.75A1.75 1.75 0 0 1 4.75 5h14.5A1.75 1.75 0 0 1 21 6.75v10.5A1.75 1.75 0 0 1 19.25 19H4.75A1.75 1.75 0 0 1 3 17.25V6.75Zm1.9-.25L12 11.56l7.1-5.06H4.9Zm14.6 11a.25.25 0 0 0 .25-.25V8.2l-7.31 5.22a.75.75 0 0 1-.88 0L4.25 8.2v9.05c0 .14.11.25.25.25h14.99Z" fill="currentColor"/></svg>
-      </a>
-      <a class="flex min-h-[4.1rem] items-center justify-center rounded-[20px] bg-white/5 p-3 transition hover:bg-white/10" href="https://api.whatsapp.com/send?phone=351918373368" target="_blank" rel="noreferrer" aria-label="Call or WhatsApp Marta">
-        <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6"><path d="M19.05 4.94A9.9 9.9 0 0 0 12.02 2C6.51 2 2.03 6.48 2.03 12c0 1.77.46 3.5 1.34 5.02L2 22l5.11-1.34A9.93 9.93 0 0 0 12.02 22C17.53 22 22 17.52 22 12c0-2.67-1.04-5.18-2.95-7.06ZM12.02 20.3a8.24 8.24 0 0 1-4.2-1.15l-.3-.18-3.03.8.81-2.96-.2-.31A8.23 8.23 0 1 1 20.3 12a8.3 8.3 0 0 1-8.28 8.3Zm4.53-6.2c-.25-.13-1.49-.74-1.72-.82-.23-.09-.4-.13-.57.13-.17.25-.66.82-.81.99-.15.17-.3.19-.55.06-.25-.13-1.07-.39-2.04-1.25-.75-.67-1.26-1.5-1.4-1.75-.15-.25-.02-.38.11-.51.12-.12.25-.3.38-.45.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.45-.06-.13-.57-1.37-.78-1.87-.2-.49-.41-.42-.57-.43h-.49c-.17 0-.45.06-.68.32s-.89.87-.89 2.13.91 2.47 1.04 2.64c.13.17 1.79 2.73 4.33 3.82.6.26 1.07.41 1.44.52.61.19 1.16.16 1.6.1.49-.07 1.49-.61 1.7-1.2.21-.59.21-1.09.15-1.19-.06-.1-.23-.16-.48-.29Z" fill="currentColor"/></svg>
-      </a>
-      <a class="flex min-h-[4.1rem] items-center justify-center rounded-[20px] bg-white/5 p-3 text-sm font-semibold transition hover:bg-white/10" href="https://www.imdb.com/name/nm6185805/" target="_blank" rel="noreferrer" aria-label="Marta on IMDb">IMDb</a>
-      <a class="flex min-h-[4.1rem] items-center justify-center rounded-[20px] bg-white/5 p-3 transition hover:bg-white/10" href="https://www.instagram.com/martadovale.art?igsh=MTZ1ZWg0cjI0amUwbA==" target="_blank" rel="noreferrer" aria-label="Marta on Instagram">
-        <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6"><path d="M7.75 3h8.5A4.75 4.75 0 0 1 21 7.75v8.5A4.75 4.75 0 0 1 16.25 21h-8.5A4.75 4.75 0 0 1 3 16.25v-8.5A4.75 4.75 0 0 1 7.75 3Zm0 1.5A3.25 3.25 0 0 0 4.5 7.75v8.5a3.25 3.25 0 0 0 3.25 3.25h8.5a3.25 3.25 0 0 0 3.25-3.25v-8.5a3.25 3.25 0 0 0-3.25-3.25h-8.5Zm8.88 1.12a1.13 1.13 0 1 1 0 2.26 1.13 1.13 0 0 1 0-2.26ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5A3.5 3.5 0 1 0 12 15.5 3.5 3.5 0 0 0 12 8.5Z" fill="currentColor"/></svg>
-      </a>
+    <button type="button" data-contact-open class="glass-panel fixed bottom-[calc(env(safe-area-inset-bottom,0px)+1rem)] right-4 z-40 rounded-full px-5 py-3 text-[0.78rem] uppercase tracking-[0.22em] text-cream/84 transition hover:-translate-y-0.5 hover:text-cream md:right-6">
+      Contact Marta
+    </button>
+
+    <div class="contact-modal fixed inset-0 z-50 hidden items-center justify-center bg-black/72 p-4 backdrop-blur-xl">
+      <div class="relative w-full max-w-2xl overflow-hidden rounded-[30px] border border-white/10 bg-[#121316]/92 p-6 shadow-[0_40px_120px_rgba(0,0,0,0.5)] md:p-8">
+        <button type="button" class="contact-close absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-3xl leading-none text-white transition hover:bg-white/20" aria-label="Close contact">×</button>
+        <p class="text-[0.78rem] uppercase tracking-[0.28em] text-accent">Contact</p>
+        <h3 class="mt-4 max-w-[10ch] font-serif text-[clamp(2.2rem,4vw,3.5rem)] leading-[0.92] tracking-[-0.04em]">Let’s talk about the frame.</h3>
+        <p class="mt-4 max-w-xl text-[1rem] leading-7 text-cream/68">For commercial and cinema work, Marta can be reached directly through the channels below.</p>
+
+        <div class="mt-8 grid gap-4 md:grid-cols-2">
+          <a class="glass-panel rounded-[24px] p-5 transition hover:-translate-y-0.5" href="mailto:hellomartadovale@gmail.com">
+            <p class="text-[0.72rem] uppercase tracking-[0.22em] text-accent">Email</p>
+            <p class="mt-3 font-serif text-[1.5rem] leading-[0.95] tracking-[-0.03em]">hellomartadovale@gmail.com</p>
+          </a>
+          <a class="glass-panel rounded-[24px] p-5 transition hover:-translate-y-0.5" href="https://api.whatsapp.com/send?phone=351918373368" target="_blank" rel="noreferrer">
+            <p class="text-[0.72rem] uppercase tracking-[0.22em] text-accent">Phone / WhatsApp</p>
+            <p class="mt-3 font-serif text-[1.5rem] leading-[0.95] tracking-[-0.03em]">+351 918 373 368</p>
+          </a>
+          <a class="glass-panel rounded-[24px] p-5 transition hover:-translate-y-0.5" href="https://www.imdb.com/name/nm6185805/" target="_blank" rel="noreferrer">
+            <p class="text-[0.72rem] uppercase tracking-[0.22em] text-accent">IMDb</p>
+            <p class="mt-3 text-[1rem] leading-7 text-cream/72">Selected credits and professional profile.</p>
+          </a>
+          <a class="glass-panel rounded-[24px] p-5 transition hover:-translate-y-0.5" href="https://www.instagram.com/martadovale.art?igsh=MTZ1ZWg0cjI0amUwbA==" target="_blank" rel="noreferrer">
+            <p class="text-[0.72rem] uppercase tracking-[0.22em] text-accent">Instagram</p>
+            <p class="mt-3 text-[1rem] leading-7 text-cream/72">Visual updates, process, and recent work.</p>
+          </a>
+        </div>
+      </div>
     </div>
 
     <div class="video-modal fixed inset-0 z-50 hidden items-center justify-center bg-black/82 p-4 backdrop-blur-xl">

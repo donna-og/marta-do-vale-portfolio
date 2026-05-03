@@ -203,11 +203,14 @@ const films = [
 
 const fallbackImage = 'assets/images/hero-living-room.jpg';
 const filmGrid = document.getElementById('film-grid');
-const modal = document.querySelector('.video-modal');
+const videoModal = document.querySelector('.video-modal');
+const contactModal = document.querySelector('.contact-modal');
 const frame = document.getElementById('video-frame');
 const player = document.getElementById('video-player');
 const closeButton = document.querySelector('.video-close');
+const contactCloseButton = document.querySelector('.contact-close');
 const scrollLinks = document.querySelectorAll('[data-scroll-target]');
+const contactTriggers = document.querySelectorAll('[data-contact-open]');
 
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
@@ -238,19 +241,30 @@ scrollLinks.forEach((link) => {
 filmGrid.innerHTML = films.map((film) => `
   <button
     type="button"
-    class="group relative overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.04] text-left shadow-luxe transition duration-300 hover:-translate-y-0.5 ${film.size}"
+    class="group overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.04] text-left shadow-luxe transition duration-300 hover:-translate-y-0.5 md:relative ${film.size}"
     data-kind="${film.kind}"
     data-video-id="${film.videoId || ''}"
     data-video-src="${film.videoSrc || ''}"
     aria-label="Play ${film.title}"
   >
-    <img src="${film.poster}" alt="${film.title} poster" loading="lazy" data-fallback="${fallbackImage}" class="h-[22rem] w-full object-cover transition duration-500 group-hover:scale-[1.02] md:h-full" />
-    <div class="absolute inset-0 bg-gradient-to-b from-black/5 via-black/10 to-black/90"></div>
-    <div class="absolute inset-x-4 top-4 z-10 flex items-start justify-between gap-3">
+    <div class="grid min-h-[11rem] grid-cols-[136px_minmax(0,1fr)] md:block md:h-full">
+      <img src="${film.poster}" alt="${film.title} poster" loading="lazy" data-fallback="${fallbackImage}" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02] md:h-full" />
+      <div class="flex flex-col justify-between p-4 md:hidden">
+        <div>
+          <p class="text-[0.68rem] uppercase tracking-[0.22em] text-accent">Film</p>
+          <h3 class="mt-2 font-serif text-[1.35rem] leading-[0.95] tracking-[-0.03em] text-cream">${film.title}</h3>
+          ${film.subtitle ? `<p class="mt-2 text-[0.72rem] uppercase tracking-[0.16em] text-cream/58">${film.subtitle}</p>` : ''}
+        </div>
+        <p class="mt-4 text-[0.72rem] uppercase tracking-[0.22em] text-cream/50">Tap to play</p>
+      </div>
+    </div>
+
+    <div class="absolute inset-0 hidden bg-gradient-to-b from-black/5 via-black/10 to-black/90 md:block"></div>
+    <div class="absolute inset-x-4 top-4 z-10 hidden items-start justify-between gap-3 md:flex">
       <span class="text-[0.72rem] uppercase tracking-[0.22em] text-cream/70">Film</span>
       <span class="text-[0.72rem] uppercase tracking-[0.22em] text-cream/55">Play</span>
     </div>
-    <div class="absolute inset-x-4 bottom-4 z-10 max-w-[18rem]">
+    <div class="absolute inset-x-4 bottom-4 z-10 hidden max-w-[18rem] md:block">
       <h3 class="font-serif text-[1.65rem] leading-[0.92] tracking-[-0.03em] text-cream">${film.title}</h3>
       ${film.subtitle ? `<p class="mt-1 text-[0.82rem] uppercase tracking-[0.16em] text-cream/60">${film.subtitle}</p>` : ''}
     </div>
@@ -267,15 +281,27 @@ document.querySelectorAll('img[data-fallback]').forEach((img) => {
 
 const videoCards = document.querySelectorAll('[data-kind]');
 
-const closeModal = () => {
-  modal.classList.add('hidden');
-  modal.classList.remove('flex');
+const closeVideoModal = () => {
+  videoModal.classList.add('hidden');
+  videoModal.classList.remove('flex');
   frame.src = '';
   frame.classList.add('hidden');
   player.pause();
   player.removeAttribute('src');
   player.load();
   player.classList.add('hidden');
+  document.body.style.overflow = '';
+};
+
+const openContactModal = () => {
+  contactModal.classList.remove('hidden');
+  contactModal.classList.add('flex');
+  document.body.style.overflow = 'hidden';
+};
+
+const closeContactModal = () => {
+  contactModal.classList.add('hidden');
+  contactModal.classList.remove('flex');
   document.body.style.overflow = '';
 };
 
@@ -294,17 +320,32 @@ videoCards.forEach((card) => {
       player.play();
     }
 
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
+    videoModal.classList.remove('hidden');
+    videoModal.classList.add('flex');
     document.body.style.overflow = 'hidden';
   });
 });
 
-closeButton.addEventListener('click', closeModal);
-modal.addEventListener('click', (event) => {
-  if (event.target === modal) closeModal();
+contactTriggers.forEach((trigger) => {
+  trigger.addEventListener('click', (event) => {
+    event.preventDefault();
+    openContactModal();
+  });
+});
+
+closeButton.addEventListener('click', closeVideoModal);
+contactCloseButton.addEventListener('click', closeContactModal);
+
+videoModal.addEventListener('click', (event) => {
+  if (event.target === videoModal) closeVideoModal();
+});
+
+contactModal.addEventListener('click', (event) => {
+  if (event.target === contactModal) closeContactModal();
 });
 
 document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+  if (event.key !== 'Escape') return;
+  if (!videoModal.classList.contains('hidden')) closeVideoModal();
+  if (!contactModal.classList.contains('hidden')) closeContactModal();
 });
