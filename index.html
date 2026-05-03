@@ -39,9 +39,9 @@
 
     <header class="header-shell sticky top-0 z-40 border-b border-white/10">
       <div class="mx-auto flex w-[min(calc(100%-1.5rem),1240px)] flex-col gap-3 py-4 sm:w-[min(calc(100%-2rem),1240px)] md:flex-row md:items-center md:justify-between">
-        <a href="#top" data-scroll-target="top" aria-label="Marta do Vale home" class="inline-flex flex-col leading-none">
+        <a href="#top" data-scroll-target="top" aria-label="Marta do Vale home" data-i18n-attr="aria-label:brand.home" class="inline-flex flex-col leading-none">
           <span class="header-wordmark font-serif text-[2rem] tracking-[0.01em]">Marta do Vale</span>
-          <span class="header-eyebrow mt-0.5 text-[0.78rem] uppercase tracking-[0.28em] text-cream">Art Direction</span>
+          <span class="header-eyebrow mt-0.5 text-[0.78rem] uppercase tracking-[0.28em] text-cream" data-i18n="brand.eyebrow">Art Direction</span>
         </a>
         <nav class="flex flex-wrap items-center gap-x-5 gap-y-1 text-[0.8rem] uppercase tracking-[0.22em] text-cream/60 md:text-[0.82rem]">
           <a href="#cinema" data-scroll-target="cinema" data-i18n="nav.cinema" class="inline-flex min-h-[44px] items-center transition hover:text-cream">Cinema</a>
@@ -74,14 +74,14 @@
         <div class="relative md:min-h-[42rem]" data-hero-parallax data-reveal style="--reveal-delay: 120ms">
           <div class="grid gap-4 md:absolute md:inset-x-0 md:top-0 md:grid-cols-[1.08fr_0.92fr]">
             <figure class="overflow-hidden rounded-[30px] border border-white/10 bg-white/5 shadow-luxe" data-parallax-layer="front">
-              <img src="assets/images/hero-living-room.jpg" alt="Cinematic living-room set by Marta do Vale" fetchpriority="high" decoding="async" class="h-[22rem] w-full object-cover md:h-[34rem]" />
+              <img src="assets/images/hero-living-room.jpg" alt="Cinematic living-room set by Marta do Vale" data-i18n-attr="alt:image.alt.heroLiving" fetchpriority="high" decoding="async" class="h-[22rem] w-full object-cover md:h-[34rem]" />
             </figure>
             <div class="grid gap-4 md:pt-10">
               <figure class="overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-luxe" data-parallax-layer="mid">
-                <img src="assets/images/hero-neon-stage.jpg" alt="Neon-lit sculptural set design" loading="lazy" decoding="async" class="h-[10rem] w-full object-cover md:h-[14rem]" />
+                <img src="assets/images/hero-neon-stage.jpg" alt="Neon-lit sculptural set design" data-i18n-attr="alt:image.alt.heroNeon" loading="lazy" decoding="async" class="h-[10rem] w-full object-cover md:h-[14rem]" />
               </figure>
               <figure class="overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-luxe md:ml-8" data-parallax-layer="back">
-                <img src="assets/images/candle-table.jpg" alt="Warm ensemble frame around a candlelit table" loading="lazy" decoding="async" class="h-[10rem] w-full object-cover md:h-[14rem]" />
+                <img src="assets/images/candle-table.jpg" alt="Warm ensemble frame around a candlelit table" data-i18n-attr="alt:image.alt.heroCandle" loading="lazy" decoding="async" class="h-[10rem] w-full object-cover md:h-[14rem]" />
               </figure>
             </div>
           </div>
@@ -135,7 +135,7 @@
           <article class="flex flex-col md:mt-16" data-reveal style="--reveal-delay: 90ms">
             <div class="film-still film-still--dreams">
               <div class="film-still__label">
-                <span>All the Dreams in the World</span>
+                <span data-i18n="cinema.dreams.title">All the Dreams in the World</span>
                 <span>2017</span>
               </div>
             </div>
@@ -223,7 +223,7 @@
 
       <section id="about" class="mx-auto grid w-[min(calc(100%-1.5rem),1240px)] gap-4 py-10 sm:w-[min(calc(100%-2rem),1240px)] md:grid-cols-[1.02fr_0.98fr] md:py-14">
         <div class="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-luxe" data-reveal>
-          <img src="assets/images/writing-study.jpg" alt="Styled study interior with layered props and warm light" loading="lazy" decoding="async" class="h-[24rem] w-full object-cover md:h-full md:min-h-[30rem]" />
+          <img src="assets/images/writing-study.jpg" alt="Styled study interior with layered props and warm light" data-i18n-attr="alt:image.alt.aboutStudy" loading="lazy" decoding="async" class="h-[24rem] w-full object-cover md:h-full md:min-h-[30rem]" />
           <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/65"></div>
         </div>
         <div class="flex flex-col justify-end rounded-[28px] border border-white/10 bg-white/[0.05] p-8 shadow-luxe" data-reveal style="--reveal-delay: 120ms">
@@ -328,13 +328,13 @@
       </section>
     </main>
 
-    <button type="button" data-contact-open aria-label="Open contact details" class="glass-panel fixed bottom-[calc(env(safe-area-inset-bottom,0px)+1rem)] right-4 z-40 inline-flex min-h-[44px] items-center rounded-full px-5 py-3 text-[0.78rem] uppercase tracking-[0.22em] text-cream/84 transition hover:-translate-y-0.5 hover:text-cream md:right-6" data-i18n="cta.contactFloating">
+    <button type="button" data-contact-open aria-label="Contact Marta" data-i18n-attr="aria-label:cta.contactFloating" class="glass-panel fixed bottom-[calc(env(safe-area-inset-bottom,0px)+1rem)] right-4 z-40 inline-flex min-h-[44px] items-center rounded-full px-5 py-3 text-[0.78rem] uppercase tracking-[0.22em] text-cream/84 transition hover:-translate-y-0.5 hover:text-cream md:right-6" data-i18n="cta.contactFloating">
       Contact Marta
     </button>
 
     <div class="contact-modal fixed inset-0 z-50 hidden items-center justify-center bg-black/72 p-4 backdrop-blur-xl" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title" aria-hidden="true">
       <div class="relative w-full max-w-2xl overflow-hidden rounded-[30px] border border-white/10 bg-[#121316]/92 p-6 shadow-[0_40px_120px_rgba(0,0,0,0.5)] md:p-8">
-        <button type="button" class="contact-close absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-3xl leading-none text-white transition hover:bg-white/20" aria-label="Close contact">×</button>
+        <button type="button" class="contact-close absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-3xl leading-none text-white transition hover:bg-white/20" aria-label="Close contact" data-i18n-attr="aria-label:modal.contact.close">×</button>
         <p class="text-[0.78rem] uppercase tracking-[0.28em] text-accent" data-i18n="contact.eyebrow">Contact</p>
         <h3 id="contact-modal-title" class="mt-4 max-w-[10ch] font-serif text-[clamp(2.2rem,4vw,3.5rem)] leading-[0.92] tracking-[-0.04em] text-balance" data-i18n="contact.headline">Let’s talk about the frame.</h3>
         <p class="mt-4 max-w-xl text-[1rem] leading-7 text-cream/68" data-i18n="contact.sub">Marta represents herself. Email or WhatsApp lands directly with her — no agents, no gatekeepers, no briefing forms.</p>
@@ -388,10 +388,10 @@
       </div>
     </div>
 
-    <div class="video-modal fixed inset-0 z-50 hidden items-center justify-center bg-black/82 p-4 backdrop-blur-xl" role="dialog" aria-modal="true" aria-label="Selected film player" aria-hidden="true">
-      <button type="button" class="video-close absolute right-4 top-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-4xl leading-none text-white transition hover:bg-white/20" aria-label="Close video">×</button>
+    <div class="video-modal fixed inset-0 z-50 hidden items-center justify-center bg-black/82 p-4 backdrop-blur-xl" role="dialog" aria-modal="true" aria-label="Selected film player" data-i18n-attr="aria-label:modal.video.label" aria-hidden="true">
+      <button type="button" class="video-close absolute right-4 top-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-4xl leading-none text-white transition hover:bg-white/20" aria-label="Close video" data-i18n-attr="aria-label:modal.video.close">×</button>
       <div class="aspect-video w-full max-w-6xl overflow-hidden rounded-[24px] shadow-[0_40px_120px_rgba(0,0,0,0.5)]">
-        <iframe id="video-frame" src="" title="Selected film" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="hidden h-full w-full border-0 bg-black"></iframe>
+        <iframe id="video-frame" src="" title="Selected film" data-i18n-attr="title:modal.video.label" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="hidden h-full w-full border-0 bg-black"></iframe>
         <video id="video-player" controls playsinline class="hidden h-full w-full bg-black"></video>
       </div>
     </div>
