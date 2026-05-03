@@ -228,14 +228,16 @@ const films = [
 ];
 
 const featuredWork = [
+  { ...films[0], type: 'video', size: 'md:col-span-5 md:row-span-3' },
   worlds[0],
-  { ...films[0], type: 'video', size: 'md:col-span-4 md:row-span-3' },
-  worlds[1],
-  { ...films[4], type: 'video', size: 'md:col-span-4 md:row-span-2' },
-  worlds[2],
+  { ...films[4], type: 'video', size: 'md:col-span-3 md:row-span-4' },
   { ...films[1], type: 'video', size: 'md:col-span-4 md:row-span-2' },
-  worlds[3],
+  worlds[1],
   { ...films[10], type: 'video', size: 'md:col-span-4 md:row-span-2' },
+  worlds[2],
+  { ...films[14], type: 'video', size: 'md:col-span-4 md:row-span-2' },
+  worlds[3],
+  { ...films[20], type: 'video', size: 'md:col-span-4 md:row-span-2' },
   worlds[4],
   worlds[5]
 ];
@@ -285,13 +287,13 @@ const renderCard = (item, mode = 'archive') => {
   const imageClass = mode === 'featured'
     ? 'h-72 w-full object-cover transition duration-500 group-hover:scale-[1.03] md:h-full'
     : 'h-[22rem] w-full object-cover transition duration-500 group-hover:scale-[1.03]';
-  const badge = item.type === 'video' ? 'Film' : 'World';
+  const badge = item.type === 'video' ? 'Playable film' : 'World';
   const badgeClass = item.type === 'video'
-    ? 'bg-accent/90 text-black'
+    ? 'bg-accent/90 text-black shadow'
     : 'bg-black/55 text-cream border border-white/10';
   const subtitle = item.subtitle ? `<p class="mt-1 text-sm leading-5 text-cream/75">${item.subtitle}</p>` : '';
   const play = item.type === 'video'
-    ? `<span class="absolute right-4 top-4 z-10 rounded-full border border-white/20 bg-black/50 px-3 py-2 text-[0.68rem] font-medium uppercase tracking-[0.18em] text-cream">Play</span>`
+    ? `<span class="absolute right-4 top-4 z-10 rounded-full border border-white/20 bg-black/50 px-3 py-2 text-[0.68rem] font-medium uppercase tracking-[0.18em] text-cream">Tap to play</span>`
     : '';
   const tag = item.type === 'video' ? 'button' : 'article';
   const attrs = item.type === 'video'
