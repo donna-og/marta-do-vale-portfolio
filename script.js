@@ -1,3 +1,54 @@
+const worlds = [
+  {
+    type: 'world',
+    title: 'Interiors with character',
+    subtitle: 'Built spaces with memory in the walls.',
+    image: 'assets/images/autumn-lounge.jpg',
+    alt: 'Autumn-toned lounge interior styled by Marta do Vale',
+    size: 'md:col-span-5 md:row-span-3'
+  },
+  {
+    type: 'world',
+    title: 'Cinematic atmosphere',
+    subtitle: 'Architecture, shadow, and tension.',
+    image: 'assets/images/arched-shadow.jpg',
+    alt: 'Moody arched interior with cinematic light',
+    size: 'md:col-span-3 md:row-span-4'
+  },
+  {
+    type: 'world',
+    title: 'Graphic commercial worlds',
+    subtitle: 'Shape, surface, velocity.',
+    image: 'assets/images/modernist-drive.jpg',
+    alt: 'Modernist architecture and automotive framing',
+    size: 'md:col-span-4 md:row-span-2'
+  },
+  {
+    type: 'world',
+    title: 'Texture and colour',
+    subtitle: 'Material styling that holds the frame.',
+    image: 'assets/images/green-room.jpg',
+    alt: 'Layered green interior with rich styling',
+    size: 'md:col-span-4 md:row-span-2'
+  },
+  {
+    type: 'world',
+    title: 'Warm ensemble scenes',
+    subtitle: 'Human energy, composed carefully.',
+    image: 'assets/images/candle-table.jpg',
+    alt: 'Warm candlelit dinner table composition',
+    size: 'md:col-span-4 md:row-span-2'
+  },
+  {
+    type: 'world',
+    title: 'Location styling',
+    subtitle: 'Sun, texture, and lived-in detail.',
+    image: 'assets/images/beach-kiosk.jpg',
+    alt: 'Sun-soaked beach kiosk styling',
+    size: 'md:col-span-4 md:row-span-2'
+  }
+];
+
 const films = [
   {
     title: 'AUDI E-TRON GT QUATTRO',
@@ -81,7 +132,7 @@ const films = [
     subtitle: 'CRÉDITO HABITAÇÃO',
     kind: 'youtube',
     videoId: 'Zfh9JDLS0RQ',
-    poster: 'https://static.wixstatic.com/media/maxresdefault.jpg'
+    poster: 'https://i.ytimg.com/vi/Zfh9JDLS0RQ/maxresdefault.jpg'
   },
   {
     title: 'GOLDENERGY',
@@ -176,7 +227,22 @@ const films = [
   }
 ];
 
-const filmGrid = document.getElementById('film-grid');
+const featuredWork = [
+  worlds[0],
+  { ...films[0], type: 'video', size: 'md:col-span-4 md:row-span-3' },
+  worlds[1],
+  { ...films[4], type: 'video', size: 'md:col-span-4 md:row-span-2' },
+  worlds[2],
+  { ...films[1], type: 'video', size: 'md:col-span-4 md:row-span-2' },
+  worlds[3],
+  { ...films[10], type: 'video', size: 'md:col-span-4 md:row-span-2' },
+  worlds[4],
+  worlds[5]
+];
+
+const fallbackImage = 'assets/images/hero-living-room.jpg';
+const workGrid = document.getElementById('work-grid');
+const archiveGrid = document.getElementById('archive-grid');
 const modal = document.querySelector('.video-modal');
 const frame = document.getElementById('video-frame');
 const player = document.getElementById('video-player');
@@ -213,25 +279,51 @@ scrollLinks.forEach((link) => {
   });
 });
 
-filmGrid.innerHTML = films.map((film) => `
-  <button
-    class="group relative min-h-[18rem] overflow-hidden rounded-[24px] border border-white/10 bg-transparent p-0 text-left shadow-luxe transition hover:-translate-y-0.5"
-    data-kind="${film.kind}"
-    data-video-id="${film.videoId || ''}"
-    data-video-src="${film.videoSrc || ''}"
-    aria-label="Play ${film.title}"
-  >
-    <img src="${film.poster}" alt="${film.title} poster" loading="lazy" class="h-full w-full object-cover" />
-    <span class="absolute left-4 top-4 z-10 rounded-full border border-white/20 bg-[#0a0a0c]/75 px-3 py-2 text-[0.7rem] uppercase tracking-[0.18em] text-cream">Play</span>
-    <span class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/85"></span>
-    <span class="absolute inset-x-4 bottom-4 z-10 flex flex-col gap-1">
-      <strong class="text-base leading-tight text-cream">${film.title}</strong>
-      ${film.subtitle ? `<small class="text-[0.78rem] uppercase tracking-[0.08em] text-cream/75">${film.subtitle}</small>` : ''}
-    </span>
-  </button>
-`).join('');
+const renderCard = (item, mode = 'archive') => {
+  const size = mode === 'featured' ? item.size || 'md:col-span-4 md:row-span-2' : '';
+  const cardClass = `group relative overflow-hidden rounded-[26px] border border-white/10 bg-white/5 shadow-luxe ${size}`;
+  const imageClass = mode === 'featured'
+    ? 'h-72 w-full object-cover transition duration-500 group-hover:scale-[1.03] md:h-full'
+    : 'h-[22rem] w-full object-cover transition duration-500 group-hover:scale-[1.03]';
+  const badge = item.type === 'video' ? 'Film' : 'World';
+  const badgeClass = item.type === 'video'
+    ? 'bg-accent/90 text-black'
+    : 'bg-black/55 text-cream border border-white/10';
+  const subtitle = item.subtitle ? `<p class="mt-1 text-sm leading-5 text-cream/75">${item.subtitle}</p>` : '';
+  const play = item.type === 'video'
+    ? `<span class="absolute right-4 top-4 z-10 rounded-full border border-white/20 bg-black/50 px-3 py-2 text-[0.68rem] font-medium uppercase tracking-[0.18em] text-cream">Play</span>`
+    : '';
+  const tag = item.type === 'video' ? 'button' : 'article';
+  const attrs = item.type === 'video'
+    ? `type="button" data-kind="${item.kind}" data-video-id="${item.videoId || ''}" data-video-src="${item.videoSrc || ''}" aria-label="Play ${item.title}"`
+    : '';
 
-const filmCards = document.querySelectorAll('[data-kind]');
+  return `
+    <${tag} class="${cardClass} ${item.type === 'video' ? 'cursor-pointer text-left transition hover:-translate-y-0.5' : ''}" ${attrs}>
+      <img src="${item.image || item.poster}" alt="${item.alt || `${item.title} poster`}" loading="lazy" data-fallback="${fallbackImage}" class="${imageClass}" />
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/85"></div>
+      <span class="absolute left-4 top-4 z-10 rounded-full px-3 py-2 text-[0.68rem] font-medium uppercase tracking-[0.18em] ${badgeClass}">${badge}</span>
+      ${play}
+      <div class="absolute inset-x-4 bottom-4 z-10">
+        <h3 class="font-serif text-[1.6rem] leading-[0.95] tracking-[-0.02em] text-cream">${item.title}</h3>
+        ${subtitle}
+      </div>
+    </${tag}>
+  `;
+};
+
+workGrid.innerHTML = featuredWork.map((item) => renderCard(item, 'featured')).join('');
+archiveGrid.innerHTML = films.map((film) => renderCard({ ...film, type: 'video' }, 'archive')).join('');
+
+document.querySelectorAll('img[data-fallback]').forEach((img) => {
+  img.addEventListener('error', () => {
+    if (img.dataset.failed === 'true') return;
+    img.dataset.failed = 'true';
+    img.src = img.dataset.fallback;
+  });
+});
+
+const videoCards = document.querySelectorAll('[data-kind]');
 
 const closeModal = () => {
   modal.classList.add('hidden');
@@ -245,7 +337,7 @@ const closeModal = () => {
   document.body.style.overflow = '';
 };
 
-filmCards.forEach((card) => {
+videoCards.forEach((card) => {
   card.addEventListener('click', () => {
     const kind = card.dataset.kind;
 

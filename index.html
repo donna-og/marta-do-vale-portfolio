@@ -32,121 +32,97 @@
               serif: ['Cormorant Garamond', 'serif']
             },
             colors: {
-              ink: '#0a0a0c',
               cream: '#f4f0e8',
               accent: '#ccb07a'
             },
             boxShadow: {
               luxe: '0 26px 80px rgba(0,0,0,0.35)'
-            },
-            maxWidth: {
-              content: '1280px'
             }
           }
         }
       };
     </script>
   </head>
-  <body class="min-h-screen bg-[radial-gradient(circle_at_top_right,rgba(129,92,42,0.2),transparent_25%),radial-gradient(circle_at_15%_10%,rgba(88,105,128,0.16),transparent_30%),linear-gradient(180deg,#101014_0%,#09090b_100%)] pb-28 font-sans text-cream md:pb-32">
+  <body class="min-h-screen bg-[radial-gradient(circle_at_top_right,rgba(129,92,42,0.22),transparent_24%),radial-gradient(circle_at_15%_10%,rgba(88,105,128,0.18),transparent_28%),linear-gradient(180deg,#101014_0%,#09090b_100%)] pb-28 font-sans text-cream md:pb-32">
     <div class="pointer-events-none fixed inset-0 opacity-10 mix-blend-soft-light [background-image:radial-gradient(rgba(255,255,255,.8)_0.45px,transparent_0.45px)] [background-size:4px_4px]"></div>
 
-    <header class="sticky top-0 z-30 mx-auto flex w-[min(calc(100%-1.5rem),1280px)] flex-col gap-3 border-b border-white/10 bg-[#0b0b0d]/65 py-4 backdrop-blur-xl sm:w-[min(calc(100%-2rem),1280px)] md:flex-row md:items-center md:justify-between">
-      <a href="#top" data-scroll-target="top" aria-label="Marta do Vale home" class="inline-flex flex-col leading-none">
-        <span class="font-serif text-[2rem] tracking-[0.01em]">Marta do Vale</span>
-        <span class="mt-0.5 text-[0.82rem] uppercase tracking-[0.24em] text-cream/70">Art Direction</span>
-      </a>
-      <nav class="flex flex-wrap gap-4 text-sm text-cream/70 md:text-base">
-        <a href="#work" data-scroll-target="work" class="transition hover:text-cream">Work</a>
-        <a href="#films" data-scroll-target="films" class="transition hover:text-cream">Films</a>
-        <a href="#about" data-scroll-target="about" class="transition hover:text-cream">About</a>
-      </nav>
+    <header class="sticky top-0 z-40 border-b border-white/10 bg-[#0b0b0d]/70 backdrop-blur-xl">
+      <div class="mx-auto flex w-[min(calc(100%-1.5rem),1320px)] flex-col gap-3 py-4 sm:w-[min(calc(100%-2rem),1320px)] md:flex-row md:items-center md:justify-between">
+        <a href="#top" data-scroll-target="top" aria-label="Marta do Vale home" class="inline-flex flex-col leading-none">
+          <span class="font-serif text-[2rem] tracking-[0.01em]">Marta do Vale</span>
+          <span class="mt-0.5 text-[0.82rem] uppercase tracking-[0.24em] text-cream/70">Art Direction</span>
+        </a>
+        <nav class="flex flex-wrap gap-4 text-sm text-cream/70 md:text-base">
+          <a href="#work" data-scroll-target="work" class="transition hover:text-cream">Selected work</a>
+          <a href="#archive" data-scroll-target="archive" class="transition hover:text-cream">Archive</a>
+          <a href="#about" data-scroll-target="about" class="transition hover:text-cream">About</a>
+        </nav>
+      </div>
     </header>
 
     <main id="top" class="relative z-10">
-      <section class="mx-auto grid w-[min(calc(100%-1.5rem),1280px)] gap-6 py-8 sm:w-[min(calc(100%-2rem),1280px)] md:min-h-[calc(100vh-5rem)] md:grid-cols-[0.9fr_1.1fr] md:items-center md:gap-8 md:py-12">
-        <div class="order-1 md:order-none">
+      <section class="mx-auto grid w-[min(calc(100%-1.5rem),1320px)] gap-8 py-8 sm:w-[min(calc(100%-2rem),1320px)] md:min-h-[calc(100vh-5rem)] md:grid-cols-[0.88fr_1.12fr] md:items-center md:py-12">
+        <div>
           <p class="mb-4 text-xs uppercase tracking-[0.24em] text-accent">Lisbon · films · commercials</p>
-          <h1 class="max-w-[6ch] font-serif text-[clamp(3.25rem,14vw,7.8rem)] leading-[0.92] tracking-[-0.03em]">Visual worlds for bold stories</h1>
-          <p class="mt-4 max-w-xl text-base leading-7 text-cream/75 sm:text-lg">
-            Art direction and production design built around atmosphere, texture, and frames that stay with you.
+          <h1 class="max-w-[6ch] font-serif text-[clamp(3.35rem,14vw,8rem)] leading-[0.9] tracking-[-0.03em]">Worlds you can step into.</h1>
+          <p class="mt-5 max-w-xl text-base leading-7 text-cream/75 sm:text-lg">
+            Art direction, production design, scenography, and tactile visual systems built for stories that need atmosphere — not wallpaper.
           </p>
-          <a href="#films" data-scroll-target="films" class="mt-6 inline-flex border-b border-white/35 pb-1 text-sm uppercase tracking-[0.18em] text-cream transition hover:border-accent hover:text-accent sm:text-base">
-            Play selected films
-          </a>
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a href="#work" data-scroll-target="work" class="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm uppercase tracking-[0.18em] transition hover:border-accent hover:text-accent">Explore the work</a>
+            <a href="#archive" data-scroll-target="archive" class="inline-flex items-center rounded-full border border-white/10 px-5 py-3 text-sm uppercase tracking-[0.18em] text-cream/75 transition hover:border-white/30 hover:text-cream">Open the film archive</a>
+          </div>
         </div>
 
-        <div class="order-2 grid gap-4 md:grid-cols-[1.2fr_0.8fr] md:items-stretch">
-          <figure class="overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-luxe md:min-h-[34rem]">
-            <img src="assets/images/candle-table.jpg" alt="Warm ensemble scene with cinematic art direction" class="h-[24rem] w-full object-cover md:h-full" />
+        <div class="grid gap-4 md:grid-cols-[1.15fr_0.85fr]">
+          <figure class="overflow-hidden rounded-[30px] border border-white/10 bg-white/5 shadow-luxe">
+            <img src="assets/images/hero-living-room.jpg" alt="Cinematic living-room set by Marta do Vale" class="h-[24rem] w-full object-cover md:h-[38rem]" />
           </figure>
-          <div class="hidden gap-4 md:grid md:grid-rows-2">
-            <figure class="overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-luxe">
-              <img src="assets/images/food-still.jpg" alt="Stylised commercial close-up with strong texture" class="h-full min-h-[16rem] w-full object-cover" />
+          <div class="grid gap-4 md:grid-rows-2">
+            <figure class="overflow-hidden rounded-[30px] border border-white/10 bg-white/5 shadow-luxe">
+              <img src="assets/images/hero-neon-stage.jpg" alt="Neon-lit sculptural set design" class="h-[11.5rem] w-full object-cover md:h-full" />
             </figure>
-            <figure class="translate-y-4 overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-luxe">
-              <img src="assets/images/hero-neon-stage.jpg" alt="Neon-lit set design with sculptural arch" class="h-full min-h-[16rem] w-full object-cover" />
+            <figure class="overflow-hidden rounded-[30px] border border-white/10 bg-white/5 shadow-luxe md:translate-y-5">
+              <img src="assets/images/candle-table.jpg" alt="Warm ensemble frame around a candlelit table" class="h-[11.5rem] w-full object-cover md:h-full" />
             </figure>
           </div>
         </div>
       </section>
 
-      <section id="work" class="mx-auto w-[min(calc(100%-1.5rem),1280px)] py-8 sm:w-[min(calc(100%-2rem),1280px)] md:py-12">
-        <div class="mb-6">
-          <p class="mb-4 text-xs uppercase tracking-[0.24em] text-accent">Selected worlds</p>
-          <h2 class="font-serif text-[clamp(2.75rem,5vw,4.6rem)] leading-[0.94] tracking-[-0.03em]">Sets, rooms, surfaces, light.</h2>
+      <section id="work" class="mx-auto w-[min(calc(100%-1.5rem),1320px)] py-8 sm:w-[min(calc(100%-2rem),1320px)] md:py-12">
+        <div class="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div class="max-w-2xl">
+            <p class="mb-4 text-xs uppercase tracking-[0.24em] text-accent">Selected work</p>
+            <h2 class="font-serif text-[clamp(2.8rem,5vw,5rem)] leading-[0.92] tracking-[-0.03em]">One language, not two separate sections.</h2>
+          </div>
+          <p class="max-w-xl text-sm leading-6 text-cream/70 sm:text-base">
+            Still worlds and playable work now live in the same visual system — same rhythm, same card logic, same point of view.
+          </p>
         </div>
 
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-12 md:auto-rows-[9rem]">
-          <article class="group relative overflow-hidden rounded-[24px] border border-white/10 shadow-luxe md:col-span-5 md:row-span-3">
-            <img src="assets/images/autumn-lounge.jpg" alt="Autumn-toned lounge interior" class="h-72 w-full object-cover transition duration-500 group-hover:scale-[1.03] md:h-full" />
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80"></div>
-            <div class="absolute inset-x-4 bottom-4 text-base">Interiors with character</div>
-          </article>
-          <article class="group relative overflow-hidden rounded-[24px] border border-white/10 shadow-luxe md:col-span-3 md:row-span-4">
-            <img src="assets/images/arched-shadow.jpg" alt="Moody arched interior with cinematic light" class="h-72 w-full object-cover transition duration-500 group-hover:scale-[1.03] md:h-full" />
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80"></div>
-            <div class="absolute inset-x-4 bottom-4 text-base">Cinematic atmosphere</div>
-          </article>
-          <article class="group relative overflow-hidden rounded-[24px] border border-white/10 shadow-luxe md:col-span-4 md:row-span-2">
-            <img src="assets/images/candle-table.jpg" alt="Warm dinner table scene" class="h-72 w-full object-cover transition duration-500 group-hover:scale-[1.03] md:h-full" />
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80"></div>
-            <div class="absolute inset-x-4 bottom-4 text-base">Warm ensemble scenes</div>
-          </article>
-          <article class="group relative overflow-hidden rounded-[24px] border border-white/10 shadow-luxe md:col-span-4 md:row-span-2">
-            <img src="assets/images/modernist-drive.jpg" alt="Modernist architecture and automotive frame" class="h-72 w-full object-cover transition duration-500 group-hover:scale-[1.03] md:h-full" />
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80"></div>
-            <div class="absolute inset-x-4 bottom-4 text-base">Graphic commercial worlds</div>
-          </article>
-          <article class="group relative overflow-hidden rounded-[24px] border border-white/10 shadow-luxe md:col-span-4 md:row-span-2">
-            <img src="assets/images/green-room.jpg" alt="Lush interior with layered styling" class="h-72 w-full object-cover transition duration-500 group-hover:scale-[1.03] md:h-full" />
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80"></div>
-            <div class="absolute inset-x-4 bottom-4 text-base">Texture and colour</div>
-          </article>
-          <article class="group relative overflow-hidden rounded-[24px] border border-white/10 shadow-luxe md:col-span-4 md:row-span-2">
-            <img src="assets/images/beach-kiosk.jpg" alt="Sun-soaked beach kiosk styling" class="h-72 w-full object-cover transition duration-500 group-hover:scale-[1.03] md:h-full" />
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80"></div>
-            <div class="absolute inset-x-4 bottom-4 text-base">Location styling</div>
-          </article>
-        </div>
+        <div id="work-grid" class="grid grid-cols-1 gap-4 md:grid-cols-12 md:auto-rows-[150px]"></div>
       </section>
 
-      <section id="films" class="mx-auto w-[min(calc(100%-1.5rem),1280px)] py-8 sm:w-[min(calc(100%-2rem),1280px)] md:py-12">
-        <div class="mb-6">
-          <p class="mb-4 text-xs uppercase tracking-[0.24em] text-accent">Selected films</p>
-          <h2 class="font-serif text-[clamp(2.75rem,5vw,4.6rem)] leading-[0.94] tracking-[-0.03em]">Press play.</h2>
+      <section id="archive" class="mx-auto w-[min(calc(100%-1.5rem),1320px)] py-8 sm:w-[min(calc(100%-2rem),1320px)] md:py-12">
+        <div class="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p class="mb-4 text-xs uppercase tracking-[0.24em] text-accent">Film archive</p>
+            <h2 class="font-serif text-[clamp(2.4rem,4.5vw,4.2rem)] leading-[0.94] tracking-[-0.03em]">Playable catalogue.</h2>
+          </div>
+          <p class="max-w-xl text-sm leading-6 text-cream/70 sm:text-base">Every card below is playable. Posters are checked, and broken artwork gets a graceful fallback instead of dying in public.</p>
         </div>
 
-        <div id="film-grid" class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3"></div>
+        <div id="archive-grid" class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3"></div>
       </section>
 
-      <section id="about" class="mx-auto grid w-[min(calc(100%-1.5rem),1280px)] gap-4 py-8 sm:w-[min(calc(100%-2rem),1280px)] md:grid-cols-[1.05fr_0.95fr] md:py-12">
-        <div class="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-luxe">
-          <img src="assets/images/writing-study.jpg" alt="Styled study interior" class="h-[24rem] w-full object-cover md:h-full md:min-h-[30rem]" />
-          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/70"></div>
+      <section id="about" class="mx-auto grid w-[min(calc(100%-1.5rem),1320px)] gap-4 py-8 sm:w-[min(calc(100%-2rem),1320px)] md:grid-cols-[1.05fr_0.95fr] md:py-12">
+        <div class="relative overflow-hidden rounded-[30px] border border-white/10 bg-white/5 shadow-luxe">
+          <img src="assets/images/writing-study.jpg" alt="Styled study interior with layered props and warm light" class="h-[24rem] w-full object-cover md:h-full md:min-h-[32rem]" />
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/65"></div>
         </div>
-        <div class="flex flex-col justify-end rounded-[28px] border border-white/10 bg-white/[0.06] p-8 shadow-luxe">
+        <div class="flex flex-col justify-end rounded-[30px] border border-white/10 bg-white/[0.06] p-8 shadow-luxe">
           <p class="mb-4 text-xs uppercase tracking-[0.24em] text-accent">About</p>
-          <h2 class="font-serif text-[clamp(2.75rem,5vw,4.4rem)] leading-[0.94] tracking-[-0.03em]">Lisbon-born. Story-driven. Detail-obsessed.</h2>
+          <h2 class="font-serif text-[clamp(2.8rem,5vw,4.5rem)] leading-[0.94] tracking-[-0.03em]">Lisbon-born. Story-driven. Detail-obsessed.</h2>
           <p class="mt-4 text-base leading-7 text-cream/75">
             Marta do Vale works across cinema and advertising, shaping frames through scenography, set dressing, and art direction that feels tactile, intentional, and cinematic.
           </p>
@@ -164,9 +140,7 @@
       <a class="flex min-h-[4.1rem] items-center justify-center rounded-[22px] bg-white/5 p-3 transition hover:bg-white/10" href="https://api.whatsapp.com/send?phone=351918373368" target="_blank" rel="noreferrer" aria-label="Call or WhatsApp Marta">
         <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6"><path d="M19.05 4.94A9.9 9.9 0 0 0 12.02 2C6.51 2 2.03 6.48 2.03 12c0 1.77.46 3.5 1.34 5.02L2 22l5.11-1.34A9.93 9.93 0 0 0 12.02 22C17.53 22 22 17.52 22 12c0-2.67-1.04-5.18-2.95-7.06ZM12.02 20.3a8.24 8.24 0 0 1-4.2-1.15l-.3-.18-3.03.8.81-2.96-.2-.31A8.23 8.23 0 1 1 20.3 12a8.3 8.3 0 0 1-8.28 8.3Zm4.53-6.2c-.25-.13-1.49-.74-1.72-.82-.23-.09-.4-.13-.57.13-.17.25-.66.82-.81.99-.15.17-.3.19-.55.06-.25-.13-1.07-.39-2.04-1.25-.75-.67-1.26-1.5-1.4-1.75-.15-.25-.02-.38.11-.51.12-.12.25-.3.38-.45.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.45-.06-.13-.57-1.37-.78-1.87-.2-.49-.41-.42-.57-.43h-.49c-.17 0-.45.06-.68.32s-.89.87-.89 2.13.91 2.47 1.04 2.64c.13.17 1.79 2.73 4.33 3.82.6.26 1.07.41 1.44.52.61.19 1.16.16 1.6.1.49-.07 1.49-.61 1.7-1.2.21-.59.21-1.09.15-1.19-.06-.1-.23-.16-.48-.29Z" fill="currentColor"/></svg>
       </a>
-      <a class="flex min-h-[4.1rem] items-center justify-center rounded-[22px] bg-white/5 p-3 text-sm font-semibold transition hover:bg-white/10" href="https://www.imdb.com/name/nm6185805/" target="_blank" rel="noreferrer" aria-label="Marta on IMDb">
-        IMDb
-      </a>
+      <a class="flex min-h-[4.1rem] items-center justify-center rounded-[22px] bg-white/5 p-3 text-sm font-semibold transition hover:bg-white/10" href="https://www.imdb.com/name/nm6185805/" target="_blank" rel="noreferrer" aria-label="Marta on IMDb">IMDb</a>
       <a class="flex min-h-[4.1rem] items-center justify-center rounded-[22px] bg-white/5 p-3 transition hover:bg-white/10" href="https://www.instagram.com/martadovale.art?igsh=MTZ1ZWg0cjI0amUwbA==" target="_blank" rel="noreferrer" aria-label="Marta on Instagram">
         <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6"><path d="M7.75 3h8.5A4.75 4.75 0 0 1 21 7.75v8.5A4.75 4.75 0 0 1 16.25 21h-8.5A4.75 4.75 0 0 1 3 16.25v-8.5A4.75 4.75 0 0 1 7.75 3Zm0 1.5A3.25 3.25 0 0 0 4.5 7.75v8.5a3.25 3.25 0 0 0 3.25 3.25h8.5a3.25 3.25 0 0 0 3.25-3.25v-8.5a3.25 3.25 0 0 0-3.25-3.25h-8.5Zm8.88 1.12a1.13 1.13 0 1 1 0 2.26 1.13 1.13 0 0 1 0-2.26ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5A3.5 3.5 0 1 0 12 15.5 3.5 3.5 0 0 0 12 8.5Z" fill="currentColor"/></svg>
       </a>
@@ -174,15 +148,8 @@
 
     <div class="video-modal fixed inset-0 z-50 hidden items-center justify-center bg-black/80 p-4 backdrop-blur-xl">
       <button class="video-close absolute right-4 top-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-4xl leading-none text-white transition hover:bg-white/20" aria-label="Close video">×</button>
-      <div class="w-full max-w-6xl overflow-hidden rounded-[24px] shadow-[0_40px_120px_rgba(0,0,0,0.5)] aspect-video">
-        <iframe
-          id="video-frame"
-          src=""
-          title="Selected film"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-          class="hidden h-full w-full border-0 bg-black"
-        ></iframe>
+      <div class="aspect-video w-full max-w-6xl overflow-hidden rounded-[24px] shadow-[0_40px_120px_rgba(0,0,0,0.5)]">
+        <iframe id="video-frame" src="" title="Selected film" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="hidden h-full w-full border-0 bg-black"></iframe>
         <video id="video-player" controls playsinline class="hidden h-full w-full bg-black"></video>
       </div>
     </div>
