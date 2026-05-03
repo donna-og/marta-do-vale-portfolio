@@ -181,6 +181,7 @@ const modal = document.querySelector('.video-modal');
 const frame = document.getElementById('video-frame');
 const player = document.getElementById('video-player');
 const closeButton = document.querySelector('.video-close');
+const scrollLinks = document.querySelectorAll('[data-scroll-target]');
 
 if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
@@ -188,33 +189,59 @@ if ('scrollRestoration' in history) {
 
 window.addEventListener('load', () => {
   const url = new URL(window.location.href);
-  if (url.hash === '#films') {
+  if (url.hash) {
     history.replaceState(null, '', `${url.pathname}${url.search}`);
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }
+  window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+});
+
+scrollLinks.forEach((link) => {
+  link.addEventListener('click', (event) => {
+    const targetId = link.dataset.scrollTarget;
+    const target = targetId === 'top' ? document.body : document.getElementById(targetId);
+    if (!target) return;
+
+    event.preventDefault();
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+
+    if (targetId === 'top') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 });
 
 filmGrid.innerHTML = films.map((film) => `
-  <button class="film-card" data-kind="${film.kind}" data-video-id="${film.videoId || ''}" data-video-src="${film.videoSrc || ''}" aria-label="Play ${film.title}">
-    <img src="${film.poster}" alt="${film.title} poster" loading="lazy" />
-    <span class="play-pill">Play</span>
-    <span class="film-title">
-      <strong>${film.title}</strong>
-      ${film.subtitle ? `<small>${film.subtitle}</small>` : ''}
+  <button
+    class="group relative min-h-[18rem] overflow-hidden rounded-[24px] border border-white/10 bg-transparent p-0 text-left shadow-luxe transition hover:-translate-y-0.5"
+    data-kind="${film.kind}"
+    data-video-id="${film.videoId || ''}"
+    data-video-src="${film.videoSrc || ''}"
+    aria-label="Play ${film.title}"
+  >
+    <img src="${film.poster}" alt="${film.title} poster" loading="lazy" class="h-full w-full object-cover" />
+    <span class="absolute left-4 top-4 z-10 rounded-full border border-white/20 bg-[#0a0a0c]/75 px-3 py-2 text-[0.7rem] uppercase tracking-[0.18em] text-cream">Play</span>
+    <span class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/85"></span>
+    <span class="absolute inset-x-4 bottom-4 z-10 flex flex-col gap-1">
+      <strong class="text-base leading-tight text-cream">${film.title}</strong>
+      ${film.subtitle ? `<small class="text-[0.78rem] uppercase tracking-[0.08em] text-cream/75">${film.subtitle}</small>` : ''}
     </span>
   </button>
 `).join('');
 
-const filmCards = document.querySelectorAll('.film-card');
+const filmCards = document.querySelectorAll('[data-kind]');
 
 const closeModal = () => {
-  modal.hidden = true;
+  modal.classList.add('hidden');
+  modal.classList.remove('flex');
   frame.src = '';
-  frame.hidden = true;
+  frame.classList.add('hidden');
   player.pause();
   player.removeAttribute('src');
   player.load();
-  player.hidden = true;
+  player.classList.add('hidden');
   document.body.style.overflow = '';
 };
 
@@ -224,16 +251,17 @@ filmCards.forEach((card) => {
 
     if (kind === 'youtube') {
       frame.src = `https://www.youtube.com/embed/${card.dataset.videoId}?autoplay=1&rel=0`;
-      frame.hidden = false;
-      player.hidden = true;
+      frame.classList.remove('hidden');
+      player.classList.add('hidden');
     } else {
       player.src = card.dataset.videoSrc;
-      player.hidden = false;
-      frame.hidden = true;
+      player.classList.remove('hidden');
+      frame.classList.add('hidden');
       player.play();
     }
 
-    modal.hidden = false;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
     document.body.style.overflow = 'hidden';
   });
 });
@@ -244,5 +272,5 @@ modal.addEventListener('click', (event) => {
 });
 
 document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && !modal.hidden) closeModal();
+  if (event.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
 });
