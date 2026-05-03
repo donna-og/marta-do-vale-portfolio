@@ -15,7 +15,7 @@
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  padding-bottom: 2rem;
+  padding-bottom: 7.5rem;
   font-family: 'Inter', system-ui, sans-serif;
   color: var(--text);
   background:
@@ -268,20 +268,18 @@ button { font: inherit; }
 .about h2 { font-size: clamp(2.8rem, 4vw, 4.4rem); margin-bottom: 1rem; }
 
 .contact-section {
-  padding-top: 1rem;
-}
-.contact-heading {
-  text-align: center;
-}
-.contact-heading h2 {
-  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  display: none;
 }
 .contact-dock {
+  position: fixed;
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 0.75rem);
+  transform: translateX(-50%);
+  z-index: 30;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.85rem;
-  width: min(25rem, 100%);
-  margin: 0 auto;
+  width: min(25rem, calc(100% - 1rem));
   padding: 1rem;
   border-radius: 30px;
   border: 1px solid rgba(255,255,255,0.14);
@@ -363,6 +361,7 @@ button { font: inherit; }
 }
 
 @media (max-width: 760px) {
+  body { padding-bottom: 8.5rem; }
   .site-header { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
   .hero {
     min-height: auto;
