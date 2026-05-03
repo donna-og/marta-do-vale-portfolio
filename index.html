@@ -28,8 +28,7 @@
           <span class="mt-0.5 text-[0.82rem] uppercase tracking-[0.24em] text-cream/70">Art Direction</span>
         </a>
         <nav class="flex flex-wrap gap-4 text-sm text-cream/70 md:text-base">
-          <a href="#work" data-scroll-target="work" class="transition hover:text-cream">Selected work</a>
-          <a href="#archive" data-scroll-target="archive" class="transition hover:text-cream">Archive</a>
+          <a href="#films" data-scroll-target="films" class="transition hover:text-cream">Films</a>
           <a href="#about" data-scroll-target="about" class="transition hover:text-cream">About</a>
         </nav>
       </div>
@@ -39,14 +38,13 @@
       <section class="mx-auto grid w-[min(calc(100%-1.5rem),1320px)] gap-8 py-8 sm:w-[min(calc(100%-2rem),1320px)] md:min-h-[calc(100vh-5rem)] md:grid-cols-[0.88fr_1.12fr] md:items-center md:py-12">
         <div>
           <p class="mb-4 text-xs uppercase tracking-[0.24em] text-accent">Lisbon · films · commercials</p>
-          <h1 class="max-w-[6ch] font-serif text-[clamp(3.35rem,14vw,8rem)] leading-[0.9] tracking-[-0.03em]">Worlds you can step into.</h1>
+          <h1 class="max-w-[6ch] font-serif text-[clamp(3.35rem,14vw,8rem)] leading-[0.9] tracking-[-0.03em]">One grid. All playable.</h1>
           <p class="mt-5 max-w-xl text-base leading-7 text-cream/75 sm:text-lg">
-            Art direction, production design, scenography, and tactile visual systems built for stories that need atmosphere — not wallpaper.
+            A single film-led portfolio: clean list behavior on mobile, bento composition on desktop, and every card ready to play.
           </p>
-          <div class="mt-7 flex flex-wrap gap-3">
-            <a href="#work" data-scroll-target="work" class="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm uppercase tracking-[0.18em] transition hover:border-accent hover:text-accent">Explore the work</a>
-            <a href="#archive" data-scroll-target="archive" class="inline-flex items-center rounded-full border border-white/10 px-5 py-3 text-sm uppercase tracking-[0.18em] text-cream/75 transition hover:border-white/30 hover:text-cream">Open the film archive</a>
-          </div>
+          <a href="#films" data-scroll-target="films" class="mt-7 inline-flex items-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm uppercase tracking-[0.18em] transition hover:border-accent hover:text-accent">
+            Open the film grid
+          </a>
         </div>
 
         <div class="grid gap-4 md:grid-cols-[1.15fr_0.85fr]">
@@ -64,30 +62,18 @@
         </div>
       </section>
 
-      <section id="work" class="mx-auto w-[min(calc(100%-1.5rem),1320px)] py-8 sm:w-[min(calc(100%-2rem),1320px)] md:py-12">
+      <section id="films" class="mx-auto w-[min(calc(100%-1.5rem),1320px)] py-8 sm:w-[min(calc(100%-2rem),1320px)] md:py-12">
         <div class="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div class="max-w-2xl">
-            <p class="mb-4 text-xs uppercase tracking-[0.24em] text-accent">Selected work</p>
-            <h2 class="font-serif text-[clamp(2.8rem,5vw,5rem)] leading-[0.92] tracking-[-0.03em]">Still worlds. Playable films. One grid.</h2>
+            <p class="mb-4 text-xs uppercase tracking-[0.24em] text-accent">Film grid</p>
+            <h2 class="font-serif text-[clamp(2.8rem,5vw,5rem)] leading-[0.92] tracking-[-0.03em]">Single grid. No filler. No split sections.</h2>
           </div>
           <p class="max-w-xl text-sm leading-6 text-cream/70 sm:text-base">
-            This first grid is intentionally mixed: still-image worlds and playable films share the same visual language, with the films called out clearly instead of hiding in a separate lane.
+            On mobile it reads like a sharp vertical list. On desktop it opens into a bento layout. Every card plays.
           </p>
         </div>
 
-        <div id="work-grid" class="grid grid-cols-1 gap-4 md:grid-cols-12 md:auto-rows-[150px]"></div>
-      </section>
-
-      <section id="archive" class="mx-auto w-[min(calc(100%-1.5rem),1320px)] py-8 sm:w-[min(calc(100%-2rem),1320px)] md:py-12">
-        <div class="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p class="mb-4 text-xs uppercase tracking-[0.24em] text-accent">Film archive</p>
-            <h2 class="font-serif text-[clamp(2.4rem,4.5vw,4.2rem)] leading-[0.94] tracking-[-0.03em]">Playable catalogue.</h2>
-          </div>
-          <p class="max-w-xl text-sm leading-6 text-cream/70 sm:text-base">Every card below is playable. Posters are checked, and broken artwork gets a graceful fallback instead of dying in public.</p>
-        </div>
-
-        <div id="archive-grid" class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3"></div>
+        <div id="film-grid" class="grid grid-cols-1 gap-4 md:grid-cols-12 md:auto-rows-[150px]"></div>
       </section>
 
       <section id="about" class="mx-auto grid w-[min(calc(100%-1.5rem),1320px)] gap-4 py-8 sm:w-[min(calc(100%-2rem),1320px)] md:grid-cols-[1.05fr_0.95fr] md:py-12">

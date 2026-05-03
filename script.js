@@ -1,250 +1,208 @@
-const worlds = [
-  {
-    type: 'world',
-    title: 'Interiors with character',
-    subtitle: 'Built spaces with memory in the walls.',
-    image: 'assets/images/autumn-lounge.jpg',
-    alt: 'Autumn-toned lounge interior styled by Marta do Vale',
-    size: 'md:col-span-5 md:row-span-3'
-  },
-  {
-    type: 'world',
-    title: 'Cinematic atmosphere',
-    subtitle: 'Architecture, shadow, and tension.',
-    image: 'assets/images/arched-shadow.jpg',
-    alt: 'Moody arched interior with cinematic light',
-    size: 'md:col-span-3 md:row-span-4'
-  },
-  {
-    type: 'world',
-    title: 'Graphic commercial worlds',
-    subtitle: 'Shape, surface, velocity.',
-    image: 'assets/images/modernist-drive.jpg',
-    alt: 'Modernist architecture and automotive framing',
-    size: 'md:col-span-4 md:row-span-2'
-  },
-  {
-    type: 'world',
-    title: 'Texture and colour',
-    subtitle: 'Material styling that holds the frame.',
-    image: 'assets/images/green-room.jpg',
-    alt: 'Layered green interior with rich styling',
-    size: 'md:col-span-4 md:row-span-2'
-  },
-  {
-    type: 'world',
-    title: 'Warm ensemble scenes',
-    subtitle: 'Human energy, composed carefully.',
-    image: 'assets/images/candle-table.jpg',
-    alt: 'Warm candlelit dinner table composition',
-    size: 'md:col-span-4 md:row-span-2'
-  },
-  {
-    type: 'world',
-    title: 'Location styling',
-    subtitle: 'Sun, texture, and lived-in detail.',
-    image: 'assets/images/beach-kiosk.jpg',
-    alt: 'Sun-soaked beach kiosk styling',
-    size: 'md:col-span-4 md:row-span-2'
-  }
-];
-
 const films = [
   {
     title: 'AUDI E-TRON GT QUATTRO',
     subtitle: 'LEO NEUGEBAUER',
     kind: 'youtube',
     videoId: 'gLew21SCHho',
-    poster: 'assets/posters/17-dcf30e-b42094eba406450ba4a4e67afbed8766-mv2-jpg.jpg'
+    poster: 'assets/posters/17-dcf30e-b42094eba406450ba4a4e67afbed8766-mv2-jpg.jpg',
+    size: 'md:col-span-5 md:row-span-3'
   },
   {
     title: 'BURGUER KING',
     subtitle: 'MISTERY KING',
     kind: 'youtube',
     videoId: 'J5piUQ29V-c',
-    poster: 'assets/posters/22-dcf30e-e4aee655d28c408fb446ef55dd5a88b2-mv2-jpg.jpg'
+    poster: 'assets/posters/22-dcf30e-e4aee655d28c408fb446ef55dd5a88b2-mv2-jpg.jpg',
+    size: 'md:col-span-4 md:row-span-2'
   },
   {
     title: 'AUDI X LEO NEUGEBAUER',
     subtitle: '',
     kind: 'youtube',
     videoId: 'MXnyb9T8XtM',
-    poster: 'assets/posters/10-dcf30e-82fd0ef459ba437a87ccd09b454560e9-mv2-jpg.jpg'
+    poster: 'assets/posters/10-dcf30e-82fd0ef459ba437a87ccd09b454560e9-mv2-jpg.jpg',
+    size: 'md:col-span-4 md:row-span-2'
   },
   {
     title: 'ADIDAS X S. L. BENFICA',
     subtitle: '',
     kind: 'youtube',
     videoId: 'N2nX3rAkyAA',
-    poster: 'assets/posters/02-dcf30e-1d1bc74d55da49e5befa576cd287fdce-mv2-jpg.jpg'
+    poster: 'assets/posters/02-dcf30e-1d1bc74d55da49e5befa576cd287fdce-mv2-jpg.jpg',
+    size: 'md:col-span-3 md:row-span-2'
   },
   {
     title: 'AUCHAN',
     subtitle: 'HÁ COISA QUE SÓ NA AUCHAN',
     kind: 'mp4',
     videoSrc: 'https://video.wixstatic.com/video/dcf30e_9194b77da18f4054b8d43ccd0a168cc9/720p/mp4/file.mp4',
-    poster: 'assets/posters/13-dcf30e-9194b77da18f4054b8d43ccd0a168cc9f000-jpg.jpg'
+    poster: 'assets/posters/13-dcf30e-9194b77da18f4054b8d43ccd0a168cc9f000-jpg.jpg',
+    size: 'md:col-span-3 md:row-span-4'
   },
   {
     title: 'BUONDI',
     subtitle: 'SENTE TUDO',
     kind: 'youtube',
     videoId: 'gHob8ZTJclY',
-    poster: 'assets/posters/24-dcf30e-f86da013cd4441f3a450a466e2e7e8e3-mv2-jpg.jpg'
+    poster: 'assets/posters/24-dcf30e-f86da013cd4441f3a450a466e2e7e8e3-mv2-jpg.jpg',
+    size: 'md:col-span-4 md:row-span-2'
   },
   {
     title: 'BOLLYCAO',
     subtitle: '',
     kind: 'youtube',
     videoId: '5Zl8Sqthj1U',
-    poster: 'assets/posters/20-dcf30e-cd32195bbc974be8aecd61f6481ff2f4-mv2-jpg.jpg'
+    poster: 'assets/posters/20-dcf30e-cd32195bbc974be8aecd61f6481ff2f4-mv2-jpg.jpg',
+    size: 'md:col-span-4 md:row-span-2'
   },
   {
     title: 'BURGUER KING X LJUBOMIR',
     subtitle: '',
     kind: 'youtube',
     videoId: 'PVS7Sk3HXdc',
-    poster: 'assets/posters/11-dcf30e-8f9d6e4d03394d329c225d043bae0ff5-mv2-jpg.jpg'
+    poster: 'assets/posters/11-dcf30e-8f9d6e4d03394d329c225d043bae0ff5-mv2-jpg.jpg',
+    size: 'md:col-span-4 md:row-span-2'
   },
   {
     title: 'NOA PFLANZLICH',
     subtitle: '',
     kind: 'youtube',
     videoId: '60r7k6Jj1Qs',
-    poster: 'assets/posters/16-dcf30e-b28ef97b80cb4bcaa9924d31685b3c2a-mv2-jpg.jpg'
+    poster: 'assets/posters/16-dcf30e-b28ef97b80cb4bcaa9924d31685b3c2a-mv2-jpg.jpg',
+    size: 'md:col-span-4 md:row-span-2'
   },
   {
     title: 'Untitled Project',
     subtitle: '',
     kind: 'youtube',
     videoId: 'Brv89o8x588',
-    poster: 'assets/posters/21-dcf30e-dc45f026294e43fbbcc74d612d06dc77-mv2-jpg.jpg'
+    poster: 'assets/posters/21-dcf30e-dc45f026294e43fbbcc74d612d06dc77-mv2-jpg.jpg',
+    size: 'md:col-span-4 md:row-span-2'
   },
   {
     title: 'BRICOMARCHE 2026',
     subtitle: 'TUDO NUM BRICO',
     kind: 'youtube',
     videoId: 'NhckCyTUAJ0',
-    poster: 'assets/posters/08-dcf30e-6cb1f8996274420791fb6aaad89a88e4-mv2-jpg.jpg'
+    poster: 'assets/posters/08-dcf30e-6cb1f8996274420791fb6aaad89a88e4-mv2-jpg.jpg',
+    size: 'md:col-span-4 md:row-span-2'
   },
   {
     title: 'BPI',
     subtitle: 'CRÉDITO HABITAÇÃO',
     kind: 'youtube',
     videoId: 'Zfh9JDLS0RQ',
-    poster: 'assets/posters/01-maxresdefault-jpg.jpg'
+    poster: 'assets/posters/01-maxresdefault-jpg.jpg',
+    size: 'md:col-span-4 md:row-span-2'
   },
   {
     title: 'GOLDENERGY',
     subtitle: 'O PAPAGAIO CANTOR',
     kind: 'youtube',
     videoId: 'pBcWwIs4spc',
-    poster: 'assets/posters/06-dcf30e-5163e8d558fc4288b29293aef1a91b59-mv2-jpg.jpg'
+    poster: 'assets/posters/06-dcf30e-5163e8d558fc4288b29293aef1a91b59-mv2-jpg.jpg',
+    size: 'md:col-span-4 md:row-span-2'
   },
   {
     title: 'BURGUER KING',
     subtitle: 'CHEGOU KING LJUBOMIR',
     kind: 'youtube',
     videoId: 'ifKgXisikBM',
-    poster: 'assets/posters/23-dcf30e-e7988f80b8714037ab5957a8fa5176dd-mv2-jpg.jpg'
+    poster: 'assets/posters/23-dcf30e-e7988f80b8714037ab5957a8fa5176dd-mv2-jpg.jpg',
+    size: 'md:col-span-4 md:row-span-2'
   },
   {
     title: 'DELTA Q',
     subtitle: 'DELTA Q',
     kind: 'youtube',
     videoId: 'cCstYAr7m5Q',
-    poster: 'assets/posters/15-dcf30e-b180b68a703442f9947f688c01a1ab72-mv2-jpg.jpg'
+    poster: 'assets/posters/15-dcf30e-b180b68a703442f9947f688c01a1ab72-mv2-jpg.jpg',
+    size: 'md:col-span-4 md:row-span-2'
   },
   {
     title: 'GOLD ENERGY',
     subtitle: '',
     kind: 'youtube',
     videoId: 'B-02IVnjFYo',
-    poster: 'assets/posters/09-dcf30e-764c05cc3d9047a0bcfb0240af595abf-mv2-jpg.jpg'
+    poster: 'assets/posters/09-dcf30e-764c05cc3d9047a0bcfb0240af595abf-mv2-jpg.jpg',
+    size: 'md:col-span-4 md:row-span-2'
   },
   {
     title: 'POLICIA JUDICIÁRIA',
     subtitle: 'NÃO É SÓ UM JOGO. É CRIME.',
     kind: 'youtube',
     videoId: 'ahbusC8xSxY',
-    poster: 'assets/posters/14-dcf30e-ad690c3e45f746c5b262d2544ee7a3e7-mv2-jpg.jpg'
+    poster: 'assets/posters/14-dcf30e-ad690c3e45f746c5b262d2544ee7a3e7-mv2-jpg.jpg',
+    size: 'md:col-span-4 md:row-span-2'
   },
   {
     title: 'AUCHAN CUIDA',
     subtitle: 'SAÚDE MENTAL',
     kind: 'youtube',
     videoId: 'QIP5tcPX7Yc',
-    poster: 'assets/posters/19-dcf30e-c5efb9b7b1404c2e8c64c0ad436b7c04-mv2-jpg.jpg'
+    poster: 'assets/posters/19-dcf30e-c5efb9b7b1404c2e8c64c0ad436b7c04-mv2-jpg.jpg',
+    size: 'md:col-span-4 md:row-span-2'
   },
   {
     title: 'AUCHAN CUIDA',
     subtitle: 'CLÍNICA GERAL',
     kind: 'youtube',
     videoId: 'JKLSTelieUM',
-    poster: 'assets/posters/07-dcf30e-549ff96eac674a78aacadf854fd8934b-mv2-jpg.jpg'
+    poster: 'assets/posters/07-dcf30e-549ff96eac674a78aacadf854fd8934b-mv2-jpg.jpg',
+    size: 'md:col-span-4 md:row-span-2'
   },
   {
     title: 'POLÍCIA JUDICIÁRIA',
     subtitle: 'NÃO É SÓ UM JOGO. É CRIME. ÉS CRIMINOSO?',
     kind: 'youtube',
     videoId: 'WQCq1pAFwlQ',
-    poster: 'assets/posters/04-dcf30e-3c9f74eea63c43298d668d8c88638f1d-mv2-jpg.jpg'
+    poster: 'assets/posters/04-dcf30e-3c9f74eea63c43298d668d8c88638f1d-mv2-jpg.jpg',
+    size: 'md:col-span-4 md:row-span-2'
   },
   {
     title: 'SUPER BOCK SKY',
     subtitle: '',
     kind: 'youtube',
     videoId: 'eQOrApn435s',
-    poster: 'assets/posters/03-dcf30e-39e0186a8aee4d969d2d5b6e5f1d53a4-mv2-jpg.jpg'
+    poster: 'assets/posters/03-dcf30e-39e0186a8aee4d969d2d5b6e5f1d53a4-mv2-jpg.jpg',
+    size: 'md:col-span-4 md:row-span-2'
   },
   {
     title: 'SPORT TV',
     subtitle: 'SPORT TV',
     kind: 'youtube',
     videoId: 'NOiypiyC5og',
-    poster: 'assets/posters/12-dcf30e-9087bebd325340679aee412a75c4dbe9-mv2-jpg.jpg'
+    poster: 'assets/posters/12-dcf30e-9087bebd325340679aee412a75c4dbe9-mv2-jpg.jpg',
+    size: 'md:col-span-4 md:row-span-2'
   },
   {
     title: 'CETELEM 2024',
     subtitle: 'CASA SUSTENTÁVEL',
     kind: 'youtube',
     videoId: 'aENR1rFbuw4',
-    poster: 'assets/posters/25-dcf30e-feb8a6a71bcd47539c4fa7676f136451-mv2-jpg.jpg'
+    poster: 'assets/posters/25-dcf30e-feb8a6a71bcd47539c4fa7676f136451-mv2-jpg.jpg',
+    size: 'md:col-span-4 md:row-span-2'
   },
   {
     title: 'RUBIS GÁS',
     subtitle: 'FESTIVAL',
     kind: 'mp4',
     videoSrc: 'https://video.wixstatic.com/video/dcf30e_3cc3af957c81412a922acd3848c409c1/720p/mp4/file.mp4',
-    poster: 'assets/posters/05-dcf30e-3cc3af957c81412a922acd3848c409c1f000-jpg.jpg'
+    poster: 'assets/posters/05-dcf30e-3cc3af957c81412a922acd3848c409c1f000-jpg.jpg',
+    size: 'md:col-span-4 md:row-span-2'
   },
   {
     title: 'OLÁ',
     subtitle: 'CORNETTO BRIGADEIRO',
     kind: 'youtube',
     videoId: 'kRV8b8PB8Vg',
-    poster: 'assets/posters/18-dcf30e-bab73277997a4cfb809b3fc0d746b775-mv2-jpg.jpg'
+    poster: 'assets/posters/18-dcf30e-bab73277997a4cfb809b3fc0d746b775-mv2-jpg.jpg',
+    size: 'md:col-span-4 md:row-span-2'
   }
 ];
 
-const featuredWork = [
-  { ...films[0], type: 'video', size: 'md:col-span-5 md:row-span-3' },
-  worlds[0],
-  { ...films[4], type: 'video', size: 'md:col-span-3 md:row-span-4' },
-  { ...films[1], type: 'video', size: 'md:col-span-4 md:row-span-2' },
-  worlds[1],
-  { ...films[10], type: 'video', size: 'md:col-span-4 md:row-span-2' },
-  worlds[2],
-  { ...films[14], type: 'video', size: 'md:col-span-4 md:row-span-2' },
-  worlds[3],
-  { ...films[20], type: 'video', size: 'md:col-span-4 md:row-span-2' },
-  worlds[4],
-  worlds[5]
-];
-
 const fallbackImage = 'assets/images/hero-living-room.jpg';
-const workGrid = document.getElementById('work-grid');
-const archiveGrid = document.getElementById('archive-grid');
+const filmGrid = document.getElementById('film-grid');
 const modal = document.querySelector('.video-modal');
 const frame = document.getElementById('video-frame');
 const player = document.getElementById('video-player');
@@ -281,41 +239,25 @@ scrollLinks.forEach((link) => {
   });
 });
 
-const renderCard = (item, mode = 'archive') => {
-  const size = mode === 'featured' ? item.size || 'md:col-span-4 md:row-span-2' : '';
-  const cardClass = `group relative overflow-hidden rounded-[26px] border border-white/10 bg-white/5 shadow-luxe ${size}`;
-  const imageClass = mode === 'featured'
-    ? 'h-72 w-full object-cover transition duration-500 group-hover:scale-[1.03] md:h-full'
-    : 'h-[22rem] w-full object-cover transition duration-500 group-hover:scale-[1.03]';
-  const badge = item.type === 'video' ? 'Playable film' : 'World';
-  const badgeClass = item.type === 'video'
-    ? 'bg-accent/90 text-black shadow'
-    : 'bg-black/55 text-cream border border-white/10';
-  const subtitle = item.subtitle ? `<p class="mt-1 text-sm leading-5 text-cream/75">${item.subtitle}</p>` : '';
-  const play = item.type === 'video'
-    ? `<span class="absolute right-4 top-4 z-10 rounded-full border border-white/20 bg-black/50 px-3 py-2 text-[0.68rem] font-medium uppercase tracking-[0.18em] text-cream">Tap to play</span>`
-    : '';
-  const tag = item.type === 'video' ? 'button' : 'article';
-  const attrs = item.type === 'video'
-    ? `type="button" data-kind="${item.kind}" data-video-id="${item.videoId || ''}" data-video-src="${item.videoSrc || ''}" aria-label="Play ${item.title}"`
-    : '';
-
-  return `
-    <${tag} class="${cardClass} ${item.type === 'video' ? 'cursor-pointer text-left transition hover:-translate-y-0.5' : ''}" ${attrs}>
-      <img src="${item.image || item.poster}" alt="${item.alt || `${item.title} poster`}" loading="lazy" data-fallback="${fallbackImage}" class="${imageClass}" />
-      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/85"></div>
-      <span class="absolute left-4 top-4 z-10 rounded-full px-3 py-2 text-[0.68rem] font-medium uppercase tracking-[0.18em] ${badgeClass}">${badge}</span>
-      ${play}
-      <div class="absolute inset-x-4 bottom-4 z-10">
-        <h3 class="font-serif text-[1.6rem] leading-[0.95] tracking-[-0.02em] text-cream">${item.title}</h3>
-        ${subtitle}
-      </div>
-    </${tag}>
-  `;
-};
-
-workGrid.innerHTML = featuredWork.map((item) => renderCard(item, 'featured')).join('');
-archiveGrid.innerHTML = films.map((film) => renderCard({ ...film, type: 'video' }, 'archive')).join('');
+filmGrid.innerHTML = films.map((film) => `
+  <button
+    type="button"
+    class="group relative overflow-hidden rounded-[26px] border border-white/10 bg-white/5 text-left shadow-luxe transition hover:-translate-y-0.5 ${film.size}"
+    data-kind="${film.kind}"
+    data-video-id="${film.videoId || ''}"
+    data-video-src="${film.videoSrc || ''}"
+    aria-label="Play ${film.title}"
+  >
+    <img src="${film.poster}" alt="${film.title} poster" loading="lazy" data-fallback="${fallbackImage}" class="h-[22rem] w-full object-cover transition duration-500 group-hover:scale-[1.03] md:h-full" />
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/85"></div>
+    <span class="absolute left-4 top-4 z-10 rounded-full bg-accent/90 px-3 py-2 text-[0.68rem] font-medium uppercase tracking-[0.18em] text-black shadow">Playable film</span>
+    <span class="absolute right-4 top-4 z-10 rounded-full border border-white/20 bg-black/50 px-3 py-2 text-[0.68rem] font-medium uppercase tracking-[0.18em] text-cream">Tap to play</span>
+    <div class="absolute inset-x-4 bottom-4 z-10">
+      <h3 class="font-serif text-[1.6rem] leading-[0.95] tracking-[-0.02em] text-cream">${film.title}</h3>
+      ${film.subtitle ? `<p class="mt-1 text-sm leading-5 text-cream/75">${film.subtitle}</p>` : ''}
+    </div>
+  </button>
+`).join('');
 
 document.querySelectorAll('img[data-fallback]').forEach((img) => {
   img.addEventListener('error', () => {
