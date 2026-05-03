@@ -286,6 +286,10 @@ button { font: inherit; }
   background: rgba(0,0,0,0.82);
   backdrop-filter: blur(12px);
 }
+
+.video-modal[hidden] {
+  display: none !important;
+}
 .video-shell {
   width: min(calc(100% - 2rem), 1100px);
   aspect-ratio: 16 / 9;
