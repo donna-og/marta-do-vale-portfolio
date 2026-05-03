@@ -248,7 +248,7 @@ filmGrid.innerHTML = films.map((film) => `
     aria-label="Play ${film.title}"
   >
     <div class="grid min-h-[11rem] grid-cols-[136px_minmax(0,1fr)] md:block md:h-full">
-      <img src="${film.poster}" alt="${film.title} poster" loading="lazy" data-fallback="${fallbackImage}" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02] md:h-full" />
+      <img src="${film.poster}" alt="${film.title} poster" loading="lazy" decoding="async" data-fallback="${fallbackImage}" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02] md:h-full" />
       <div class="flex flex-col justify-between p-4 md:hidden">
         <div>
           <p class="text-[0.68rem] uppercase tracking-[0.22em] text-accent">Film</p>
@@ -262,7 +262,6 @@ filmGrid.innerHTML = films.map((film) => `
     <div class="absolute inset-0 hidden bg-gradient-to-b from-black/5 via-black/10 to-black/90 md:block"></div>
     <div class="absolute inset-x-4 top-4 z-10 hidden items-start justify-between gap-3 md:flex">
       <span class="text-[0.72rem] uppercase tracking-[0.22em] text-cream/70">Film</span>
-      <span class="text-[0.72rem] uppercase tracking-[0.22em] text-cream/55">Play</span>
     </div>
     <div class="absolute inset-x-4 bottom-4 z-10 hidden max-w-[18rem] md:block">
       <h3 class="font-serif text-[1.65rem] leading-[0.92] tracking-[-0.03em] text-cream">${film.title}</h3>
@@ -281,9 +280,39 @@ document.querySelectorAll('img[data-fallback]').forEach((img) => {
 
 const videoCards = document.querySelectorAll('[data-kind]');
 
+const focusableSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"]), input, select, textarea, iframe';
+const lastTrigger = { contact: null, video: null };
+
+const trapFocus = (modal) => {
+  const handler = (event) => {
+    if (event.key !== 'Tab') return;
+    const focusable = Array.from(modal.querySelectorAll(focusableSelector)).filter((el) => !el.hasAttribute('aria-hidden') && el.offsetParent !== null);
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  };
+  modal.addEventListener('keydown', handler);
+  modal._focusTrap = handler;
+};
+
+const releaseFocus = (modal) => {
+  if (modal._focusTrap) {
+    modal.removeEventListener('keydown', modal._focusTrap);
+    modal._focusTrap = null;
+  }
+};
+
 const closeVideoModal = () => {
   videoModal.classList.add('hidden');
   videoModal.classList.remove('flex');
+  videoModal.setAttribute('aria-hidden', 'true');
   frame.src = '';
   frame.classList.add('hidden');
   player.pause();
@@ -291,23 +320,39 @@ const closeVideoModal = () => {
   player.load();
   player.classList.add('hidden');
   document.body.style.overflow = '';
+  releaseFocus(videoModal);
+  if (lastTrigger.video) {
+    lastTrigger.video.focus();
+    lastTrigger.video = null;
+  }
 };
 
 const openContactModal = () => {
+  lastTrigger.contact = document.activeElement instanceof HTMLElement ? document.activeElement : null;
   contactModal.classList.remove('hidden');
   contactModal.classList.add('flex');
+  contactModal.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
+  trapFocus(contactModal);
+  contactCloseButton.focus();
 };
 
 const closeContactModal = () => {
   contactModal.classList.add('hidden');
   contactModal.classList.remove('flex');
+  contactModal.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
+  releaseFocus(contactModal);
+  if (lastTrigger.contact) {
+    lastTrigger.contact.focus();
+    lastTrigger.contact = null;
+  }
 };
 
 videoCards.forEach((card) => {
   card.addEventListener('click', () => {
     const kind = card.dataset.kind;
+    lastTrigger.video = card;
 
     if (kind === 'youtube') {
       frame.src = `https://www.youtube.com/embed/${card.dataset.videoId}?autoplay=1&rel=0`;
@@ -322,7 +367,10 @@ videoCards.forEach((card) => {
 
     videoModal.classList.remove('hidden');
     videoModal.classList.add('flex');
+    videoModal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    trapFocus(videoModal);
+    closeButton.focus();
   });
 });
 
