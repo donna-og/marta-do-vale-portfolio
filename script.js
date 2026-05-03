@@ -5,7 +5,7 @@ const films = [
     kind: 'youtube',
     videoId: 'gLew21SCHho',
     poster: 'assets/posters/17-dcf30e-b42094eba406450ba4a4e67afbed8766-mv2-jpg.jpg',
-    size: 'md:col-span-5 md:row-span-3'
+    size: 'md:col-span-8 md:row-span-4'
   },
   {
     title: 'BURGUER KING',
@@ -29,7 +29,7 @@ const films = [
     kind: 'youtube',
     videoId: 'N2nX3rAkyAA',
     poster: 'assets/posters/02-dcf30e-1d1bc74d55da49e5befa576cd287fdce-mv2-jpg.jpg',
-    size: 'md:col-span-3 md:row-span-2'
+    size: 'md:col-span-4 md:row-span-2'
   },
   {
     title: 'AUCHAN',
@@ -37,7 +37,7 @@ const films = [
     kind: 'mp4',
     videoSrc: 'https://video.wixstatic.com/video/dcf30e_9194b77da18f4054b8d43ccd0a168cc9/720p/mp4/file.mp4',
     poster: 'assets/posters/13-dcf30e-9194b77da18f4054b8d43ccd0a168cc9f000-jpg.jpg',
-    size: 'md:col-span-3 md:row-span-4'
+    size: 'md:col-span-8 md:row-span-2'
   },
   {
     title: 'BUONDI',
@@ -242,7 +242,7 @@ scrollLinks.forEach((link) => {
 filmGrid.innerHTML = films.map((film) => `
   <button
     type="button"
-    class="group relative overflow-hidden rounded-[26px] border border-white/10 bg-white/5 text-left shadow-luxe transition hover:-translate-y-0.5 ${film.size}"
+    class="group relative overflow-hidden rounded-[26px] border border-white/10 bg-white/5 text-left shadow-luxe transition hover:-translate-y-0.5 ${film.size || 'md:col-span-4 md:row-span-2'}"
     data-kind="${film.kind}"
     data-video-id="${film.videoId || ''}"
     data-video-src="${film.videoSrc || ''}"
