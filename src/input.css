@@ -58,9 +58,51 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --ease-classy: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 200ms;
+  --dur-mid: 400ms;
+  --dur-reveal: 700ms;
+
+  --tracking-eyebrow: 0.28em;
+  --leading-body: 1.7;
+}
+
 @layer base {
   body {
     font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  :focus-visible {
+    outline: 2px solid #ccb07a;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  a,
+  button,
+  [tabindex] {
+    transition-timing-function: var(--ease-classy);
+    transition-duration: var(--dur-mid);
+  }
+
+  .transition,
+  .transition-all,
+  .transition-colors,
+  .transition-opacity,
+  .transition-transform {
+    transition-timing-function: var(--ease-classy) !important;
+    transition-duration: var(--dur-mid) !important;
+  }
+
+  .duration-300 {
+    transition-duration: var(--dur-mid) !important;
+  }
+
+  .duration-500 {
+    transition-duration: var(--dur-reveal) !important;
   }
 }
 
@@ -71,5 +113,32 @@
 
   .text-balance {
     text-wrap: balance;
+  }
+
+  .ease-classy {
+    transition-timing-function: var(--ease-classy);
+  }
+
+  .dur-fast {
+    transition-duration: var(--dur-fast);
+  }
+
+  .dur-mid {
+    transition-duration: var(--dur-mid);
+  }
+
+  .dur-reveal {
+    transition-duration: var(--dur-reveal);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }
