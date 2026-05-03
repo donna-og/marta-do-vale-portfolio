@@ -132,6 +132,86 @@
   }
 }
 
+[data-reveal] {
+  transition: opacity var(--dur-reveal) var(--ease-classy),
+              transform var(--dur-reveal) var(--ease-classy);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js-reveals [data-reveal]:not(.is-revealed) {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+}
+
+.js-reveals [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+.header-shell {
+  background-color: rgb(11 11 13 / var(--header-bg-opacity, 0.75));
+  -webkit-backdrop-filter: blur(var(--header-blur, 24px));
+  backdrop-filter: blur(var(--header-blur, 24px));
+  transition: background-color 220ms var(--ease-classy);
+}
+
+.header-wordmark {
+  display: inline-block;
+  transform-origin: left center;
+  transform: scale(var(--wordmark-scale, 1));
+  transition: transform 220ms var(--ease-classy);
+}
+
+.header-eyebrow {
+  opacity: var(--eyebrow-opacity, 0.6);
+  transition: opacity 220ms var(--ease-classy);
+}
+
+.marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 60s linear infinite;
+}
+
+.marquee:hover .marquee__track,
+.marquee:focus-within .marquee__track {
+  animation-play-state: paused;
+}
+
+.marquee__group {
+  display: flex;
+  flex: none;
+}
+
+.marquee__item {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 1.4rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.55rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: rgb(244 240 232 / 0.8);
+  white-space: nowrap;
+}
+
+.marquee__item::after {
+  content: '·';
+  margin-left: 1.4rem;
+  color: rgb(204 176 122 / 0.7);
+}
+
+@keyframes marquee-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -140,5 +220,22 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .marquee__track {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .header-shell,
+  .header-wordmark,
+  .header-eyebrow {
+    transition: none !important;
   }
 }

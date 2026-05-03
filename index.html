@@ -27,16 +27,21 @@
     <link rel="preconnect" href="https://video.wixstatic.com" crossorigin />
     <link rel="preload" as="image" href="assets/images/hero-living-room.jpg" fetchpriority="high" />
     <link rel="stylesheet" href="styles.css" />
+    <script>
+      if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('js-reveals');
+      }
+    </script>
   </head>
   <body class="min-h-screen bg-[#0b0b0d] pb-28 font-sans text-cream md:pb-20">
     <div class="pointer-events-none fixed inset-0 opacity-[0.08] mix-blend-soft-light [background-image:radial-gradient(rgba(255,255,255,.8)_0.45px,transparent_0.45px)] [background-size:4px_4px]"></div>
     <div class="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_top_right,rgba(126,98,59,0.14),transparent_24%),radial-gradient(circle_at_20%_10%,rgba(99,110,126,0.12),transparent_28%),linear-gradient(180deg,#111214_0%,#09090b_100%)]"></div>
 
-    <header class="sticky top-0 z-40 border-b border-white/10 bg-[#0b0b0d]/75 backdrop-blur-xl">
+    <header class="header-shell sticky top-0 z-40 border-b border-white/10">
       <div class="mx-auto flex w-[min(calc(100%-1.5rem),1240px)] flex-col gap-3 py-4 sm:w-[min(calc(100%-2rem),1240px)] md:flex-row md:items-center md:justify-between">
         <a href="#top" data-scroll-target="top" aria-label="Marta do Vale home" class="inline-flex flex-col leading-none">
-          <span class="font-serif text-[2rem] tracking-[0.01em]">Marta do Vale</span>
-          <span class="mt-0.5 text-[0.78rem] uppercase tracking-[0.28em] text-cream/60">Art Direction</span>
+          <span class="header-wordmark font-serif text-[2rem] tracking-[0.01em]">Marta do Vale</span>
+          <span class="header-eyebrow mt-0.5 text-[0.78rem] uppercase tracking-[0.28em] text-cream">Art Direction</span>
         </a>
         <nav class="flex flex-wrap items-center gap-x-5 gap-y-1 text-[0.8rem] uppercase tracking-[0.22em] text-cream/60 md:text-[0.82rem]">
           <a href="#films" data-scroll-target="films" class="inline-flex min-h-[44px] items-center transition hover:text-cream">Selected Work</a>
@@ -48,7 +53,7 @@
 
     <main id="top" class="relative z-10">
       <section class="mx-auto grid w-[min(calc(100%-1.5rem),1240px)] gap-8 py-10 sm:w-[min(calc(100%-2rem),1240px)] md:grid-cols-[0.76fr_1.24fr] md:items-center md:gap-10 md:py-16">
-        <div class="max-w-xl">
+        <div class="max-w-xl" data-reveal>
           <p class="mb-5 text-[0.78rem] uppercase tracking-[0.28em] text-accent">Commercial · Cinema · Lisbon</p>
           <h1 class="max-w-[7ch] font-serif text-[clamp(3.8rem,14vw,7.6rem)] leading-[0.86] tracking-[-0.05em] text-cream text-balance">Production design with cinematic taste.</h1>
           <p class="mt-6 max-w-md text-[1rem] leading-7 text-cream/72 sm:text-[1.05rem]">
@@ -60,7 +65,7 @@
           </div>
         </div>
 
-        <div class="relative md:min-h-[42rem]">
+        <div class="relative md:min-h-[42rem]" data-reveal style="--reveal-delay: 120ms">
           <div class="grid gap-4 md:absolute md:inset-x-0 md:top-0 md:grid-cols-[1.08fr_0.92fr]">
             <figure class="overflow-hidden rounded-[30px] border border-white/10 bg-white/5 shadow-luxe">
               <img src="assets/images/hero-living-room.jpg" alt="Cinematic living-room set by Marta do Vale" fetchpriority="high" decoding="async" class="h-[22rem] w-full object-cover md:h-[34rem]" />
@@ -89,11 +94,11 @@
 
       <section id="films" class="mx-auto w-[min(calc(100%-1.5rem),1240px)] py-8 sm:w-[min(calc(100%-2rem),1240px)] md:py-10">
         <div class="mb-8 grid gap-4 md:grid-cols-[0.9fr_1.1fr] md:items-end">
-          <div>
+          <div data-reveal>
             <p class="mb-4 text-[0.78rem] uppercase tracking-[0.28em] text-accent">Selected work</p>
             <h2 class="max-w-[8ch] font-serif text-[clamp(2.7rem,5vw,4.9rem)] leading-[0.9] tracking-[-0.04em] text-balance">A tighter field of work, designed to let the images lead.</h2>
           </div>
-          <p class="max-w-xl justify-self-end text-[0.98rem] leading-7 text-cream/68">
+          <p class="max-w-xl justify-self-end text-[0.98rem] leading-7 text-cream/68" data-reveal style="--reveal-delay: 120ms">
             Mobile reads as a clean list. Desktop opens into a more composed grid — more dynamic than before, but still restrained enough to keep the attention on Marta’s eye.
           </p>
         </div>
@@ -102,11 +107,11 @@
       </section>
 
       <section id="about" class="mx-auto grid w-[min(calc(100%-1.5rem),1240px)] gap-4 py-10 sm:w-[min(calc(100%-2rem),1240px)] md:grid-cols-[1.02fr_0.98fr] md:py-14">
-        <div class="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-luxe">
+        <div class="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-luxe" data-reveal>
           <img src="assets/images/writing-study.jpg" alt="Styled study interior with layered props and warm light" loading="lazy" decoding="async" class="h-[24rem] w-full object-cover md:h-full md:min-h-[30rem]" />
           <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/65"></div>
         </div>
-        <div class="flex flex-col justify-end rounded-[28px] border border-white/10 bg-white/[0.05] p-8 shadow-luxe">
+        <div class="flex flex-col justify-end rounded-[28px] border border-white/10 bg-white/[0.05] p-8 shadow-luxe" data-reveal style="--reveal-delay: 120ms">
           <p class="mb-4 text-[0.78rem] uppercase tracking-[0.28em] text-accent">About</p>
           <h2 class="font-serif text-[clamp(2.6rem,4.8vw,4.2rem)] leading-[0.92] tracking-[-0.04em] text-balance">Lisbon-born. Story-driven. Detail-obsessed.</h2>
           <p class="mt-5 text-[1rem] leading-7 text-cream/72">
@@ -115,6 +120,15 @@
           <p class="mt-4 text-[1rem] leading-7 text-cream/72">
             Her work brings discipline to production and feeling to the frame, making spaces look lived-in, intentional, and unmistakably cinematic.
           </p>
+        </div>
+      </section>
+
+      <section class="mx-auto mt-2 w-full py-8 md:py-10" aria-hidden="true">
+        <div class="marquee">
+          <div class="marquee__track">
+            <div class="marquee__group" id="marquee-group-a"></div>
+            <div class="marquee__group" id="marquee-group-b"></div>
+          </div>
         </div>
       </section>
     </main>
@@ -131,19 +145,19 @@
         <p class="mt-4 max-w-xl text-[1rem] leading-7 text-cream/68">For commercial and cinema work, Marta can be reached directly through the channels below.</p>
 
         <div class="mt-8 grid gap-4 md:grid-cols-2">
-          <a class="glass-panel rounded-[24px] p-5 transition hover:-translate-y-0.5" href="mailto:hellomartadovale@gmail.com">
+          <a class="glass-panel rounded-[24px] p-5 transition hover:-translate-y-0.5" href="mailto:hellomartadovale@gmail.com" data-reveal>
             <p class="text-[0.72rem] uppercase tracking-[0.22em] text-accent">Email</p>
             <p class="mt-3 font-serif text-[1.5rem] leading-[0.95] tracking-[-0.03em]">hellomartadovale@gmail.com</p>
           </a>
-          <a class="glass-panel rounded-[24px] p-5 transition hover:-translate-y-0.5" href="https://api.whatsapp.com/send?phone=351918373368" target="_blank" rel="noreferrer">
+          <a class="glass-panel rounded-[24px] p-5 transition hover:-translate-y-0.5" href="https://api.whatsapp.com/send?phone=351918373368" target="_blank" rel="noreferrer" data-reveal style="--reveal-delay: 90ms">
             <p class="text-[0.72rem] uppercase tracking-[0.22em] text-accent">Phone / WhatsApp</p>
             <p class="mt-3 font-serif text-[1.5rem] leading-[0.95] tracking-[-0.03em]">+351 918 373 368</p>
           </a>
-          <a class="glass-panel rounded-[24px] p-5 transition hover:-translate-y-0.5" href="https://www.imdb.com/name/nm6185805/" target="_blank" rel="noreferrer">
+          <a class="glass-panel rounded-[24px] p-5 transition hover:-translate-y-0.5" href="https://www.imdb.com/name/nm6185805/" target="_blank" rel="noreferrer" data-reveal style="--reveal-delay: 180ms">
             <p class="text-[0.72rem] uppercase tracking-[0.22em] text-accent">IMDb</p>
             <p class="mt-3 text-[1rem] leading-7 text-cream/72">Selected credits and professional profile.</p>
           </a>
-          <a class="glass-panel rounded-[24px] p-5 transition hover:-translate-y-0.5" href="https://www.instagram.com/martadovale.art?igsh=MTZ1ZWg0cjI0amUwbA==" target="_blank" rel="noreferrer">
+          <a class="glass-panel rounded-[24px] p-5 transition hover:-translate-y-0.5" href="https://www.instagram.com/martadovale.art?igsh=MTZ1ZWg0cjI0amUwbA==" target="_blank" rel="noreferrer" data-reveal style="--reveal-delay: 270ms">
             <p class="text-[0.72rem] uppercase tracking-[0.22em] text-accent">Instagram</p>
             <p class="mt-3 text-[1rem] leading-7 text-cream/72">Visual updates, process, and recent work.</p>
           </a>
