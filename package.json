@@ -1,0 +1,25 @@
+{
+  "name": "marta-do-vale-site",
+  "version": "1.0.0",
+  "description": "A polished static portfolio site for Marta do Vale, art director and production designer.",
+  "main": "script.js",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/input.css -o ./styles.css --minify && python3 -c \"from pathlib import Path; import re; p=Path('styles.css'); p.write_text(re.sub(r'/\\*! tailwindcss v[^*]*\\*/','',p.read_text(),count=1))\"",
+    "test": "npm run build:css && node --check script.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/donna-og/marta-do-vale-portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/donna-og/marta-do-vale-portfolio/issues"
+  },
+  "homepage": "https://github.com/donna-og/marta-do-vale-portfolio#readme",
+  "dependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
