@@ -159,4 +159,16 @@
       <image:caption>Art direction on Luís Brás's adventure drama short — Marta's earliest credit on record.</image:caption>
     </image:image>
   </url>
+  <url>
+    <loc>https://www.martadovale.pt/llms.txt</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.martadovale.pt/llms-full.txt</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>
