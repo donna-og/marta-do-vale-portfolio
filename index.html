@@ -15,17 +15,24 @@
       content="Selected moving-image work by Marta do Vale — art director and production designer."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="assets/images/hero-living-room.jpg" />
+    <meta property="og:image" content="assets/images/optimized/hero-living-room-1600.jpg" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:locale:alternate" content="pt_PT" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Marta do Vale — Art Direction" />
     <meta name="twitter:description" content="Selected moving-image work by Marta do Vale — art director and production designer." />
-    <meta name="twitter:image" content="assets/images/hero-living-room.jpg" />
+    <meta name="twitter:image" content="assets/images/optimized/hero-living-room-1600.jpg" />
     <link rel="preconnect" href="https://www.youtube.com" crossorigin />
     <link rel="preconnect" href="https://i.ytimg.com" crossorigin />
     <link rel="preconnect" href="https://video.wixstatic.com" crossorigin />
-    <link rel="preload" as="image" href="assets/images/hero-living-room.jpg" fetchpriority="high" />
+    <link
+      rel="preload"
+      as="image"
+      href="assets/images/optimized/hero-living-room-1600.jpg"
+      imagesrcset="assets/images/optimized/hero-living-room-800.jpg 800w, assets/images/optimized/hero-living-room-1600.jpg 1600w"
+      imagesizes="(min-width: 768px) 56vw, 100vw"
+      fetchpriority="high"
+    />
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" />
@@ -163,14 +170,77 @@
         <div class="relative md:min-h-[42rem]" data-hero-parallax data-reveal style="--reveal-delay: 120ms">
           <div class="grid gap-4 md:absolute md:inset-x-0 md:top-0 md:grid-cols-[1.08fr_0.92fr]">
             <figure class="overflow-hidden rounded-[30px] border border-white/10 bg-white/5 shadow-luxe" data-parallax-layer="front">
-              <img src="assets/images/hero-living-room.jpg" alt="Cinematic living-room set by Marta do Vale" data-i18n-attr="alt:image.alt.heroLiving" fetchpriority="high" decoding="async" class="h-[22rem] w-full object-cover md:h-[34rem]" />
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="assets/images/optimized/hero-living-room-800.avif 800w, assets/images/optimized/hero-living-room-1600.avif 1600w"
+                  sizes="(min-width: 768px) 56vw, 100vw"
+                />
+                <source
+                  type="image/webp"
+                  srcset="assets/images/optimized/hero-living-room-800.webp 800w, assets/images/optimized/hero-living-room-1600.webp 1600w"
+                  sizes="(min-width: 768px) 56vw, 100vw"
+                />
+                <img
+                  src="assets/images/optimized/hero-living-room-1600.jpg"
+                  srcset="assets/images/optimized/hero-living-room-800.jpg 800w, assets/images/optimized/hero-living-room-1600.jpg 1600w"
+                  sizes="(min-width: 768px) 56vw, 100vw"
+                  alt="Cinematic living-room set by Marta do Vale"
+                  data-i18n-attr="alt:image.alt.heroLiving"
+                  fetchpriority="high"
+                  decoding="async"
+                  class="h-[22rem] w-full object-cover md:h-[34rem]"
+                />
+              </picture>
             </figure>
             <div class="grid gap-4 md:pt-10">
               <figure class="overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-luxe" data-parallax-layer="mid">
-                <img src="assets/images/hero-neon-stage.jpg" alt="Neon-lit sculptural set design" data-i18n-attr="alt:image.alt.heroNeon" loading="lazy" decoding="async" class="h-[10rem] w-full object-cover md:h-[14rem]" />
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="assets/images/optimized/hero-neon-stage-800.avif 800w, assets/images/optimized/hero-neon-stage-1600.avif 1600w"
+                    sizes="(min-width: 768px) 30vw, 100vw"
+                  />
+                  <source
+                    type="image/webp"
+                    srcset="assets/images/optimized/hero-neon-stage-800.webp 800w, assets/images/optimized/hero-neon-stage-1600.webp 1600w"
+                    sizes="(min-width: 768px) 30vw, 100vw"
+                  />
+                  <img
+                    src="assets/images/optimized/hero-neon-stage-1600.jpg"
+                    srcset="assets/images/optimized/hero-neon-stage-800.jpg 800w, assets/images/optimized/hero-neon-stage-1600.jpg 1600w"
+                    sizes="(min-width: 768px) 30vw, 100vw"
+                    alt="Neon-lit sculptural set design"
+                    data-i18n-attr="alt:image.alt.heroNeon"
+                    loading="lazy"
+                    decoding="async"
+                    class="h-[10rem] w-full object-cover md:h-[14rem]"
+                  />
+                </picture>
               </figure>
               <figure class="overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-luxe md:ml-8" data-parallax-layer="back">
-                <img src="assets/images/candle-table.jpg" alt="Warm ensemble frame around a candlelit table" data-i18n-attr="alt:image.alt.heroCandle" loading="lazy" decoding="async" class="h-[10rem] w-full object-cover md:h-[14rem]" />
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="assets/images/optimized/candle-table-800.avif 800w, assets/images/optimized/candle-table-1600.avif 1600w"
+                    sizes="(min-width: 768px) 30vw, 100vw"
+                  />
+                  <source
+                    type="image/webp"
+                    srcset="assets/images/optimized/candle-table-800.webp 800w, assets/images/optimized/candle-table-1600.webp 1600w"
+                    sizes="(min-width: 768px) 30vw, 100vw"
+                  />
+                  <img
+                    src="assets/images/optimized/candle-table-1600.jpg"
+                    srcset="assets/images/optimized/candle-table-800.jpg 800w, assets/images/optimized/candle-table-1600.jpg 1600w"
+                    sizes="(min-width: 768px) 30vw, 100vw"
+                    alt="Warm ensemble frame around a candlelit table"
+                    data-i18n-attr="alt:image.alt.heroCandle"
+                    loading="lazy"
+                    decoding="async"
+                    class="h-[10rem] w-full object-cover md:h-[14rem]"
+                  />
+                </picture>
               </figure>
             </div>
           </div>
@@ -292,7 +362,28 @@
 
       <section id="about" class="mx-auto grid w-[min(calc(100%-1.5rem),1240px)] gap-4 py-10 sm:w-[min(calc(100%-2rem),1240px)] md:grid-cols-[1.02fr_0.98fr] md:py-14">
         <div class="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-luxe" data-reveal>
-          <img src="assets/images/writing-study.jpg" alt="Styled study interior with layered props and warm light" data-i18n-attr="alt:image.alt.aboutStudy" loading="lazy" decoding="async" class="h-[24rem] w-full object-cover md:h-full md:min-h-[30rem]" />
+          <picture>
+            <source
+              type="image/avif"
+              srcset="assets/images/optimized/writing-study-800.avif 800w, assets/images/optimized/writing-study-1600.avif 1600w"
+              sizes="(min-width: 768px) 50vw, 100vw"
+            />
+            <source
+              type="image/webp"
+              srcset="assets/images/optimized/writing-study-800.webp 800w, assets/images/optimized/writing-study-1600.webp 1600w"
+              sizes="(min-width: 768px) 50vw, 100vw"
+            />
+            <img
+              src="assets/images/optimized/writing-study-1600.jpg"
+              srcset="assets/images/optimized/writing-study-800.jpg 800w, assets/images/optimized/writing-study-1600.jpg 1600w"
+              sizes="(min-width: 768px) 50vw, 100vw"
+              alt="Styled study interior with layered props and warm light"
+              data-i18n-attr="alt:image.alt.aboutStudy"
+              loading="lazy"
+              decoding="async"
+              class="h-[24rem] w-full object-cover md:h-full md:min-h-[30rem]"
+            />
+          </picture>
           <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/65"></div>
         </div>
         <div class="flex flex-col justify-end rounded-[28px] border border-white/10 bg-white/[0.05] p-8 shadow-luxe" data-reveal style="--reveal-delay: 120ms">
