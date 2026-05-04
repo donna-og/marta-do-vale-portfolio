@@ -24,7 +24,7 @@ Then open `http://localhost:8080`.
 npm test
 ```
 
-Runs the CSS build and a syntax check on `script.js`.
+Runs the CSS build, syntax-checks `script.js` and the build scripts, then runs the performance-budget guard (`scripts/check-budget.mjs`). The guard sums the bytes of each shipped file and asset directory and fails if anything exceeds its cap — so an unoptimized poster or a chunky JS feature can't silently regress the site. When growth is legitimate (e.g. a new film with new posters), bump the relevant `max:` value in `scripts/check-budget.mjs` in the same PR with a one-line reason in the commit message.
 
 ## Updating content
 
