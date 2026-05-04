@@ -7,14 +7,26 @@ import sharp from 'sharp';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const projectRoot = join(__dirname, '..');
-const sourceDir = join(projectRoot, 'assets', 'images');
-const outputDir = join(sourceDir, 'optimized');
 
-const WIDTHS = [800, 1600];
 const FORMATS = [
   { ext: 'avif', options: { quality: 55, effort: 4 } },
   { ext: 'webp', options: { quality: 78, effort: 4 } },
   { ext: 'jpg', options: { quality: 82, mozjpeg: true, progressive: true } }
+];
+
+const SOURCES = [
+  {
+    label: 'images',
+    sourceDir: join(projectRoot, 'assets', 'images'),
+    outputDir: join(projectRoot, 'assets', 'images', 'optimized'),
+    widths: [800, 1600]
+  },
+  {
+    label: 'posters',
+    sourceDir: join(projectRoot, 'assets', 'posters'),
+    outputDir: join(projectRoot, 'assets', 'posters', 'optimized'),
+    widths: [400, 800]
+  }
 ];
 
 async function fileMtime(path) {
@@ -34,12 +46,12 @@ async function variantNeedsRebuild(sourcePath, outputPath) {
   return sourceMtime > outputMtime;
 }
 
-async function processImage(filename) {
+async function processImage(filename, { sourceDir, outputDir, widths }) {
   const sourcePath = join(sourceDir, filename);
   const { name } = parse(filename);
 
   const tasks = [];
-  for (const width of WIDTHS) {
+  for (const width of widths) {
     for (const format of FORMATS) {
       const outName = `${name}-${width}.${format.ext}`;
       const outPath = join(outputDir, outName);
@@ -64,10 +76,11 @@ async function processImage(filename) {
   return tasks;
 }
 
-async function main() {
+async function processSource(source) {
+  const { sourceDir, outputDir, label } = source;
   if (!existsSync(sourceDir)) {
-    console.error(`Source directory not found: ${sourceDir}`);
-    process.exit(1);
+    console.warn(`Source directory not found, skipping: ${sourceDir}`);
+    return { built: 0, skipped: 0 };
   }
   await mkdir(outputDir, { recursive: true });
 
@@ -77,16 +90,16 @@ async function main() {
     .sort();
 
   if (sources.length === 0) {
-    console.log('No source JPGs found in assets/images/.');
-    return;
+    console.log(`No source JPGs found in ${relative(projectRoot, sourceDir)}/.`);
+    return { built: 0, skipped: 0 };
   }
 
-  console.log(`Optimizing ${sources.length} source image(s) → ${relative(projectRoot, outputDir)}/`);
+  console.log(`\n[${label}] Optimizing ${sources.length} source image(s) → ${relative(projectRoot, outputDir)}/`);
 
   let built = 0;
   let skipped = 0;
   for (const filename of sources) {
-    const results = await processImage(filename);
+    const results = await processImage(filename, source);
     const wrote = results.filter((r) => !r.skipped).length;
     const skip = results.filter((r) => r.skipped).length;
     built += wrote;
@@ -98,7 +111,19 @@ async function main() {
     }
   }
 
-  console.log(`Done. ${built} written, ${skipped} skipped.`);
+  return { built, skipped };
+}
+
+async function main() {
+  let totalBuilt = 0;
+  let totalSkipped = 0;
+  for (const source of SOURCES) {
+    const { built, skipped } = await processSource(source);
+    totalBuilt += built;
+    totalSkipped += skipped;
+  }
+
+  console.log(`\nDone. ${totalBuilt} written, ${totalSkipped} skipped.`);
 }
 
 main().catch((err) => {

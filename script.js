@@ -205,6 +205,18 @@ const films = [
 ];
 
 const fallbackImage = 'assets/images/hero-living-room.jpg';
+
+const posterSources = (originalPath) => {
+  const match = originalPath.match(/^assets\/posters\/(.+)\.jpe?g$/i);
+  if (!match) return { jpg: originalPath, avif: '', webp: '' };
+  const base = `assets/posters/optimized/${match[1]}`;
+  return {
+    jpg: `${base}-800.jpg`,
+    avif: `${base}-400.avif 400w, ${base}-800.avif 800w`,
+    webp: `${base}-400.webp 400w, ${base}-800.webp 800w`
+  };
+};
+
 const filmGrid = document.getElementById('film-grid');
 const videoModal = document.querySelector('.video-modal');
 const contactModal = document.querySelector('.contact-modal');
@@ -241,7 +253,9 @@ scrollLinks.forEach((link) => {
   });
 });
 
-filmGrid.innerHTML = films.map((film, idx) => `
+filmGrid.innerHTML = films.map((film, idx) => {
+  const sources = posterSources(film.poster);
+  return `
   <button
     type="button"
     class="group overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.04] text-left shadow-luxe transition duration-300 hover:-translate-y-0.5 md:relative ${film.size}"
@@ -254,7 +268,11 @@ filmGrid.innerHTML = films.map((film, idx) => `
     style="--reveal-delay: ${(idx % 4) * 90}ms"
   >
     <div class="grid min-h-[11rem] grid-cols-[136px_minmax(0,1fr)] md:block md:h-full">
-      <img src="${film.poster}" data-film-poster loading="lazy" decoding="async" data-fallback="${fallbackImage}" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02] md:h-full" />
+      <picture>
+        <source type="image/avif" srcset="${sources.avif}" sizes="(min-width: 768px) 50vw, 140px">
+        <source type="image/webp" srcset="${sources.webp}" sizes="(min-width: 768px) 50vw, 140px">
+        <img src="${sources.jpg}" data-film-poster loading="lazy" decoding="async" data-fallback="${fallbackImage}" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02] md:h-full" />
+      </picture>
       <div class="flex flex-col justify-between p-4 md:hidden">
         <div>
           <p class="text-[0.68rem] uppercase tracking-[0.22em] text-accent" data-i18n="film.tile.eyebrow">Film</p>
@@ -274,7 +292,8 @@ filmGrid.innerHTML = films.map((film, idx) => `
       ${film.subtitle ? `<p class="mt-1 text-[0.82rem] uppercase tracking-[0.16em] text-cream/60">${film.subtitle}</p>` : ''}
     </div>
   </button>
-`).join('');
+`;
+}).join('');
 
 const updateFilmCardLabels = () => {
   const t = window.MDV_I18N ? window.MDV_I18N.t : (k) => k;
