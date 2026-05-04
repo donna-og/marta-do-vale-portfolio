@@ -38,7 +38,11 @@
 //      runtime: `iframe[src]`, `source[src|srcset]`,
 //      `img[src|srcset]`, `video[src]`, `picture > source[srcset]`,
 //      `link[href]` (excluding rel=preconnect / preload /
-//      dns-prefetch — those *are* the hint we audit).
+//      dns-prefetch — those *are* the hint we audit — and rel=me,
+//      which is an IndieWeb identity anchor that browsers do not
+//      fetch on load; the URL is read by IndieAuth / h-card
+//      consumers / Mastodon profile verifiers, not by the runtime
+//      page).
 //   2. Inline `style="…url(…)…"` attributes and `<style>` blocks.
 //   3. Open Graph / Twitter player meta values (og:image,
 //      og:video, og:video:url, og:video:secure_url, twitter:image,
@@ -246,7 +250,7 @@ function collectFromDom(doc, refs) {
   // 5. link[href] — exclude rel preconnect / preload / dns-prefetch.
   for (const el of doc.querySelectorAll('link[href]')) {
     const rel = (el.getAttribute('rel') || '').toLowerCase();
-    if (/(?:^|\s)(preconnect|preload|dns-prefetch|modulepreload)(?:\s|$)/.test(rel)) continue;
+    if (/(?:^|\s)(preconnect|preload|dns-prefetch|modulepreload|me)(?:\s|$)/.test(rel)) continue;
     recordRef(refs, classifyOrigin(el.getAttribute('href')), `link[rel="${rel || '(none)'}"]`);
   }
   // 6. og:* / twitter:* meta values that resolve to fetched media.
