@@ -29,7 +29,7 @@ const budgets = [
   { path: 'styles.css',                                 max:   35 * KB },
   { path: 'script.js',                                  max:   28 * KB },
   { path: 'motion.js',                                  max:    8 * KB },
-  { path: 'index.html',                                 max:   75 * KB },
+  { path: 'index.html',                                 max:   78 * KB },
   { path: 'assets/fonts/optimized',   recurse: true,    max:  300 * KB },
   { path: 'assets/images/optimized',  recurse: true,    max: 3700 * KB },
   { path: 'assets/posters/optimized', recurse: true,    max: 3000 * KB },

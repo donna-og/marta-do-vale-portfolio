@@ -109,6 +109,9 @@
       'contact.imdb.eyebrow': 'IMDb',
       'contact.imdb.headline': 'Selected film credits',
       'contact.imdb.action': 'Open IMDb profile',
+      'contact.vcard.eyebrow': 'vCard',
+      'contact.vcard.headline': 'Save to contacts',
+      'contact.vcard.action': 'Download .vcf',
       'contact.closing': 'Lisbon, Portugal · Available worldwide.',
 
       'notFound.meta.title': 'Off-camera — Marta do Vale',
@@ -227,6 +230,9 @@
       'contact.imdb.eyebrow': 'IMDb',
       'contact.imdb.headline': 'Créditos de cinema',
       'contact.imdb.action': 'Abrir perfil IMDb',
+      'contact.vcard.eyebrow': 'vCard',
+      'contact.vcard.headline': 'Guardar nos contactos',
+      'contact.vcard.action': 'Descarregar .vcf',
       'contact.closing': 'Lisboa, Portugal · Disponível em qualquer lugar.',
 
       'notFound.meta.title': 'Fora de campo — Marta do Vale',
