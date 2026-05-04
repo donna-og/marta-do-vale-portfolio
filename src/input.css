@@ -188,6 +188,17 @@
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
     aspect-ratio: 16 / 10;
+    background-color: #0b0b0d;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transition: transform 600ms var(--ease-classy);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .film-still:hover {
+      transform: scale(1.02);
+    }
   }
 
   .film-still::after {
@@ -211,55 +222,19 @@
   }
 
   .film-still--diamantino {
-    background:
-      radial-gradient(circle at 28% 24%, rgba(214, 96, 70, 0.55), transparent 55%),
-      radial-gradient(circle at 78% 76%, rgba(238, 192, 110, 0.32), transparent 60%),
-      linear-gradient(135deg, #2a1614 0%, #14080a 100%);
+    background-image: url('assets/cinema/diamantino.svg');
   }
 
   .film-still--dreams {
-    background:
-      radial-gradient(circle at 22% 76%, rgba(118, 138, 162, 0.5), transparent 55%),
-      radial-gradient(circle at 72% 22%, rgba(204, 176, 122, 0.3), transparent 60%),
-      linear-gradient(150deg, #1a1f28 0%, #0c0f15 100%);
+    background-image: url('assets/cinema/dreams.svg');
   }
 
   .film-still--peixe {
-    background:
-      radial-gradient(circle at 50% 58%, rgba(96, 64, 122, 0.55), transparent 55%),
-      radial-gradient(circle at 82% 28%, rgba(40, 26, 56, 0.65), transparent 60%),
-      linear-gradient(165deg, #14101b 0%, #08060c 100%);
+    background-image: url('assets/cinema/peixe.svg');
   }
 
   .film-still--lura {
-    background:
-      radial-gradient(circle at 38% 42%, rgba(166, 124, 70, 0.5), transparent 55%),
-      radial-gradient(circle at 76% 78%, rgba(112, 122, 136, 0.32), transparent 60%),
-      linear-gradient(135deg, #1f1c18 0%, #0d0b0a 100%);
-  }
-
-  .film-still__label {
-    position: absolute;
-    inset: auto 1.4rem 1.2rem 1.4rem;
-    z-index: 2;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
-    color: rgba(244, 240, 232, 0.85);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.6rem;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    pointer-events: none;
-  }
-
-  .film-still__label > span:last-child {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
-    color: rgba(204, 176, 122, 0.85);
+    background-image: url('assets/cinema/lura.svg');
   }
 }
 
@@ -467,6 +442,12 @@
 
   [data-tilt],
   [data-parallax-layer] {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .film-still,
+  .film-still:hover {
     transform: none !important;
     transition: none !important;
   }
