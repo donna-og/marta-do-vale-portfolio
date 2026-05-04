@@ -27,9 +27,98 @@
     <link rel="preconnect" href="https://video.wixstatic.com" crossorigin />
     <link rel="preload" as="image" href="assets/images/hero-living-room.jpg" fetchpriority="high" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
     <script>
       if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         document.documentElement.classList.add('js-reveals');
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Marta do Vale",
+        "jobTitle": "Art Director and Production Designer",
+        "birthDate": "1990-08-19",
+        "birthPlace": { "@type": "Place", "name": "Lisbon, Portugal" },
+        "nationality": "Portuguese",
+        "alumniOf": [
+          { "@type": "EducationalOrganization", "name": "Escola Artística António Arroio" },
+          { "@type": "EducationalOrganization", "name": "Faculdade de Arquitetura, Universidade de Lisboa" },
+          { "@type": "EducationalOrganization", "name": "Escola Superior de Teatro e Cinema" }
+        ],
+        "knowsLanguage": ["pt", "en"],
+        "address": { "@type": "PostalAddress", "addressLocality": "Lisbon", "addressCountry": "PT" },
+        "email": "mailto:hellomartadovale@gmail.com",
+        "telephone": "+351918373368",
+        "url": "https://www.martadovale.pt/",
+        "sameAs": [
+          "https://www.imdb.com/name/nm6185805/",
+          "https://www.instagram.com/martadovale.art/"
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Selected cinema credits — Marta do Vale",
+        "itemListOrder": "https://schema.org/ItemListOrderDescending",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "Movie",
+              "name": "Diamantino",
+              "datePublished": "2018",
+              "director": [
+                { "@type": "Person", "name": "Gabriel Abrantes" },
+                { "@type": "Person", "name": "Daniel Schmidt" }
+              ],
+              "url": "https://www.imdb.com/title/tt6522668/",
+              "award": "Grand Prize, Semaine de la Critique, Cannes 2018"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "Movie",
+              "name": "All the Dreams in the World",
+              "alternateName": "Todos os Sonhos do Mundo",
+              "datePublished": "2017",
+              "director": { "@type": "Person", "name": "Laurence Ferreira Barbosa" },
+              "url": "https://leopardofilmes.com/en/film/all-the-dreams-in-the-world/"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@type": "Movie",
+              "name": "Pela Boca Morre o Peixe",
+              "datePublished": "2014",
+              "director": { "@type": "Person", "name": "João P. Nunes" },
+              "url": "https://www.imdb.com/title/tt3728222/",
+              "award": "Best Short Film, MOTELx 2014"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "item": {
+              "@type": "Movie",
+              "name": "Lura",
+              "datePublished": "2013",
+              "director": { "@type": "Person", "name": "Luís Brás" },
+              "url": "https://www.imdb.com/title/tt3531016/"
+            }
+          }
+        ]
       }
     </script>
   </head>
