@@ -388,29 +388,51 @@ const closeContactModal = () => {
   }
 };
 
+const openVideoModal = (card) => {
+  const kind = card.dataset.kind;
+  lastTrigger.video = card;
+  frame.title = card.dataset.filmTitle || 'Selected film';
+
+  if (kind === 'youtube') {
+    frame.src = `https://www.youtube-nocookie.com/embed/${card.dataset.videoId}?autoplay=1&rel=0`;
+    frame.classList.remove('hidden');
+    player.classList.add('hidden');
+  } else if (kind === 'vimeo') {
+    frame.src = `https://player.vimeo.com/video/${card.dataset.videoId}?autoplay=1&dnt=1`;
+    frame.classList.remove('hidden');
+    player.classList.add('hidden');
+  } else {
+    player.src = card.dataset.videoSrc;
+    player.classList.remove('hidden');
+    frame.classList.add('hidden');
+    player.play();
+  }
+
+  videoModal.classList.remove('hidden');
+  videoModal.classList.add('flex');
+  videoModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  trapFocus(videoModal);
+  closeButton.focus();
+};
+
 videoCards.forEach((card) => {
-  card.addEventListener('click', () => {
-    const kind = card.dataset.kind;
-    lastTrigger.video = card;
-
-    if (kind === 'youtube') {
-      frame.src = `https://www.youtube-nocookie.com/embed/${card.dataset.videoId}?autoplay=1&rel=0`;
-      frame.classList.remove('hidden');
-      player.classList.add('hidden');
-    } else {
-      player.src = card.dataset.videoSrc;
-      player.classList.remove('hidden');
-      frame.classList.add('hidden');
-      player.play();
-    }
-
-    videoModal.classList.remove('hidden');
-    videoModal.classList.add('flex');
-    videoModal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    trapFocus(videoModal);
-    closeButton.focus();
+  card.addEventListener('click', (event) => {
+    if (event.target.closest('[data-cinema-secondary]')) return;
+    openVideoModal(card);
   });
+  if (card.tagName !== 'BUTTON') {
+    card.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      if (event.target.closest('[data-cinema-secondary]')) return;
+      event.preventDefault();
+      openVideoModal(card);
+    });
+  }
+});
+
+document.querySelectorAll('[data-cinema-secondary]').forEach((link) => {
+  link.addEventListener('click', (event) => event.stopPropagation());
 });
 
 contactTriggers.forEach((trigger) => {

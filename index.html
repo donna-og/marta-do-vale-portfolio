@@ -11,8 +11,11 @@
     <meta name="theme-color" content="#0b0b0d" />
     <!--
       Content-Security-Policy: privacy-first allowlist for a static portfolio.
-      External origins in use: youtube-nocookie (frame), i.ytimg.com (img),
-      video.wixstatic.com (media). Everything else is same-origin.
+      External origins in use: youtube-nocookie (frame — commercial grid +
+      cinema trailers), player.vimeo.com (frame — All the Dreams in the World
+      teaser, hosted by Leopardo Filmes), i.ytimg.com (img — YouTube poster
+      thumbnails), video.wixstatic.com (media — direct mp4 commercials).
+      Everything else is same-origin.
       script-src hashes cover every inline <script> block. Adding, removing, or
       editing an inline script (whitespace included) requires recomputing the
       SHA-256 and updating the directive below — otherwise the script is blocked.
@@ -21,8 +24,8 @@
       JSON-LD blocks (type="application/ld+json") are not executable and do not
       need hashes.
     -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-BC3ggtZ4Jt9MZ4b6N/mqzDsXaWsICFgSaAHOjLaLgZU='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com; media-src 'self' https://video.wixstatic.com; frame-src https://www.youtube-nocookie.com; font-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests" />
-    <meta http-equiv="Permissions-Policy" content="accelerometer=(), autoplay=(self &quot;https://www.youtube-nocookie.com&quot;), camera=(), display-capture=(), encrypted-media=(self &quot;https://www.youtube-nocookie.com&quot;), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(self &quot;https://www.youtube-nocookie.com&quot;), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(self), xr-spatial-tracking=()" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-BC3ggtZ4Jt9MZ4b6N/mqzDsXaWsICFgSaAHOjLaLgZU='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com; media-src 'self' https://video.wixstatic.com; frame-src https://www.youtube-nocookie.com https://player.vimeo.com; font-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests" />
+    <meta http-equiv="Permissions-Policy" content="accelerometer=(), autoplay=(self &quot;https://www.youtube-nocookie.com&quot; &quot;https://player.vimeo.com&quot;), camera=(), display-capture=(), encrypted-media=(self &quot;https://www.youtube-nocookie.com&quot; &quot;https://player.vimeo.com&quot;), fullscreen=(self &quot;https://www.youtube-nocookie.com&quot; &quot;https://player.vimeo.com&quot;), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(self &quot;https://www.youtube-nocookie.com&quot; &quot;https://player.vimeo.com&quot;), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(self), xr-spatial-tracking=()" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta property="og:title" content="Marta do Vale — Art Direction" />
     <meta
@@ -51,6 +54,7 @@
     <link rel="preconnect" href="https://www.youtube-nocookie.com" crossorigin />
     <link rel="preconnect" href="https://i.ytimg.com" crossorigin />
     <link rel="preconnect" href="https://video.wixstatic.com" crossorigin />
+    <link rel="preconnect" href="https://player.vimeo.com" crossorigin />
     <link
       rel="preload"
       as="font"
@@ -127,7 +131,15 @@
                 { "@type": "Person", "name": "Daniel Schmidt" }
               ],
               "url": "https://www.imdb.com/title/tt6522668/",
-              "award": "Grand Prize, Semaine de la Critique, Cannes 2018"
+              "award": "Grand Prize, Semaine de la Critique, Cannes 2018",
+              "trailer": {
+                "@type": "VideoObject",
+                "name": "Diamantino — Official Trailer",
+                "description": "Official trailer for Diamantino (2018), distributed by Kino Lorber.",
+                "thumbnailUrl": "https://i.ytimg.com/vi/g5s6D1lOTQM/hqdefault.jpg",
+                "embedUrl": "https://www.youtube-nocookie.com/embed/g5s6D1lOTQM",
+                "contentUrl": "https://www.youtube.com/watch?v=g5s6D1lOTQM"
+              }
             }
           },
           {
@@ -139,7 +151,15 @@
               "alternateName": "Todos os Sonhos do Mundo",
               "datePublished": "2017",
               "director": { "@type": "Person", "name": "Laurence Ferreira Barbosa" },
-              "url": "https://leopardofilmes.com/en/film/all-the-dreams-in-the-world/"
+              "url": "https://leopardofilmes.com/en/film/all-the-dreams-in-the-world/",
+              "trailer": {
+                "@type": "VideoObject",
+                "name": "Todos os Sonhos do Mundo — Teaser 2",
+                "description": "Official teaser hosted by Leopardo Filmes, the Portuguese co-producer.",
+                "thumbnailUrl": "https://i.vimeocdn.com/video/658703748-842d87fd81fe3bb7b935ce380fa522d7655c012b57e67b55d76ef9b37e4d7c71-d_640",
+                "embedUrl": "https://player.vimeo.com/video/236561979",
+                "contentUrl": "https://vimeo.com/236561979"
+              }
             }
           },
           {
@@ -151,7 +171,15 @@
               "datePublished": "2014",
               "director": { "@type": "Person", "name": "João P. Nunes" },
               "url": "https://www.imdb.com/title/tt3728222/",
-              "award": "Best Short Film, MOTELx 2014"
+              "award": "Best Short Film, MOTELx 2014",
+              "trailer": {
+                "@type": "VideoObject",
+                "name": "Pela Boca Morre o Peixe — Teaser",
+                "description": "Teaser uploaded by director João P. Nunes.",
+                "thumbnailUrl": "https://i.ytimg.com/vi/fsX1d-d0x7g/hqdefault.jpg",
+                "embedUrl": "https://www.youtube-nocookie.com/embed/fsX1d-d0x7g",
+                "contentUrl": "https://www.youtube.com/watch?v=fsX1d-d0x7g"
+              }
             }
           },
           {
@@ -675,7 +703,7 @@
         </div>
 
         <div class="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10">
-          <article class="flex flex-col" data-reveal>
+          <article class="cinema-card flex flex-col" data-reveal role="button" tabindex="0" data-kind="youtube" data-video-id="g5s6D1lOTQM" data-film-title="Diamantino — Official Trailer" aria-label="Play Diamantino trailer">
             <div class="film-still film-still--diamantino" role="img" aria-label="Diamantino"></div>
             <div class="glass-panel relative mt-5 overflow-hidden rounded-[28px] p-6 md:p-8" data-tilt data-sheen>
               <span class="card-sheen" aria-hidden="true"></span>
@@ -683,14 +711,18 @@
               <h3 class="mt-4 font-serif text-[2.1rem] leading-[0.95] tracking-[-0.03em] md:text-[2.4rem]" data-i18n="cinema.diamantino.title">Diamantino</h3>
               <p class="mt-3 text-[0.72rem] uppercase tracking-[0.28em] text-accent" data-i18n="cinema.diamantino.festival">Grand Prize · Semaine de la Critique · Cannes 2018</p>
               <p class="mt-4 text-[1rem] leading-7 text-cream/72" data-i18n="cinema.diamantino.caption">A genre-bending political satire whose visual identity is its punchline.</p>
-              <a href="https://www.imdb.com/title/tt6522668/" target="_blank" rel="noreferrer noopener" class="mt-6 inline-flex items-center gap-2 text-[0.72rem] uppercase tracking-[0.22em] text-accent transition hover:text-cream">
+              <p class="cinema-play mt-6 inline-flex items-center gap-2 text-[0.72rem] uppercase tracking-[0.22em] text-accent">
+                <span aria-hidden="true">▶</span>
+                <span data-i18n="cinema.diamantino.play">Play trailer</span>
+              </p>
+              <a href="https://www.imdb.com/title/tt6522668/" target="_blank" rel="noreferrer noopener" class="mt-3 inline-flex items-center gap-2 text-[0.72rem] uppercase tracking-[0.22em] text-cream/55 transition hover:text-accent" data-cinema-secondary>
                 <span data-i18n="cinema.diamantino.action">View on IMDb</span>
                 <span aria-hidden="true" class="transition-transform">→</span>
               </a>
             </div>
           </article>
 
-          <article class="flex flex-col md:mt-16" data-reveal style="--reveal-delay: 90ms">
+          <article class="cinema-card flex flex-col md:mt-16" data-reveal style="--reveal-delay: 90ms" role="button" tabindex="0" data-kind="vimeo" data-video-id="236561979" data-film-title="All the Dreams in the World — Teaser" aria-label="Play All the Dreams in the World teaser">
             <div class="film-still film-still--dreams" role="img" aria-label="All the Dreams in the World / Todos os Sonhos do Mundo"></div>
             <div class="glass-panel relative mt-5 overflow-hidden rounded-[28px] p-6 md:p-8" data-tilt data-sheen>
               <span class="card-sheen" aria-hidden="true"></span>
@@ -698,14 +730,18 @@
               <h3 class="mt-4 font-serif text-[2.1rem] leading-[0.95] tracking-[-0.03em] md:text-[2.4rem]" data-i18n="cinema.dreams.title">All the Dreams in the World</h3>
               <p class="mt-2 font-serif text-[1.15rem] italic leading-[1.2] tracking-[-0.01em] text-cream/55" data-i18n="cinema.dreams.titleAlt">Todos os Sonhos do Mundo · Prod. Paulo Branco / Leopardo Filmes</p>
               <p class="mt-4 text-[1rem] leading-7 text-cream/72" data-i18n="cinema.dreams.caption">A France–Portugal feature about the Portuguese diaspora — design that straddles two countries.</p>
-              <a href="https://leopardofilmes.com/en/film/all-the-dreams-in-the-world/" target="_blank" rel="noreferrer noopener" class="mt-6 inline-flex items-center gap-2 text-[0.72rem] uppercase tracking-[0.22em] text-accent transition hover:text-cream">
+              <p class="cinema-play mt-6 inline-flex items-center gap-2 text-[0.72rem] uppercase tracking-[0.22em] text-accent">
+                <span aria-hidden="true">▶</span>
+                <span data-i18n="cinema.dreams.play">Play teaser</span>
+              </p>
+              <a href="https://leopardofilmes.com/en/film/all-the-dreams-in-the-world/" target="_blank" rel="noreferrer noopener" class="mt-3 inline-flex items-center gap-2 text-[0.72rem] uppercase tracking-[0.22em] text-cream/55 transition hover:text-accent" data-cinema-secondary>
                 <span data-i18n="cinema.dreams.action">Producer page</span>
                 <span aria-hidden="true" class="transition-transform">→</span>
               </a>
             </div>
           </article>
 
-          <article class="flex flex-col" data-reveal>
+          <article class="cinema-card flex flex-col" data-reveal role="button" tabindex="0" data-kind="youtube" data-video-id="fsX1d-d0x7g" data-film-title="Pela Boca Morre o Peixe — Teaser" aria-label="Play Pela Boca Morre o Peixe teaser">
             <div class="film-still film-still--peixe" role="img" aria-label="Pela Boca Morre o Peixe"></div>
             <div class="glass-panel relative mt-5 overflow-hidden rounded-[28px] p-6 md:p-8" data-tilt data-sheen>
               <span class="card-sheen" aria-hidden="true"></span>
@@ -713,7 +749,11 @@
               <h3 class="mt-4 font-serif text-[2.1rem] leading-[0.95] tracking-[-0.03em] md:text-[2.4rem]" data-i18n="cinema.peixe.title">Pela Boca Morre o Peixe</h3>
               <p class="mt-3 text-[0.72rem] uppercase tracking-[0.28em] text-accent" data-i18n="cinema.peixe.festival">Best Short Film · MOTELx 2014</p>
               <p class="mt-4 text-[1rem] leading-7 text-cream/72" data-i18n="cinema.peixe.caption">A Kafka-inflected horror short about a hunter who becomes the hunted.</p>
-              <a href="https://www.imdb.com/title/tt3728222/" target="_blank" rel="noreferrer noopener" class="mt-6 inline-flex items-center gap-2 text-[0.72rem] uppercase tracking-[0.22em] text-accent transition hover:text-cream">
+              <p class="cinema-play mt-6 inline-flex items-center gap-2 text-[0.72rem] uppercase tracking-[0.22em] text-accent">
+                <span aria-hidden="true">▶</span>
+                <span data-i18n="cinema.peixe.play">Play teaser</span>
+              </p>
+              <a href="https://www.imdb.com/title/tt3728222/" target="_blank" rel="noreferrer noopener" class="mt-3 inline-flex items-center gap-2 text-[0.72rem] uppercase tracking-[0.22em] text-cream/55 transition hover:text-accent" data-cinema-secondary>
                 <span data-i18n="cinema.peixe.action">View on IMDb</span>
                 <span aria-hidden="true" class="transition-transform">→</span>
               </a>
