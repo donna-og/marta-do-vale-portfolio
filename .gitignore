@@ -1,2 +1,4 @@
 node_modules/
 .watchfire/
+_site/
+.vercel/

@@ -4,6 +4,7 @@
   "description": "A polished static portfolio site for Marta do Vale, art director and production designer.",
   "main": "script.js",
   "scripts": {
+    "build": "npm run build:css && bash scripts/stage-site.sh _site",
     "build:css": "tailwindcss -i ./src/input.css -o ./styles.css --minify && python3 -c \"from pathlib import Path; import re; p=Path('styles.css'); p.write_text(re.sub(r'/\\*! tailwindcss v[^*]*\\*/','',p.read_text(),count=1))\"",
     "build:images": "node scripts/build-images.mjs",
     "build:fonts": "node scripts/build-fonts.mjs",
