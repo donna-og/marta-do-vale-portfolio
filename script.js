@@ -6,9 +6,11 @@ const slugify = (text) => String(text || '')
   .replace(/[^a-z0-9]+/g, '-')
   .replace(/^-+|-+$/g, '');
 
-// When editing this array, also update the matching VideoObject ItemList
-// in index.html (the third application/ld+json block) so search engines
-// stay in sync with the rendered grid.
+// Drift between this array, the commercial
+// VideoObject ItemList in index.html, and the
+// poster entries in sitemap.xml is caught by
+// scripts/check-films-sync.mjs (run on every
+// npm test).
 const films = [
   {
     title: 'AUDI E-TRON GT QUATTRO',
