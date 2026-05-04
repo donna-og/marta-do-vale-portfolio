@@ -6,7 +6,8 @@
   "scripts": {
     "build:css": "tailwindcss -i ./src/input.css -o ./styles.css --minify && python3 -c \"from pathlib import Path; import re; p=Path('styles.css'); p.write_text(re.sub(r'/\\*! tailwindcss v[^*]*\\*/','',p.read_text(),count=1))\"",
     "build:images": "node scripts/build-images.mjs",
-    "test": "npm run build:css && node --check script.js && node --check scripts/build-images.mjs && node --check scripts/build-og-card.mjs"
+    "build:fonts": "node scripts/build-fonts.mjs",
+    "test": "npm run build:css && node --check script.js && node --check scripts/build-images.mjs && node --check scripts/build-og-card.mjs && node --check scripts/build-fonts.mjs"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
     "tailwindcss": "^3.4.17"
   },
   "devDependencies": {
-    "sharp": "^0.34.5"
+    "sharp": "^0.34.5",
+    "subset-font": "^2.5.0"
   }
 }
