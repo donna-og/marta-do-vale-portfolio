@@ -92,7 +92,14 @@
       'contact.imdb.eyebrow': 'IMDb',
       'contact.imdb.headline': 'Selected film credits',
       'contact.imdb.action': 'Open IMDb profile',
-      'contact.closing': 'Lisbon, Portugal · Available worldwide.'
+      'contact.closing': 'Lisbon, Portugal · Available worldwide.',
+
+      'notFound.meta.title': 'Off-camera — Marta do Vale',
+      'notFound.meta.description': 'This frame is off-camera. Return to selected work by Marta do Vale — art director and production designer based in Lisbon.',
+      'notFound.eyebrow': '404 · Off-camera',
+      'notFound.headline': "This frame didn't make the final cut.",
+      'notFound.body': "Marta's selected work — a Cannes Critics' Week winner, a MOTELx Best Short, and a decade of cinematic commercials — is one cut away.",
+      'notFound.cta': 'Back to the work'
     },
     pt: {
       'meta.title': 'Marta do Vale — Direção de Arte',
@@ -186,7 +193,14 @@
       'contact.imdb.eyebrow': 'IMDb',
       'contact.imdb.headline': 'Créditos de cinema',
       'contact.imdb.action': 'Abrir perfil IMDb',
-      'contact.closing': 'Lisboa, Portugal · Disponível em qualquer lugar.'
+      'contact.closing': 'Lisboa, Portugal · Disponível em qualquer lugar.',
+
+      'notFound.meta.title': 'Fora de campo — Marta do Vale',
+      'notFound.meta.description': 'Esta cena ficou fora de campo. Voltar ao trabalho selecionado de Marta do Vale — diretora de arte e cenógrafa em Lisboa.',
+      'notFound.eyebrow': '404 · Fora de campo',
+      'notFound.headline': 'Esta cena não chegou ao corte final.',
+      'notFound.body': 'O trabalho selecionado da Marta — um vencedor da Semana da Crítica de Cannes, um Melhor Curta no MOTELx e uma década de publicidade cinematográfica — está a um corte de distância.',
+      'notFound.cta': 'Voltar ao trabalho'
     }
   };
 
