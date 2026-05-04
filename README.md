@@ -8,7 +8,7 @@ A polished static portfolio site for Marta do Vale, art director and production 
 
 - Plain HTML/CSS/JS — no framework, no build server
 - Tailwind v3 compiled to `styles.css` via `npm run build:css`
-- Deploys as a static site (GitHub Pages target)
+- Deploys as a static site (GitHub Pages target). Pushes to `main` auto-deploy via `.github/workflows/deploy.yml`.
 
 ## Local preview
 
