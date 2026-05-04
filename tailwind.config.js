@@ -1,5 +1,5 @@
 module.exports = {
-  content: ['./index.html', './script.js'],
+  content: ['./index.html', './404.html', './script.js'],
   safelist: [
     'md:col-span-3',
     'md:col-span-4',

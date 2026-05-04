@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Off-camera — Marta do Vale</title>
+    <meta
+      name="description"
+      content="This frame is off-camera. Return to selected work by Marta do Vale — art director and production designer based in Lisbon."
+    />
+    <meta name="theme-color" content="#0b0b0d" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
+  </head>
+  <body class="min-h-screen bg-[#0b0b0d] font-sans text-cream">
+    <div class="pointer-events-none fixed inset-0 opacity-[0.08] mix-blend-soft-light [background-image:radial-gradient(rgba(255,255,255,.8)_0.45px,transparent_0.45px)] [background-size:4px_4px]"></div>
+    <div class="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_top_right,rgba(126,98,59,0.14),transparent_24%),radial-gradient(circle_at_20%_10%,rgba(99,110,126,0.12),transparent_28%),linear-gradient(180deg,#111214_0%,#09090b_100%)]"></div>
+
+    <header class="header-shell sticky top-0 z-40 border-b border-white/10">
+      <div class="mx-auto flex w-[min(calc(100%-1.5rem),1240px)] flex-row items-center justify-between gap-3 py-4 sm:w-[min(calc(100%-2rem),1240px)]">
+        <a href="/" aria-label="Marta do Vale home" class="inline-flex flex-col leading-none">
+          <span class="header-wordmark font-serif text-[2rem] tracking-[0.01em]">Marta do Vale</span>
+          <span class="header-eyebrow mt-0.5 text-[0.78rem] uppercase tracking-[0.28em] text-cream" data-i18n="brand.eyebrow">Art Direction</span>
+        </a>
+        <button type="button" data-lang-toggle class="lang-toggle min-h-[44px] text-[0.78rem] uppercase tracking-[0.22em]" aria-label="Language" data-i18n-attr="aria-label:nav.langLabel">
+          <span class="lang-toggle__opt" data-lang-opt="en">EN</span>
+          <span class="text-cream/30" aria-hidden="true">/</span>
+          <span class="lang-toggle__opt" data-lang-opt="pt">PT</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="relative z-10 mx-auto flex w-[min(calc(100%-1.5rem),1240px)] flex-col items-center justify-center px-1 text-center sm:w-[min(calc(100%-2rem),1240px)]" style="min-height: calc(100vh - 6.5rem)">
+      <div class="max-w-2xl py-16 md:py-24">
+        <p class="mb-6 text-[0.78rem] uppercase tracking-[0.32em] text-accent" data-i18n="notFound.eyebrow">404 · Off-camera</p>
+        <h1 class="font-serif text-[clamp(2.8rem,7vw,5.2rem)] leading-[0.95] tracking-[-0.04em] text-cream text-balance" data-i18n="notFound.headline">This frame didn't make the final cut.</h1>
+        <p class="mx-auto mt-7 max-w-xl text-[1.05rem] leading-7 text-cream/72" data-i18n="notFound.body">Marta's selected work — a Cannes Critics' Week winner, a MOTELx Best Short, and a decade of cinematic commercials — is one cut away.</p>
+        <div class="mt-10 flex justify-center">
+          <a href="/" class="glass-panel inline-flex items-center gap-2 rounded-full px-6 py-3 text-[0.78rem] uppercase tracking-[0.22em] text-cream transition hover:-translate-y-0.5 hover:text-accent">
+            <span data-i18n="notFound.cta">Back to the work</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <script src="src/i18n.js"></script>
+    <script>
+      (function () {
+        function applyMeta() {
+          if (!window.MDV_I18N) return;
+          var title = window.MDV_I18N.t('notFound.meta.title');
+          var desc = window.MDV_I18N.t('notFound.meta.description');
+          if (title) document.title = title;
+          if (desc) {
+            var metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) metaDesc.setAttribute('content', desc);
+          }
+        }
+        function syncToggle() {
+          if (!window.MDV_I18N) return;
+          var current = window.MDV_I18N.getLang();
+          var opts = document.querySelectorAll('[data-lang-opt]');
+          for (var i = 0; i < opts.length; i++) {
+            opts[i].classList.toggle('is-active', opts[i].dataset.langOpt === current);
+          }
+        }
+        function init() {
+          var toggle = document.querySelector('[data-lang-toggle]');
+          if (toggle) {
+            toggle.addEventListener('click', function () {
+              if (!window.MDV_I18N) return;
+              var next = window.MDV_I18N.getLang() === 'en' ? 'pt' : 'en';
+              window.MDV_I18N.setLang(next);
+            });
+          }
+          syncToggle();
+          applyMeta();
+          document.addEventListener('mdv:langchange', function () {
+            syncToggle();
+            applyMeta();
+          });
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', init);
+        } else {
+          init();
+        }
+      })();
+    </script>
+  </body>
+</html>
