@@ -54,18 +54,21 @@
       'cinema.diamantino.title': 'Diamantino',
       'cinema.diamantino.festival': "Grand Prize · Semaine de la Critique · Cannes 2018",
       'cinema.diamantino.caption': 'A genre-bending political satire whose visual identity is its punchline.',
+      'cinema.diamantino.play': 'Play trailer',
       'cinema.diamantino.action': 'View on IMDb',
 
       'cinema.dreams.meta': '2017 · Production Designer (with Mathieu Lazare Fromenteze) · Dir. Laurence Ferreira Barbosa',
       'cinema.dreams.title': 'All the Dreams in the World',
       'cinema.dreams.titleAlt': 'Todos os Sonhos do Mundo · Prod. Paulo Branco / Leopardo Filmes',
       'cinema.dreams.caption': 'A France–Portugal feature about the Portuguese diaspora — design that straddles two countries.',
+      'cinema.dreams.play': 'Play teaser',
       'cinema.dreams.action': 'Producer page',
 
       'cinema.peixe.meta': '2014 · Art Department · Dir. João P. Nunes',
       'cinema.peixe.title': 'Pela Boca Morre o Peixe',
       'cinema.peixe.festival': 'Best Short Film · MOTELx 2014',
       'cinema.peixe.caption': 'A Kafka-inflected horror short about a hunter who becomes the hunted.',
+      'cinema.peixe.play': 'Play teaser',
       'cinema.peixe.action': 'View on IMDb',
 
       'cinema.lura.meta': '2013 · Art Director · Dir. Luís Brás',
@@ -157,18 +160,21 @@
       'cinema.diamantino.title': 'Diamantino',
       'cinema.diamantino.festival': 'Grande Prémio · Semaine de la Critique · Cannes 2018',
       'cinema.diamantino.caption': 'Uma sátira política inclassificável em que a identidade visual é a piada.',
+      'cinema.diamantino.play': 'Ver trailer',
       'cinema.diamantino.action': 'Ver no IMDb',
 
       'cinema.dreams.meta': '2017 · Direção Artística (com Mathieu Lazare Fromenteze) · Real. Laurence Ferreira Barbosa',
       'cinema.dreams.title': 'Todos os Sonhos do Mundo',
       'cinema.dreams.titleAlt': 'All the Dreams in the World · Prod. Paulo Branco / Leopardo Filmes',
       'cinema.dreams.caption': 'Uma longa franco-portuguesa sobre a diáspora portuguesa — direção de arte entre dois países.',
+      'cinema.dreams.play': 'Ver teaser',
       'cinema.dreams.action': 'Página da produtora',
 
       'cinema.peixe.meta': '2014 · Departamento de Arte · Real. João P. Nunes',
       'cinema.peixe.title': 'Pela Boca Morre o Peixe',
       'cinema.peixe.festival': 'Melhor Curta-Metragem · MOTELx 2014',
       'cinema.peixe.caption': 'Uma curta de horror kafkiana sobre um caçador que passa a ser caça.',
+      'cinema.peixe.play': 'Ver teaser',
       'cinema.peixe.action': 'Ver no IMDb',
 
       'cinema.lura.meta': '2013 · Direção Artística · Real. Luís Brás',

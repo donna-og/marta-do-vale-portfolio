@@ -304,6 +304,25 @@
   .film-still--lura {
     background-image: url('assets/cinema/lura.svg');
   }
+
+  .cinema-card {
+    cursor: pointer;
+    border-radius: 28px;
+    transition: transform 400ms var(--ease-classy);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .cinema-card:hover {
+      transform: translateY(-2px);
+    }
+  }
+
+  .cinema-card:focus { outline: none; }
+
+  .cinema-card:focus-visible {
+    outline: 2px solid rgba(244, 240, 232, 0.45);
+    outline-offset: 6px;
+  }
 }
 
 @layer utilities {
@@ -515,7 +534,9 @@
   }
 
   .film-still,
-  .film-still:hover {
+  .film-still:hover,
+  .cinema-card,
+  .cinema-card:hover {
     transform: none !important;
     transition: none !important;
   }
