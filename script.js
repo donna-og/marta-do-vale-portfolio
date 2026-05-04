@@ -1,3 +1,6 @@
+// When editing this array, also update the matching VideoObject ItemList
+// in index.html (the third application/ld+json block) so search engines
+// stay in sync with the rendered grid.
 const films = [
   {
     title: 'AUDI E-TRON GT QUATTRO',
