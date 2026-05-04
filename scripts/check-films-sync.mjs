@@ -22,8 +22,19 @@
 //
 // Pure Node stdlib — no deps. Hard-fail categories: count mismatch
 // across files, missing or orphaned URL entries, missing poster file
-// on disk. Soft-warn (commercial only): per-entry thumbnailUrl
-// divergence between films array and JSON-LD.
+// on disk, and per-entry title divergence between the films array
+// and the JSON-LD VideoObject. Soft-warn (commercial only): per-entry
+// thumbnailUrl divergence between films array and JSON-LD.
+//
+// The title check composes the tile's display name as
+// `films[i].title + (subtitle ? ' — ' + subtitle : '')` and compares it
+// to the corresponding JSON-LD `name`. Both sides are normalized by
+// uppercasing, stripping diacritics (NFD + combining-mark removal),
+// folding the multiplication sign × onto the letter X (typographic
+// equivalence), and collapsing whitespace. The rule catches
+// brand-name typos and word-boundary drift (e.g. BURGUER vs Burger,
+// GOLDENERGY vs Gold Energy) without forcing the films array to
+// mirror the JSON-LD's exact case or accent style.
 //
 // Festival metadata (Movie.subjectOf, Movie.award) lives only on the
 // JSON-LD side — the cinema cards in index.html and the films array in
@@ -48,6 +59,18 @@ const CINEMA_LIST_NAME = 'Selected cinema credits — Marta do Vale';
 
 const sortedDiff = (a, b) => [...a].filter(k => !b.has(k)).sort();
 async function fileExists(absPath) { try { await access(absPath); return true; } catch { return false; } }
+
+// Case-, diacritic-, and whitespace-insensitive title normalization.
+// Folds the multiplication sign × onto X so the films array's plain X
+// (which survives slugify into the deep-link hash) compares equal to
+// the typographic × in the JSON-LD display name.
+const normalizeTitle = (s) => String(s || '')
+  .normalize('NFD')
+  .replace(/[̀-ͯ]/g, '')
+  .toUpperCase()
+  .replace(/×/g, 'X')
+  .replace(/\s+/g, ' ')
+  .trim();
 
 function extractJsonLdBlocks(html) {
   const blocks = [];
@@ -162,6 +185,15 @@ async function commercialPass(scriptJs, indexHtml, sitemapXml) {
     }
   }
 
+  const titleMismatches = [];
+  for (let i = 0; i < Math.min(films.length, jsonld.length); i++) {
+    const tile = films[i].title + (films[i].subtitle ? ' — ' + films[i].subtitle : '');
+    const name = jsonld[i].name || '';
+    if (normalizeTitle(tile) !== normalizeTitle(name)) {
+      titleMismatches.push(`#${i + 1}  films=${JSON.stringify(tile)}  jsonld=${JSON.stringify(name)}`);
+    }
+  }
+
   const countMismatch = (label, a, b) => a === b ? [] : [`${label}: films=${a} other=${b}`];
 
   const categories = [
@@ -172,6 +204,7 @@ async function commercialPass(scriptJs, indexHtml, sitemapXml) {
     { label: 'films posters missing from sitemap',       list: sortedDiff(filmLocs, sitemapLocs),                      hard: true },
     { label: 'sitemap posters orphaned (not in films)',  list: sortedDiff(sitemapLocs, filmLocs),                      hard: true },
     { label: 'sitemap posters missing on disk',          list: missingFiles,                                           hard: true },
+    { label: 'title mismatch (films vs JSON-LD)',        list: titleMismatches,                                        hard: true },
     { label: 'thumbnailUrl mismatch (films vs JSON-LD)', list: thumbMismatches,                                        hard: false }
   ];
 
