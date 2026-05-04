@@ -2,7 +2,6 @@ const slugify = (text) => String(text || '')
   .normalize('NFD')
   .replace(/[̀-ͯ]/g, '')
   .toLowerCase()
-  .replace(/burguer/g, 'burger')
   .replace(/[^a-z0-9]+/g, '-')
   .replace(/^-+|-+$/g, '');
 
@@ -22,7 +21,7 @@ const films = [
     aspectRatio: '16/9'
   },
   {
-    title: 'BURGUER KING',
+    title: 'BURGER KING',
     subtitle: 'MISTERY KING',
     kind: 'youtube',
     videoId: 'J5piUQ29V-c',
@@ -40,7 +39,7 @@ const films = [
     aspectRatio: '16/9'
   },
   {
-    title: 'ADIDAS X S. L. BENFICA',
+    title: 'ADIDAS X SL BENFICA',
     subtitle: '',
     kind: 'youtube',
     videoId: 'N2nX3rAkyAA',
@@ -67,7 +66,7 @@ const films = [
     aspectRatio: '16/9'
   },
   {
-    title: 'BOLLYCAO',
+    title: 'BOLLYCÃO',
     subtitle: '',
     kind: 'youtube',
     videoId: '5Zl8Sqthj1U',
@@ -76,7 +75,7 @@ const films = [
     aspectRatio: '16/9'
   },
   {
-    title: 'BURGUER KING X LJUBOMIR',
+    title: 'BURGER KING X LJUBOMIR',
     subtitle: '',
     kind: 'youtube',
     videoId: 'PVS7Sk3HXdc',
@@ -130,7 +129,7 @@ const films = [
     aspectRatio: '16/9'
   },
   {
-    title: 'BURGUER KING',
+    title: 'BURGER KING',
     subtitle: 'CHEGOU KING LJUBOMIR',
     kind: 'youtube',
     videoId: 'ifKgXisikBM',
@@ -140,7 +139,7 @@ const films = [
   },
   {
     title: 'DELTA Q',
-    subtitle: 'DELTA Q',
+    subtitle: '',
     kind: 'youtube',
     videoId: 'cCstYAr7m5Q',
     poster: 'assets/posters/15-dcf30e-b180b68a703442f9947f688c01a1ab72-mv2-jpg.jpg',
@@ -148,7 +147,7 @@ const films = [
     aspectRatio: '16/9'
   },
   {
-    title: 'GOLD ENERGY',
+    title: 'GOLDENERGY',
     subtitle: '',
     kind: 'youtube',
     videoId: 'B-02IVnjFYo',
@@ -157,7 +156,7 @@ const films = [
     aspectRatio: '16/9'
   },
   {
-    title: 'POLICIA JUDICIÁRIA',
+    title: 'POLÍCIA JUDICIÁRIA',
     subtitle: 'NÃO É SÓ UM JOGO. É CRIME.',
     kind: 'youtube',
     videoId: 'ahbusC8xSxY',
@@ -203,7 +202,7 @@ const films = [
   },
   {
     title: 'SPORT TV',
-    subtitle: 'SPORT TV',
+    subtitle: '',
     kind: 'youtube',
     videoId: 'NOiypiyC5og',
     poster: 'assets/posters/12-dcf30e-9087bebd325340679aee412a75c4dbe9-mv2-jpg.jpg',
