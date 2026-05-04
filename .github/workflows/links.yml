@@ -1,0 +1,91 @@
+name: External link check
+
+# Weekly probe of every off-site URL the page depends on (YouTube
+# and Vimeo trailers via oEmbed, Wix mp4s via HEAD, IMDb / Leopardo
+# / Instagram via HEAD-or-GET). Deliberately NOT wired into PR CI:
+# external 4xx state is not the contributor's problem to fix, and
+# runner outbound flakes shouldn't block merges. On failure, opens
+# (or comments on) a `link-check`-labelled issue so Marta finds out
+# before a producer does.
+
+on:
+  schedule:
+    # Mondays at 07:00 UTC.
+    - cron: '0 7 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run link check
+        id: check
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          node scripts/check-links.mjs | tee link-check.txt
+
+      - name: Open or update tracking issue on failure
+        if: steps.check.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('link-check.txt', 'utf8').trim();
+            const today = new Date().toISOString().slice(0, 10);
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = [
+              `Weekly external link check found broken URLs.`,
+              ``,
+              `Run: ${runUrl}`,
+              ``,
+              '```text',
+              report,
+              '```'
+            ].join('\n');
+
+            const { data: open } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'link-check',
+              per_page: 1
+            });
+
+            if (open.length > 0) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: open[0].number,
+                body
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `Link check failure — ${today}`,
+                body,
+                labels: ['link-check']
+              });
+            }
+
+      - name: Mark workflow failed if links are broken
+        if: steps.check.outcome == 'failure'
+        run: exit 1
