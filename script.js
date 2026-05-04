@@ -18,7 +18,8 @@ const films = [
     kind: 'youtube',
     videoId: 'gLew21SCHho',
     poster: 'assets/posters/17-dcf30e-b42094eba406450ba4a4e67afbed8766-mv2-jpg.jpg',
-    size: 'md:col-span-7 md:row-span-4'
+    size: 'md:col-span-7 md:row-span-4',
+    aspectRatio: '16/9'
   },
   {
     title: 'BURGUER KING',
@@ -26,7 +27,8 @@ const films = [
     kind: 'youtube',
     videoId: 'J5piUQ29V-c',
     poster: 'assets/posters/22-dcf30e-e4aee655d28c408fb446ef55dd5a88b2-mv2-jpg.jpg',
-    size: 'md:col-span-5 md:row-span-2'
+    size: 'md:col-span-5 md:row-span-2',
+    aspectRatio: '16/9'
   },
   {
     title: 'AUDI X LEO NEUGEBAUER',
@@ -34,7 +36,8 @@ const films = [
     kind: 'youtube',
     videoId: 'MXnyb9T8XtM',
     poster: 'assets/posters/10-dcf30e-82fd0ef459ba437a87ccd09b454560e9-mv2-jpg.jpg',
-    size: 'md:col-span-5 md:row-span-2'
+    size: 'md:col-span-5 md:row-span-2',
+    aspectRatio: '16/9'
   },
   {
     title: 'ADIDAS X S. L. BENFICA',
@@ -42,7 +45,8 @@ const films = [
     kind: 'youtube',
     videoId: 'N2nX3rAkyAA',
     poster: 'assets/posters/02-dcf30e-1d1bc74d55da49e5befa576cd287fdce-mv2-jpg.jpg',
-    size: 'md:col-span-4 md:row-span-2'
+    size: 'md:col-span-4 md:row-span-2',
+    aspectRatio: '16/9'
   },
   {
     title: 'AUCHAN',
@@ -50,7 +54,8 @@ const films = [
     kind: 'mp4',
     videoSrc: 'https://video.wixstatic.com/video/dcf30e_9194b77da18f4054b8d43ccd0a168cc9/720p/mp4/file.mp4',
     poster: 'assets/posters/13-dcf30e-9194b77da18f4054b8d43ccd0a168cc9f000-jpg.jpg',
-    size: 'md:col-span-4 md:row-span-4'
+    size: 'md:col-span-4 md:row-span-4',
+    aspectRatio: '16/9'
   },
   {
     title: 'BUONDI',
@@ -58,7 +63,8 @@ const films = [
     kind: 'youtube',
     videoId: 'gHob8ZTJclY',
     poster: 'assets/posters/24-dcf30e-f86da013cd4441f3a450a466e2e7e8e3-mv2-jpg.jpg',
-    size: 'md:col-span-4 md:row-span-2'
+    size: 'md:col-span-4 md:row-span-2',
+    aspectRatio: '16/9'
   },
   {
     title: 'BOLLYCAO',
@@ -66,7 +72,8 @@ const films = [
     kind: 'youtube',
     videoId: '5Zl8Sqthj1U',
     poster: 'assets/posters/20-dcf30e-cd32195bbc974be8aecd61f6481ff2f4-mv2-jpg.jpg',
-    size: 'md:col-span-4 md:row-span-2'
+    size: 'md:col-span-4 md:row-span-2',
+    aspectRatio: '16/9'
   },
   {
     title: 'BURGUER KING X LJUBOMIR',
@@ -74,7 +81,8 @@ const films = [
     kind: 'youtube',
     videoId: 'PVS7Sk3HXdc',
     poster: 'assets/posters/11-dcf30e-8f9d6e4d03394d329c225d043bae0ff5-mv2-jpg.jpg',
-    size: 'md:col-span-4 md:row-span-2'
+    size: 'md:col-span-4 md:row-span-2',
+    aspectRatio: '16/9'
   },
   {
     title: 'NOA PFLANZLICH',
@@ -82,7 +90,8 @@ const films = [
     kind: 'youtube',
     videoId: '60r7k6Jj1Qs',
     poster: 'assets/posters/16-dcf30e-b28ef97b80cb4bcaa9924d31685b3c2a-mv2-jpg.jpg',
-    size: 'md:col-span-4 md:row-span-2'
+    size: 'md:col-span-4 md:row-span-2',
+    aspectRatio: '16/9'
   },
   {
     title: 'Untitled Project',
@@ -90,7 +99,8 @@ const films = [
     kind: 'youtube',
     videoId: 'Brv89o8x588',
     poster: 'assets/posters/21-dcf30e-dc45f026294e43fbbcc74d612d06dc77-mv2-jpg.jpg',
-    size: 'md:col-span-4 md:row-span-2'
+    size: 'md:col-span-4 md:row-span-2',
+    aspectRatio: '16/9'
   },
   {
     title: 'BRICOMARCHE 2026',
@@ -98,7 +108,8 @@ const films = [
     kind: 'youtube',
     videoId: 'NhckCyTUAJ0',
     poster: 'assets/posters/08-dcf30e-6cb1f8996274420791fb6aaad89a88e4-mv2-jpg.jpg',
-    size: 'md:col-span-4 md:row-span-2'
+    size: 'md:col-span-4 md:row-span-2',
+    aspectRatio: '16/9'
   },
   {
     title: 'BPI',
@@ -106,7 +117,8 @@ const films = [
     kind: 'youtube',
     videoId: 'Zfh9JDLS0RQ',
     poster: 'assets/posters/01-maxresdefault-jpg.jpg',
-    size: 'md:col-span-4 md:row-span-2'
+    size: 'md:col-span-4 md:row-span-2',
+    aspectRatio: '16/9'
   },
   {
     title: 'GOLDENERGY',
@@ -114,7 +126,8 @@ const films = [
     kind: 'youtube',
     videoId: 'pBcWwIs4spc',
     poster: 'assets/posters/06-dcf30e-5163e8d558fc4288b29293aef1a91b59-mv2-jpg.jpg',
-    size: 'md:col-span-4 md:row-span-2'
+    size: 'md:col-span-4 md:row-span-2',
+    aspectRatio: '16/9'
   },
   {
     title: 'BURGUER KING',
@@ -122,7 +135,8 @@ const films = [
     kind: 'youtube',
     videoId: 'ifKgXisikBM',
     poster: 'assets/posters/23-dcf30e-e7988f80b8714037ab5957a8fa5176dd-mv2-jpg.jpg',
-    size: 'md:col-span-4 md:row-span-2'
+    size: 'md:col-span-4 md:row-span-2',
+    aspectRatio: '16/9'
   },
   {
     title: 'DELTA Q',
@@ -130,7 +144,8 @@ const films = [
     kind: 'youtube',
     videoId: 'cCstYAr7m5Q',
     poster: 'assets/posters/15-dcf30e-b180b68a703442f9947f688c01a1ab72-mv2-jpg.jpg',
-    size: 'md:col-span-4 md:row-span-2'
+    size: 'md:col-span-4 md:row-span-2',
+    aspectRatio: '16/9'
   },
   {
     title: 'GOLD ENERGY',
@@ -138,7 +153,8 @@ const films = [
     kind: 'youtube',
     videoId: 'B-02IVnjFYo',
     poster: 'assets/posters/09-dcf30e-764c05cc3d9047a0bcfb0240af595abf-mv2-jpg.jpg',
-    size: 'md:col-span-4 md:row-span-2'
+    size: 'md:col-span-4 md:row-span-2',
+    aspectRatio: '16/9'
   },
   {
     title: 'POLICIA JUDICIÁRIA',
@@ -146,7 +162,8 @@ const films = [
     kind: 'youtube',
     videoId: 'ahbusC8xSxY',
     poster: 'assets/posters/14-dcf30e-ad690c3e45f746c5b262d2544ee7a3e7-mv2-jpg.jpg',
-    size: 'md:col-span-4 md:row-span-2'
+    size: 'md:col-span-4 md:row-span-2',
+    aspectRatio: '16/9'
   },
   {
     title: 'AUCHAN CUIDA',
@@ -154,7 +171,8 @@ const films = [
     kind: 'youtube',
     videoId: 'QIP5tcPX7Yc',
     poster: 'assets/posters/19-dcf30e-c5efb9b7b1404c2e8c64c0ad436b7c04-mv2-jpg.jpg',
-    size: 'md:col-span-4 md:row-span-2'
+    size: 'md:col-span-4 md:row-span-2',
+    aspectRatio: '16/9'
   },
   {
     title: 'AUCHAN CUIDA',
@@ -162,7 +180,8 @@ const films = [
     kind: 'youtube',
     videoId: 'JKLSTelieUM',
     poster: 'assets/posters/07-dcf30e-549ff96eac674a78aacadf854fd8934b-mv2-jpg.jpg',
-    size: 'md:col-span-4 md:row-span-2'
+    size: 'md:col-span-4 md:row-span-2',
+    aspectRatio: '16/9'
   },
   {
     title: 'POLÍCIA JUDICIÁRIA',
@@ -170,7 +189,8 @@ const films = [
     kind: 'youtube',
     videoId: 'WQCq1pAFwlQ',
     poster: 'assets/posters/04-dcf30e-3c9f74eea63c43298d668d8c88638f1d-mv2-jpg.jpg',
-    size: 'md:col-span-4 md:row-span-2'
+    size: 'md:col-span-4 md:row-span-2',
+    aspectRatio: '16/9'
   },
   {
     title: 'SUPER BOCK SKY',
@@ -178,7 +198,8 @@ const films = [
     kind: 'youtube',
     videoId: 'eQOrApn435s',
     poster: 'assets/posters/03-dcf30e-39e0186a8aee4d969d2d5b6e5f1d53a4-mv2-jpg.jpg',
-    size: 'md:col-span-4 md:row-span-2'
+    size: 'md:col-span-4 md:row-span-2',
+    aspectRatio: '16/9'
   },
   {
     title: 'SPORT TV',
@@ -186,7 +207,8 @@ const films = [
     kind: 'youtube',
     videoId: 'NOiypiyC5og',
     poster: 'assets/posters/12-dcf30e-9087bebd325340679aee412a75c4dbe9-mv2-jpg.jpg',
-    size: 'md:col-span-4 md:row-span-2'
+    size: 'md:col-span-4 md:row-span-2',
+    aspectRatio: '16/9'
   },
   {
     title: 'CETELEM 2024',
@@ -194,7 +216,8 @@ const films = [
     kind: 'youtube',
     videoId: 'aENR1rFbuw4',
     poster: 'assets/posters/25-dcf30e-feb8a6a71bcd47539c4fa7676f136451-mv2-jpg.jpg',
-    size: 'md:col-span-4 md:row-span-2'
+    size: 'md:col-span-4 md:row-span-2',
+    aspectRatio: '16/9'
   },
   {
     title: 'RUBIS GÁS',
@@ -202,7 +225,8 @@ const films = [
     kind: 'mp4',
     videoSrc: 'https://video.wixstatic.com/video/dcf30e_3cc3af957c81412a922acd3848c409c1/720p/mp4/file.mp4',
     poster: 'assets/posters/05-dcf30e-3cc3af957c81412a922acd3848c409c1f000-jpg.jpg',
-    size: 'md:col-span-4 md:row-span-2'
+    size: 'md:col-span-4 md:row-span-2',
+    aspectRatio: '16/9'
   },
   {
     title: 'OLÁ',
@@ -210,7 +234,8 @@ const films = [
     kind: 'youtube',
     videoId: 'kRV8b8PB8Vg',
     poster: 'assets/posters/18-dcf30e-bab73277997a4cfb809b3fc0d746b775-mv2-jpg.jpg',
-    size: 'md:col-span-4 md:row-span-2'
+    size: 'md:col-span-4 md:row-span-2',
+    aspectRatio: '16/9'
   }
 ];
 
@@ -295,7 +320,7 @@ filmGrid.innerHTML = films.map((film, idx) => {
       <picture>
         <source type="image/avif" srcset="${sources.avif}" sizes="(min-width: 768px) 50vw, 140px">
         <source type="image/webp" srcset="${sources.webp}" sizes="(min-width: 768px) 50vw, 140px">
-        <img src="${sources.jpg}" data-film-poster loading="lazy" decoding="async" data-fallback="${fallbackImage}" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02] md:h-full" />
+        <img src="${sources.jpg}" data-film-poster loading="lazy" decoding="async" data-fallback="${fallbackImage}" style="aspect-ratio: ${film.aspectRatio};" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02] md:h-full" />
       </picture>
       <div class="flex flex-col justify-between p-4 md:hidden">
         <div>

@@ -53,6 +53,18 @@ function jsonLdSourceLines(html) {
   return lines;
 }
 
+// Same trick for <img> openers — used by the CLS guard to point a FAIL
+// row at the offending source line.
+function imgSourceLines(html) {
+  const lines = [];
+  const re = /<img\b/g;
+  let m;
+  while ((m = re.exec(html)) !== null) {
+    lines.push(html.slice(0, m.index).split('\n').length);
+  }
+  return lines;
+}
+
 function describeElement(el) {
   const tag = el.tagName.toLowerCase();
   const cls = (el.getAttribute('class') || '').trim().slice(0, 40);
@@ -126,6 +138,32 @@ function checksFor(html, opts) {
     ok: imgsBad.length === 0,
     detail: `${imgs.length - imgsBad.length}/${imgs.length}`,
     failExtra: imgsBad.map(describeElement),
+  });
+
+  // c2. every <img> reserves its box: explicit width+height OR an
+  // aspect-ratio inline style. Catches the cause of CLS regressions
+  // before Lighthouse measures them. SVGs scale and don't trigger CLS
+  // the same way — allowlist by extension.
+  const imgLines = imgSourceLines(html);
+  const imgDimBad = [];
+  for (let i = 0; i < imgs.length; i++) {
+    const img = imgs[i];
+    const src = img.getAttribute('src') || '';
+    if (/\.svg(?:$|[?#])/i.test(src)) continue;
+    const w = (img.getAttribute('width') || '').trim();
+    const h = (img.getAttribute('height') || '').trim();
+    const style = img.getAttribute('style') || '';
+    const hasDims = w.length > 0 && h.length > 0;
+    const hasAspect = /aspect-ratio\s*:/i.test(style);
+    if (hasDims || hasAspect) continue;
+    imgDimBad.push({ src, line: imgLines[i] });
+  }
+  results.push({
+    label: 'img dimensions',
+    code: 'IMG_DIM_MISSING',
+    ok: imgDimBad.length === 0,
+    detail: `${imgs.length - imgDimBad.length}/${imgs.length}`,
+    failExtra: imgDimBad.map(b => `line ~${b.line} src="${b.src}"`),
   });
 
   // d. every <a> has a non-empty href, unless allowlisted by JS-driver attr
@@ -242,6 +280,37 @@ function checksFor(html, opts) {
   return results;
 }
 
+// Same CLS guard, applied statically to <img> tags rendered from
+// script.js template literals. Match each `<img …>` substring and
+// require a width+height pair OR an aspect-ratio style — the rendered
+// HTML is what the browser sees, even if it's stitched together at
+// runtime.
+function checkScriptImgDimensions(file, source) {
+  const failures = [];
+  const tagRe = /<img\b[^>]*>/g;
+  let m;
+  while ((m = tagRe.exec(source)) !== null) {
+    const tag = m[0];
+    const line = source.slice(0, m.index).split('\n').length;
+    const srcMatch = tag.match(/\bsrc\s*=\s*"([^"]*)"/) || tag.match(/\bsrc\s*=\s*'([^']*)'/);
+    const src = srcMatch ? srcMatch[1] : '';
+    if (/\.svg(?:$|[?#])/i.test(src)) continue;
+    const hasW = /\bwidth\s*=/i.test(tag);
+    const hasH = /\bheight\s*=/i.test(tag);
+    const hasAspect = /aspect-ratio\s*:/i.test(tag);
+    if ((hasW && hasH) || hasAspect) continue;
+    failures.push({ src, line });
+  }
+  return [{
+    file,
+    label: 'img dimensions',
+    code: 'IMG_DIM_MISSING',
+    ok: failures.length === 0,
+    detail: failures.length === 0 ? 'all <img> templates ok' : `${failures.length} template(s) missing dim`,
+    failExtra: failures.map(b => `line ~${b.line} src="${b.src}"`),
+  }];
+}
+
 // ---------- run ----------
 
 const allRows = [];
@@ -250,7 +319,10 @@ for (const t of TARGETS) {
   for (const r of checksFor(html, t)) allRows.push({ file: t.file, ...r });
 }
 
-const fileWidth = Math.max(...TARGETS.map(t => t.file.length));
+const scriptJs = await readFile(join(projectRoot, 'script.js'), 'utf8');
+for (const r of checkScriptImgDimensions('script.js', scriptJs)) allRows.push(r);
+
+const fileWidth = Math.max(...allRows.map(r => r.file.length));
 const labelWidth = Math.max(...allRows.map(r => r.label.length));
 
 let failed = 0;
@@ -279,8 +351,9 @@ if (fails.length) {
   }
 }
 
+const fileCount = new Set(allRows.map(r => r.file)).size;
 console.log(
-  `\n${TARGETS.length} files · ${allRows.length} checks · ${failed} failed`
+  `\n${fileCount} files · ${allRows.length} checks · ${failed} failed`
 );
 
 if (failed) {
