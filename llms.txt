@@ -50,5 +50,6 @@ Neugebauer.
 ## Links
 
 - [Site](https://www.martadovale.pt/)
+- [Versão portuguesa](https://www.martadovale.pt/?lang=pt)
 - [Sitemap](https://www.martadovale.pt/sitemap.xml)
 - [Full bio and full credits](https://www.martadovale.pt/llms-full.txt)
