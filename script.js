@@ -394,7 +394,7 @@ videoCards.forEach((card) => {
     lastTrigger.video = card;
 
     if (kind === 'youtube') {
-      frame.src = `https://www.youtube.com/embed/${card.dataset.videoId}?autoplay=1&rel=0`;
+      frame.src = `https://www.youtube-nocookie.com/embed/${card.dataset.videoId}?autoplay=1&rel=0`;
       frame.classList.remove('hidden');
       player.classList.add('hidden');
     } else {
