@@ -209,7 +209,18 @@
   const FALLBACK = 'en';
   const EVENT_NAME = 'mdv:langchange';
 
+  function readQueryLang() {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const value = (params.get('lang') || '').toLowerCase();
+      if (SUPPORTED.indexOf(value) !== -1) return value;
+    } catch (e) {}
+    return null;
+  }
+
   function detect() {
+    const fromQuery = readQueryLang();
+    if (fromQuery) return fromQuery;
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored && SUPPORTED.indexOf(stored) !== -1) return stored;
@@ -223,6 +234,24 @@
       if (code === 'en') return 'en';
     }
     return FALLBACK;
+  }
+
+  function syncUrl(lang) {
+    if (typeof window === 'undefined' || !window.history || !window.history.replaceState) return;
+    let params;
+    try { params = new URLSearchParams(window.location.search); }
+    catch (e) { return; }
+    const current = (params.get('lang') || '').toLowerCase();
+    if (lang === FALLBACK) {
+      if (!params.has('lang')) return;
+      params.delete('lang');
+    } else {
+      if (current === lang) return;
+      params.set('lang', lang);
+    }
+    const query = params.toString();
+    const next = window.location.pathname + (query ? '?' + query : '') + window.location.hash;
+    try { window.history.replaceState(window.history.state, '', next); } catch (e) {}
   }
 
   let currentLang = detect();
@@ -271,6 +300,7 @@
     if (lang === currentLang) return;
     currentLang = lang;
     try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+    syncUrl(lang);
     apply();
     document.dispatchEvent(new CustomEvent(EVENT_NAME, { detail: { lang: lang } }));
   }

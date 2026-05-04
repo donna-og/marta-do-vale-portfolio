@@ -9,7 +9,7 @@
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.martadovale.pt/" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://www.martadovale.pt/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.martadovale.pt/?lang=pt" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.martadovale.pt/" />
 
     <image:image>
@@ -158,6 +158,15 @@
       <image:title>Lura (2013)</image:title>
       <image:caption>Art direction on Luís Brás's adventure drama short — Marta's earliest credit on record.</image:caption>
     </image:image>
+  </url>
+  <url>
+    <loc>https://www.martadovale.pt/?lang=pt</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.martadovale.pt/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.martadovale.pt/?lang=pt" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.martadovale.pt/" />
   </url>
   <url>
     <loc>https://www.martadovale.pt/llms.txt</loc>
