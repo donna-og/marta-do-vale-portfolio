@@ -560,6 +560,76 @@
   }
 }
 
+@media (prefers-reduced-transparency: reduce) {
+  .glass-panel,
+  .header-shell,
+  .video-modal,
+  .contact-modal {
+    background-color: #141416 !important;
+    background-image: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .contact-modal > div {
+    background-color: #141416 !important;
+  }
+
+  .glass-panel {
+    border-color: rgba(255, 255, 255, 0.10);
+  }
+
+  .glass-panel::before,
+  .glass-panel::after {
+    display: none !important;
+  }
+
+  .decor-overlay {
+    display: none !important;
+  }
+
+  .card-sheen {
+    display: none !important;
+  }
+
+  .depth-divider::before {
+    width: 100%;
+    height: 1px;
+    max-width: none;
+    max-height: none;
+    background: rgba(255, 255, 255, 0.08);
+    filter: none;
+    transform: translateY(-50%);
+    left: 0;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .text-cream\/45,
+  .text-cream\/50,
+  .text-cream\/55,
+  .text-cream\/58,
+  .text-cream\/60,
+  .text-cream\/65,
+  .text-cream\/68,
+  .text-cream\/70,
+  .text-cream\/72,
+  .text-cream\/75 {
+    color: #f4f0e8 !important;
+  }
+
+  a {
+    text-decoration-color: #f4f0e8;
+  }
+}
+
+@media (prefers-reduced-data: reduce) {
+  .marquee__track {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
 @media print {
   @page {
     margin: 18mm 16mm;
