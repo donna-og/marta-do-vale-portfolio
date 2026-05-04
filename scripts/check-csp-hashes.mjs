@@ -3,16 +3,17 @@
 // CSP inline-script hash guard. Run as part of `npm test`.
 //
 // Re-derives the SHA-256 of every executable inline <script> in
-// index.html and compares against the hash list in the page's
-// Content-Security-Policy script-src directive. Hard-fails when an
-// inline script is missing from the directive (CSP would block it) or
-// when a directive hash has no matching inline script (dead entry).
-// JSON-LD (type="application/ld+json") and external (src="...")
-// scripts are skipped: they don't need hashes.
+// each covered HTML page and compares against the hash list in
+// that page's Content-Security-Policy script-src directive. Hard-
+// fails when an inline script is missing from the directive (CSP
+// would block it) or when a directive hash has no matching inline
+// script (dead entry). JSON-LD (type="application/ld+json") and
+// external (src="...") scripts are skipped: they don't need hashes.
 //
-// `--fix` rewrites the script-src directive in place to match the
-// computed hashes, preserving every other byte of index.html. The fix
-// is intentionally manual — auto-mutating CSP from CI would silently
+// `--fix` rewrites the script-src directive in place per file to
+// match that file's computed hashes, preserving every other byte.
+// Pages are checked and fixed independently. The fix is
+// intentionally manual — auto-mutating CSP from CI would silently
 // whitelist any inline script someone accidentally adds.
 
 import { readFile, writeFile } from 'node:fs/promises';
@@ -21,8 +22,12 @@ import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 
 const projectRoot = fileURLToPath(new URL('..', import.meta.url));
-const htmlPath = join(projectRoot, 'index.html');
 const fix = process.argv.includes('--fix');
+
+const TARGETS = [
+  { file: 'index.html', label: 'index.html' },
+  { file: '404.html',   label: '404.html'   }
+];
 
 const EXEC_TYPES = new Set(['', 'text/javascript', 'module']);
 
@@ -66,66 +71,80 @@ function isExecutable(s) {
 const hashBody = (body) =>
   'sha256-' + createHash('sha256').update(body, 'utf8').digest('base64');
 
-const html = await readFile(htmlPath, 'utf8');
-const executable = findInlineScripts(html)
-  .filter(isExecutable)
-  .map(s => ({ ...s, hash: hashBody(s.body) }));
+async function checkFile(absPath, label) {
+  const html = await readFile(absPath, 'utf8');
+  const executable = findInlineScripts(html)
+    .filter(isExecutable)
+    .map(s => ({ ...s, hash: hashBody(s.body) }));
 
-const cspMeta = html.match(/<meta\s+http-equiv\s*=\s*"Content-Security-Policy"\s+content\s*=\s*"([^"]*)"\s*\/?>/i);
-if (!cspMeta) throw new Error('Content-Security-Policy meta tag not found in index.html');
-const directives = cspMeta[1].split(';').map(d => d.trim()).filter(Boolean);
-const dirIdx = directives.findIndex(d => d.startsWith('script-src '));
-if (dirIdx === -1) throw new Error('script-src directive not found in CSP meta');
-const cspHashes = directives[dirIdx].split(/\s+/)
-  .filter(t => t.startsWith("'sha256-") && t.endsWith("'"))
-  .map(t => t.slice(1, -1));
+  const cspMeta = html.match(/<meta\s+http-equiv\s*=\s*"Content-Security-Policy"\s+content\s*=\s*"([^"]*)"\s*\/?>/i);
+  if (!cspMeta) throw new Error(`Content-Security-Policy meta tag not found in ${label}`);
+  const directives = cspMeta[1].split(';').map(d => d.trim()).filter(Boolean);
+  const dirIdx = directives.findIndex(d => d.startsWith('script-src '));
+  if (dirIdx === -1) throw new Error(`script-src directive not found in CSP meta of ${label}`);
+  const cspHashes = directives[dirIdx].split(/\s+/)
+    .filter(t => t.startsWith("'sha256-") && t.endsWith("'"))
+    .map(t => t.slice(1, -1));
 
-const computedSet = new Set(executable.map(s => s.hash));
-const cspSet = new Set(cspHashes);
-const missing = executable.filter(s => !cspSet.has(s.hash));
-const dead = cspHashes.filter(h => !computedSet.has(h));
+  const computedSet = new Set(executable.map(s => s.hash));
+  const cspSet = new Set(cspHashes);
+  const missing = executable.filter(s => !cspSet.has(s.hash));
+  const dead = cspHashes.filter(h => !computedSet.has(h));
 
-if (fix) {
-  const newScriptSrc = ['script-src', "'self'", ...executable.map(s => `'${s.hash}'`)].join(' ');
-  const oldScriptSrc = directives[dirIdx];
-  if (oldScriptSrc === newScriptSrc) {
-    console.log('script-src already matches computed hashes — no change.');
-    process.exit(0);
+  console.log(`== ${label} ==`);
+
+  if (fix) {
+    const newScriptSrc = ['script-src', "'self'", ...executable.map(s => `'${s.hash}'`)].join(' ');
+    const oldScriptSrc = directives[dirIdx];
+    if (oldScriptSrc === newScriptSrc) {
+      console.log('script-src already matches computed hashes — no change.');
+      return true;
+    }
+    const newDirectives = directives.slice();
+    newDirectives[dirIdx] = newScriptSrc;
+    const newMeta = cspMeta[0].replace(cspMeta[1], newDirectives.join('; '));
+    await writeFile(absPath, html.replace(cspMeta[0], newMeta));
+    console.log('-', oldScriptSrc);
+    console.log('+', newScriptSrc);
+    return true;
   }
-  const newDirectives = directives.slice();
-  newDirectives[dirIdx] = newScriptSrc;
-  const newMeta = cspMeta[0].replace(cspMeta[1], newDirectives.join('; '));
-  await writeFile(htmlPath, html.replace(cspMeta[0], newMeta));
-  console.log('-', oldScriptSrc);
-  console.log('+', newScriptSrc);
-  process.exit(0);
+
+  const rows = [
+    { label: 'Inline scripts hashed in CSP',                count: executable.length, fail: missing.length > 0 },
+    { label: 'CSP hashes still backing an inline script',   count: cspHashes.length, fail: dead.length > 0 }
+  ];
+
+  let failed = false;
+  for (const r of rows) {
+    const status = r.fail ? 'FAIL' : 'ok';
+    console.log(`${status.padEnd(4)}  ${r.label.padEnd(45)}  ${String(r.count).padStart(3)}`);
+    if (r.fail) failed = true;
+  }
+
+  if (missing.length) {
+    console.log('\nFAIL  Inline scripts missing from CSP script-src:');
+    for (const s of missing) console.log(`        line ${s.lineNum}  ${s.hash}`);
+  }
+  if (dead.length) {
+    console.log('\nFAIL  CSP hashes with no matching inline script:');
+    for (const h of dead) console.log(`        ${h}`);
+  }
+
+  return !failed;
 }
 
-const rows = [
-  { label: 'Inline scripts hashed in CSP',                count: executable.length, fail: missing.length > 0 },
-  { label: 'CSP hashes still backing an inline script',   count: cspHashes.length, fail: dead.length > 0 }
-];
-
-let failed = false;
-for (const r of rows) {
-  const status = r.fail ? 'FAIL' : 'ok';
-  console.log(`${status.padEnd(4)}  ${r.label.padEnd(45)}  ${String(r.count).padStart(3)}`);
-  if (r.fail) failed = true;
+let allPassed = true;
+for (let i = 0; i < TARGETS.length; i++) {
+  const t = TARGETS[i];
+  if (i > 0) console.log('');
+  const passed = await checkFile(join(projectRoot, t.file), t.label);
+  if (!passed) allPassed = false;
 }
 
-if (missing.length) {
-  console.log('\nFAIL  Inline scripts missing from CSP script-src:');
-  for (const s of missing) console.log(`        line ${s.lineNum}  ${s.hash}`);
-}
-if (dead.length) {
-  console.log('\nFAIL  CSP hashes with no matching inline script:');
-  for (const h of dead) console.log(`        ${h}`);
-}
-
-if (failed) {
+if (!allPassed) {
   console.error(
     '\nCSP script-src hash drift. Run `node scripts/check-csp-hashes.mjs --fix` ' +
-    'to rewrite the directive in index.html, then commit the change.'
+    'to rewrite the offending directive in place per file, then commit the change.'
   );
   process.exit(1);
 }
