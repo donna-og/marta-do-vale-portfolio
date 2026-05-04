@@ -144,6 +144,35 @@ function collectAllImgUrls(doc) {
   return set;
 }
 
+// Shared collection keyed by media attribute. Each entry is the set of
+// URLs reachable from a <source>/<img> with that exact media attribute
+// (empty string for "no media — applies always"). Used by the
+// media-conditional preload check: when a preload carries
+// `media="..."`, its URLs must appear under either the same media key
+// or under `''` (universally-applicable sources/img). Textual equality
+// is a deliberate simplification — a preload and its consuming
+// <source> should carry the *same* media string by convention. If they
+// drift apart (typo, copy-paste mistake), this guard fires.
+function collectImgUrlsByMedia(doc) {
+  const map = new Map();
+  const add = (media, url) => {
+    const key = media || '';
+    if (!map.has(key)) map.set(key, new Set());
+    map.get(key).add(url);
+  };
+  for (const img of doc.querySelectorAll('img')) {
+    for (const u of collectImgUrls(img)) add('', u);
+  }
+  for (const source of doc.querySelectorAll('picture source[srcset]')) {
+    const media = (source.getAttribute('media') || '').trim();
+    for (const u of parseSrcset(source.getAttribute('srcset'))) {
+      const norm = normalizeHref(u);
+      if (norm) add(media, norm);
+    }
+  }
+  return map;
+}
+
 // Pull every url(...) target from `@font-face` blocks in compiled CSS.
 // Matches with or without quotes; tolerates whitespace.
 function collectFontFaceUrls(css) {
@@ -167,6 +196,7 @@ function checkPreloadsForFile(file, html, css) {
 
   const preloads = [...doc.querySelectorAll('link[rel="preload"]')];
   const imageUrlsInDoc = collectAllImgUrls(doc);
+  const imageUrlsByMedia = collectImgUrlsByMedia(doc);
   const fontUrlsInCss = collectFontFaceUrls(css);
   const { candidates } = findLcpCandidates(doc);
 
@@ -285,9 +315,30 @@ function checkPreloadsForFile(file, html, css) {
 
   // Pass C: dangling image preloads (preload pointing at an image that
   // no <img> in the document consumes).
+  //
+  // Media-conditional preloads are validated against the URL the
+  // matching `<picture>` would resolve to under the preload's media
+  // query (textual match — preload media and source media should be
+  // copy-paste identical by convention). The rule:
+  //   1. URL is in a `<source srcset>` with the same media → OK.
+  //   2. URL is only in a no-media `<source>`/`<img>` AND no
+  //      `<source media=X>` exists anywhere → OK (the universal
+  //      fallback is the only thing the viewport could resolve to).
+  //   3. URL is only in a no-media source AND a `<source media=X>`
+  //      exists → FAIL: the media-conditional source would steal the
+  //      matching viewport, so the preload would fetch a file the
+  //      browser never actually paints.
+  // Catches the failure mode where a portrait preload accidentally
+  // points at a landscape file (or vice versa).
+  const sameMediaSourceExists = (mediaQuery) =>
+    [...doc.querySelectorAll('picture source[media][srcset]')].some(
+      (s) => (s.getAttribute('media') || '').trim() === mediaQuery,
+    );
+
   for (const link of preloads) {
     if ((link.getAttribute('as') || '').toLowerCase() !== 'image') continue;
     const tag = describeLink(link);
+    const preloadMedia = (link.getAttribute('media') || '').trim();
     const candidates = new Set();
     const href = normalizeHref(link.getAttribute('href'));
     if (href) candidates.add(href);
@@ -295,21 +346,56 @@ function checkPreloadsForFile(file, html, css) {
       const norm = normalizeHref(u);
       if (norm) candidates.add(norm);
     }
+
     let consumed = false;
-    for (const u of candidates) {
-      if (imageUrlsInDoc.has(u)) {
-        consumed = true;
-        break;
+    let mismatch = false;
+    if (!preloadMedia) {
+      for (const u of candidates) {
+        if (imageUrlsInDoc.has(u)) {
+          consumed = true;
+          break;
+        }
+      }
+    } else {
+      const sameMedia = imageUrlsByMedia.get(preloadMedia) || new Set();
+      const universal = imageUrlsByMedia.get('') || new Set();
+      const mediaXExistsElsewhere = sameMediaSourceExists(preloadMedia);
+      for (const u of candidates) {
+        if (sameMedia.has(u)) {
+          consumed = true;
+          break;
+        }
+        if (universal.has(u)) {
+          if (mediaXExistsElsewhere) {
+            mismatch = true;
+          } else {
+            consumed = true;
+            break;
+          }
+        }
       }
     }
+
     if (!consumed) {
-      fails.push({
-        code: 'PRELOAD_DANGLING_IMAGE',
-        tag,
-        hint:
-          'image preload is not consumed by any <img> in the document — ' +
-          'the consuming element was renamed or removed',
-      });
+      const code = mismatch
+        ? 'PRELOAD_MEDIA_MISMATCH'
+        : preloadMedia
+          ? 'PRELOAD_MEDIA_MISMATCH'
+          : 'PRELOAD_DANGLING_IMAGE';
+      const hint = mismatch
+        ? `preload media="${preloadMedia}" but URL only appears in a ` +
+          'no-media <source>/<img>; a sibling <source> with the same ' +
+          'media would preempt that fallback under the matching ' +
+          'viewport — the preload would fetch a file the browser ' +
+          'never paints. Move the preload URL to point at the same file ' +
+          'the media-conditional <source> serves.'
+        : preloadMedia
+          ? `preload media="${preloadMedia}" but no <picture><source> ` +
+            'lists this URL under that media (or as a universal ' +
+            'fallback) — the consuming element was renamed or removed'
+          : 'image preload is not consumed by any <img> in the document — ' +
+            'the consuming element was renamed or removed';
+      fails.push({ code, tag, hint });
     }
   }
 

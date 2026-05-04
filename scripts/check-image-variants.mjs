@@ -58,6 +58,31 @@ const isAllowlisted = (relPath) => {
   return ALLOWLIST_PREFIXES.some((p) => base.startsWith(p));
 };
 
+// Art-directed crop sextets that the markup loads via media-conditional
+// <picture><source>. These have no companion source JPG in
+// assets/images/ — they live only under optimized/ — so the
+// reference-walker would skip them, and the sibling-check has no
+// reference to expand. Enforce existence explicitly.
+//
+// Each entry is the stem under `assets/images/optimized/`. The widths
+// match scripts/build-images.mjs's PORTRAIT_CROPS — keep both lists in
+// step when adding new crops.
+const REQUIRED_CROP_SEXTETS = [
+  { stem: 'hero-living-room-portrait', widths: [600, 1200] },
+];
+
+function requiredCropFiles() {
+  const out = [];
+  for (const { stem, widths } of REQUIRED_CROP_SEXTETS) {
+    for (const w of widths) {
+      for (const ext of ['avif', 'webp', 'jpg']) {
+        out.push(`assets/images/optimized/${stem}-${w}.${ext}`);
+      }
+    }
+  }
+  return out;
+}
+
 // `posterSources` in script.js maps each `assets/posters/<name>.jpg` in
 // the films array to a sextet under assets/posters/optimized/. The
 // expansion below mirrors that runtime transform so a film entry counts
@@ -204,6 +229,15 @@ for (const ref of sortedRefs) {
     if (!onDiskSet.has(siblingPath(ref, ext))) missing.push(`.${ext}`);
   }
   if (missing.length) fails.push({ code: 'IMG_VARIANT_MISSING', path: ref, missing });
+}
+
+// Pass 1b: every required art-directed crop file must exist on disk.
+// Drift-prevention for the portrait sextet (and any future crops) — if
+// the build script is edited to drop a width or format, this trips.
+for (const required of requiredCropFiles()) {
+  if (!onDiskSet.has(required)) {
+    fails.push({ code: 'CROP_VARIANT_MISSING', path: required, missing: ['file'] });
+  }
 }
 
 // Pass 2: orphan .avif/.webp with no JPG/PNG companion.
