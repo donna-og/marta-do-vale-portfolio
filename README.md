@@ -1,5 +1,7 @@
 # Marta do Vale — Portfolio Site
 
+![CI](https://github.com/donna-og/marta-do-vale-portfolio/actions/workflows/ci.yml/badge.svg)
+
 A polished static portfolio site for Marta do Vale, art director and production designer.
 
 ## Stack
