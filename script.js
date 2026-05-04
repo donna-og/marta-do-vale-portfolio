@@ -650,6 +650,24 @@ videoModal.addEventListener('click', (event) => {
   if (event.target === videoModal) closeVideoModal();
 });
 
+let swipeStart = null;
+videoModal.addEventListener('pointerdown', (event) => {
+  if (event.pointerType !== 'touch') return;
+  if (event.target.closest('iframe, video, button')) return;
+  swipeStart = { x: event.clientX, y: event.clientY, t: Date.now() };
+});
+videoModal.addEventListener('pointerup', (event) => {
+  if (!swipeStart || event.pointerType !== 'touch') { swipeStart = null; return; }
+  const dx = event.clientX - swipeStart.x;
+  const dy = event.clientY - swipeStart.y;
+  const dt = Date.now() - swipeStart.t;
+  swipeStart = null;
+  if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5 && dt < 600) {
+    switchFilm(dx < 0 ? 1 : -1);
+  }
+});
+videoModal.addEventListener('pointercancel', () => { swipeStart = null; });
+
 contactModal.addEventListener('click', (event) => {
   if (event.target === contactModal) closeContactModal();
 });
