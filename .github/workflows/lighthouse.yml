@@ -1,0 +1,81 @@
+name: Lighthouse
+
+# Sibling to ci.yml: heavier audit (~1–2 min) so it runs on PRs only,
+# not on every push. Boots Chrome via @lhci/cli, scores index.html (EN
+# and PT) against the floors in lighthouserc.json, and fails the check
+# on regression — the same "no silent regressions" stance the byte
+# budget takes for asset size, extended to perf / a11y / best-practices
+# / SEO.
+#
+# Skipped audits (configured in lighthouserc.json) and why:
+#   - uses-http2:     local server is python3's HTTP/1.1; Pages serves H/2.
+#   - is-on-https:    local server is plain HTTP.
+#   - redirects-http: same — no TLS redirect on the local server.
+#   - csp-xss:        Lighthouse dings inline styles the design needs;
+#                     scripts/check-csp-hashes.mjs already enforces the
+#                     parts we actually care about.
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build CSS
+        run: npm run build:css
+
+      - name: Start static server
+        run: |
+          nohup python3 -m http.server 8080 --directory . > /tmp/http-server.log 2>&1 &
+          echo $! > /tmp/http-server.pid
+          for i in $(seq 1 60); do
+            if curl -sf http://127.0.0.1:8080 > /dev/null; then
+              echo "Server is up."
+              exit 0
+            fi
+            sleep 0.5
+          done
+          echo "::error::static server did not become reachable within 30s"
+          cat /tmp/http-server.log || true
+          exit 1
+
+      - name: Install Lighthouse CI
+        run: npm install --global @lhci/cli@0.14.x
+
+      - name: Run Lighthouse CI
+        run: lhci autorun --config=./lighthouserc.json
+
+      - name: Stop static server
+        if: always()
+        run: |
+          if [ -f /tmp/http-server.pid ]; then
+            kill "$(cat /tmp/http-server.pid)" || true
+          fi
+
+      - name: Upload Lighthouse report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouseci-${{ github.run_id }}
+          path: .lighthouseci/
+          if-no-files-found: ignore
+          retention-days: 14

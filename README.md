@@ -1,6 +1,6 @@
 # Marta do Vale — Portfolio Site
 
-![CI](https://github.com/donna-og/marta-do-vale-portfolio/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/donna-og/marta-do-vale-portfolio/actions/workflows/ci.yml/badge.svg) ![Lighthouse](https://github.com/donna-og/marta-do-vale-portfolio/actions/workflows/lighthouse.yml/badge.svg)
 
 A polished static portfolio site for Marta do Vale, art director and production designer.
 
@@ -27,6 +27,8 @@ npm test
 ```
 
 Runs the CSS build, syntax-checks `script.js` and the build scripts, then runs the performance-budget guard (`scripts/check-budget.mjs`). The guard sums the bytes of each shipped file and asset directory and fails if anything exceeds its cap — so an unoptimized poster or a chunky JS feature can't silently regress the site. When growth is legitimate (e.g. a new film with new posters), bump the relevant `max:` value in `scripts/check-budget.mjs` in the same PR with a one-line reason in the commit message.
+
+Every PR also runs Lighthouse (desktop preset) against the built site, scoring `index.html` in EN and PT with three runs each. Floors for performance, accessibility, best-practices, and SEO live in `lighthouserc.json`; the run uploads to temporary public storage so reviewers can click through the full report. A handful of audits are intentionally skipped — `uses-http2`, `is-on-https`, `redirects-http` (the local server is plain HTTP/1.1) and `csp-xss` (which fights the design's inline-style requirements; `scripts/check-csp-hashes.mjs` already covers what matters). Same byte-budget ethos: floors are not aspirations — when polish lifts a score, raise the floor in the same PR.
 
 ## Updating content
 
