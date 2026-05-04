@@ -30,6 +30,8 @@
       'modal.video.close': 'Close video',
       'modal.video.prev': 'Previous film',
       'modal.video.next': 'Next film',
+      'modal.video.saveDataNotice': 'Trailers play from YouTube and Vimeo. Loading uses data.',
+      'modal.video.saveDataLoad': 'Load trailer',
       'modal.contact.close': 'Close contact',
 
       'hero.eyebrow': 'Commercial · Cinema · Lisbon',
@@ -140,6 +142,8 @@
       'modal.video.close': 'Fechar vídeo',
       'modal.video.prev': 'Filme anterior',
       'modal.video.next': 'Filme seguinte',
+      'modal.video.saveDataNotice': 'Os trailers carregam do YouTube e do Vimeo. Reprodução consome dados.',
+      'modal.video.saveDataLoad': 'Carregar trailer',
       'modal.contact.close': 'Fechar contacto',
 
       'hero.eyebrow': 'Comercial · Cinema · Lisboa',

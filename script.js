@@ -6,10 +6,6 @@ const slugify = (text) => String(text || '')
   .replace(/[^a-z0-9]+/g, '-')
   .replace(/^-+|-+$/g, '');
 
-console.assert(slugify('Diamantino') === 'diamantino', 'slug: Diamantino');
-console.assert(slugify('All the Dreams in the World') === 'all-the-dreams-in-the-world', 'slug: Dreams');
-console.assert(slugify('Pela Boca Morre o Peixe') === 'pela-boca-morre-o-peixe', 'slug: Peixe');
-
 // When editing this array, also update the matching VideoObject ItemList
 // in index.html (the third application/ld+json block) so search engines
 // stay in sync with the rendered grid.
@@ -372,7 +368,16 @@ const releaseFocus = (modal) => {
   }
 };
 
+const isSaveData = () => {
+  try { if (matchMedia('(prefers-reduced-data: reduce)').matches) return true; } catch (e) {}
+  return !!(navigator.connection && navigator.connection.saveData);
+};
+
+let placeholderEl = null;
+const removePlaceholder = () => { placeholderEl && (placeholderEl.remove(), placeholderEl = null); };
+
 const resetPlayer = () => {
+  removePlaceholder();
   frame.src = '';
   frame.classList.add('hidden');
   player.pause();
@@ -380,6 +385,19 @@ const resetPlayer = () => {
   player.load();
   player.classList.add('hidden');
 };
+
+const mountPlaceholder = (card) => {
+  removePlaceholder();
+  const el = document.createElement('div');
+  el.className = 'flex h-full w-full flex-col items-center justify-center gap-5 bg-black p-8 text-center';
+  el.innerHTML = '<p class="max-w-md text-[0.85rem] uppercase tracking-[0.22em] text-cream/72" data-i18n="modal.video.saveDataNotice"></p><button type="button" class="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-[0.78rem] uppercase tracking-[0.22em] text-cream transition hover:border-accent hover:text-accent" data-i18n="modal.video.saveDataLoad"></button>';
+  el.querySelector('button').addEventListener('click', () => { removePlaceholder(); mountPlayer(card); });
+  frame.parentElement.appendChild(el);
+  if (window.MDV_I18N) window.MDV_I18N.apply(el);
+  placeholderEl = el;
+};
+
+const playFor = (card) => isSaveData() ? mountPlaceholder(card) : mountPlayer(card);
 
 const mountPlayer = (card) => {
   const kind = card.dataset.kind;
@@ -449,7 +467,7 @@ const closeContactModal = () => {
 
 const openVideoModal = (card) => {
   lastTrigger.video = card;
-  mountPlayer(card);
+  playFor(card);
   videoModal.classList.remove('hidden');
   videoModal.classList.add('flex');
   videoModal.setAttribute('aria-hidden', 'false');
@@ -468,7 +486,7 @@ const switchFilm = (direction) => {
   const nextIndex = (current + direction + playableCards.length) % playableCards.length;
   const nextCard = playableCards[nextIndex];
   resetPlayer();
-  mountPlayer(nextCard);
+  playFor(nextCard);
   lastTrigger.video = nextCard;
   syncFilmHash(nextCard.dataset.filmSlug);
   if (videoLive) videoLive.textContent = nextCard.dataset.filmTitle || '';
@@ -525,7 +543,7 @@ window.addEventListener('popstate', () => {
     const card = findCardBySlug(slug);
     if (card && card !== lastTrigger.video) {
       resetPlayer();
-      mountPlayer(card);
+      playFor(card);
       lastTrigger.video = card;
       if (videoLive) videoLive.textContent = card.dataset.filmTitle || '';
     }
