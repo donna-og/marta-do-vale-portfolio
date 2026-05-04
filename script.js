@@ -514,6 +514,46 @@ const setupHeaderScroll = () => {
   window.addEventListener('scroll', onScroll, { passive: true });
 };
 
+const setupScrollSpy = () => {
+  if (!('IntersectionObserver' in window)) return;
+
+  const ids = ['cinema', 'commercial', 'about'];
+  const map = new Map();
+  ids.forEach((id) => {
+    const section = document.getElementById(id);
+    const link = document.querySelector(`[data-scroll-spy="${id}"]`);
+    if (section && link) map.set(section, link);
+  });
+  if (!map.size) return;
+
+  const setActive = (link) => {
+    map.forEach((l) => {
+      l.classList.toggle('is-active', l === link);
+    });
+  };
+
+  const visibility = new Map();
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      visibility.set(entry.target, entry.isIntersecting ? entry.intersectionRatio : 0);
+    });
+
+    let bestSection = null;
+    let bestRatio = 0;
+    visibility.forEach((ratio, section) => {
+      if (ratio > bestRatio) {
+        bestRatio = ratio;
+        bestSection = section;
+      }
+    });
+
+    setActive(bestSection ? map.get(bestSection) : null);
+  }, { rootMargin: '-30% 0px -55% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] });
+
+  map.forEach((_, section) => observer.observe(section));
+};
+
 const setupLangToggle = () => {
   if (!window.MDV_I18N) return;
   const toggle = document.querySelector('[data-lang-toggle]');
@@ -544,6 +584,7 @@ const onReady = (fn) => {
 onReady(() => {
   setupReveals();
   setupHeaderScroll();
+  setupScrollSpy();
   setupLangToggle();
   if (window.MDV_I18N) window.MDV_I18N.apply();
 });
