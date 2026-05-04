@@ -28,6 +28,8 @@
 
       'modal.video.label': 'Selected film player',
       'modal.video.close': 'Close video',
+      'modal.video.prev': 'Previous film',
+      'modal.video.next': 'Next film',
       'modal.contact.close': 'Close contact',
 
       'hero.eyebrow': 'Commercial · Cinema · Lisbon',
@@ -136,6 +138,8 @@
 
       'modal.video.label': 'Reprodução do filme selecionado',
       'modal.video.close': 'Fechar vídeo',
+      'modal.video.prev': 'Filme anterior',
+      'modal.video.next': 'Filme seguinte',
       'modal.contact.close': 'Fechar contacto',
 
       'hero.eyebrow': 'Comercial · Cinema · Lisboa',

@@ -1035,10 +1035,13 @@
 
     <div class="video-modal fixed inset-0 z-50 hidden items-center justify-center bg-black/82 p-4 backdrop-blur-xl" role="dialog" aria-modal="true" aria-label="Selected film player" data-i18n-attr="aria-label:modal.video.label" aria-hidden="true">
       <button type="button" class="video-close absolute right-4 top-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-4xl leading-none text-white transition hover:bg-white/20" aria-label="Close video" data-i18n-attr="aria-label:modal.video.close">×</button>
+      <button type="button" class="video-prev absolute left-4 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-3xl leading-none text-white transition hover:bg-white/20 sm:flex" aria-label="Previous film" data-i18n-attr="aria-label:modal.video.prev">‹</button>
+      <button type="button" class="video-next absolute right-4 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-3xl leading-none text-white transition hover:bg-white/20 sm:flex" aria-label="Next film" data-i18n-attr="aria-label:modal.video.next">›</button>
       <div class="aspect-video w-full max-w-6xl overflow-hidden rounded-[24px] shadow-[0_40px_120px_rgba(0,0,0,0.5)]">
         <iframe id="video-frame" src="" title="Selected film" data-i18n-attr="title:modal.video.label" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen class="hidden h-full w-full border-0 bg-black"></iframe>
         <video id="video-player" controls playsinline class="hidden h-full w-full bg-black"></video>
       </div>
+      <span id="video-live" class="sr-only" aria-live="polite" aria-atomic="true"></span>
     </div>
 
     <script src="src/i18n.js" defer></script>

@@ -235,6 +235,9 @@ const contactModal = document.querySelector('.contact-modal');
 const frame = document.getElementById('video-frame');
 const player = document.getElementById('video-player');
 const closeButton = document.querySelector('.video-close');
+const prevButton = document.querySelector('.video-prev');
+const nextButton = document.querySelector('.video-next');
+const videoLive = document.getElementById('video-live');
 const contactCloseButton = document.querySelector('.contact-close');
 const scrollLinks = document.querySelectorAll('[data-scroll-target]');
 const contactTriggers = document.querySelectorAll('[data-contact-open]');
@@ -369,16 +372,47 @@ const releaseFocus = (modal) => {
   }
 };
 
-const closeVideoModal = () => {
-  videoModal.classList.add('hidden');
-  videoModal.classList.remove('flex');
-  videoModal.setAttribute('aria-hidden', 'true');
+const resetPlayer = () => {
   frame.src = '';
   frame.classList.add('hidden');
   player.pause();
   player.removeAttribute('src');
   player.load();
   player.classList.add('hidden');
+};
+
+const mountPlayer = (card) => {
+  const kind = card.dataset.kind;
+  frame.title = card.dataset.filmTitle || 'Selected film';
+  if (kind === 'youtube') {
+    frame.src = `https://www.youtube-nocookie.com/embed/${card.dataset.videoId}?autoplay=1&rel=0`;
+    frame.classList.remove('hidden');
+    player.classList.add('hidden');
+  } else if (kind === 'vimeo') {
+    frame.src = `https://player.vimeo.com/video/${card.dataset.videoId}?autoplay=1&dnt=1`;
+    frame.classList.remove('hidden');
+    player.classList.add('hidden');
+  } else {
+    player.src = card.dataset.videoSrc;
+    player.classList.remove('hidden');
+    frame.classList.add('hidden');
+    player.play();
+  }
+};
+
+const syncFilmHash = (slug) => {
+  if (!slug) return;
+  const desiredHash = '#film=' + slug;
+  if (window.location.hash !== desiredHash) {
+    history.pushState(null, '', window.location.pathname + window.location.search + desiredHash);
+  }
+};
+
+const closeVideoModal = () => {
+  videoModal.classList.add('hidden');
+  videoModal.classList.remove('flex');
+  videoModal.setAttribute('aria-hidden', 'true');
+  resetPlayer();
   document.body.style.overflow = '';
   releaseFocus(videoModal);
   if (lastTrigger.video) {
@@ -388,6 +422,7 @@ const closeVideoModal = () => {
   if (filmHashPattern.test(window.location.hash)) {
     history.pushState(null, '', window.location.pathname + window.location.search);
   }
+  if (videoLive) videoLive.textContent = '';
 };
 
 const openContactModal = () => {
@@ -413,39 +448,30 @@ const closeContactModal = () => {
 };
 
 const openVideoModal = (card) => {
-  const kind = card.dataset.kind;
   lastTrigger.video = card;
-  frame.title = card.dataset.filmTitle || 'Selected film';
-
-  if (kind === 'youtube') {
-    frame.src = `https://www.youtube-nocookie.com/embed/${card.dataset.videoId}?autoplay=1&rel=0`;
-    frame.classList.remove('hidden');
-    player.classList.add('hidden');
-  } else if (kind === 'vimeo') {
-    frame.src = `https://player.vimeo.com/video/${card.dataset.videoId}?autoplay=1&dnt=1`;
-    frame.classList.remove('hidden');
-    player.classList.add('hidden');
-  } else {
-    player.src = card.dataset.videoSrc;
-    player.classList.remove('hidden');
-    frame.classList.add('hidden');
-    player.play();
-  }
-
+  mountPlayer(card);
   videoModal.classList.remove('hidden');
   videoModal.classList.add('flex');
   videoModal.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
   trapFocus(videoModal);
   closeButton.focus();
+  syncFilmHash(card.dataset.filmSlug);
+};
 
-  const slug = card.dataset.filmSlug;
-  if (slug) {
-    const desiredHash = '#film=' + slug;
-    if (window.location.hash !== desiredHash) {
-      history.pushState(null, '', window.location.pathname + window.location.search + desiredHash);
-    }
-  }
+const playableCards = Array.from(document.querySelectorAll('[data-video-id]'));
+
+const switchFilm = (direction) => {
+  if (!playableCards.length || !lastTrigger.video) return;
+  const current = playableCards.indexOf(lastTrigger.video);
+  if (current < 0) return;
+  const nextIndex = (current + direction + playableCards.length) % playableCards.length;
+  const nextCard = playableCards[nextIndex];
+  resetPlayer();
+  mountPlayer(nextCard);
+  lastTrigger.video = nextCard;
+  syncFilmHash(nextCard.dataset.filmSlug);
+  if (videoLive) videoLive.textContent = nextCard.dataset.filmTitle || '';
 };
 
 const findCardBySlug = (slug) => Array.from(document.querySelectorAll('[data-film-slug]'))
@@ -489,7 +515,20 @@ openFromHash(window.location.hash);
 window.addEventListener('popstate', () => {
   const isModalOpen = !videoModal.classList.contains('hidden');
   if (filmHashPattern.test(window.location.hash)) {
-    if (!isModalOpen) openFromHash(window.location.hash);
+    if (!isModalOpen) {
+      openFromHash(window.location.hash);
+      return;
+    }
+    const m = window.location.hash.match(/^#film=(.+)$/);
+    let slug = '';
+    try { slug = decodeURIComponent(m[1]); } catch (e) {}
+    const card = findCardBySlug(slug);
+    if (card && card !== lastTrigger.video) {
+      resetPlayer();
+      mountPlayer(card);
+      lastTrigger.video = card;
+      if (videoLive) videoLive.textContent = card.dataset.filmTitle || '';
+    }
   } else if (isModalOpen) {
     closeVideoModal();
   }
@@ -503,6 +542,8 @@ contactTriggers.forEach((trigger) => {
 });
 
 closeButton.addEventListener('click', closeVideoModal);
+if (prevButton) prevButton.addEventListener('click', () => switchFilm(-1));
+if (nextButton) nextButton.addEventListener('click', () => switchFilm(1));
 contactCloseButton.addEventListener('click', closeContactModal);
 
 videoModal.addEventListener('click', (event) => {
@@ -514,9 +555,20 @@ contactModal.addEventListener('click', (event) => {
 });
 
 document.addEventListener('keydown', (event) => {
-  if (event.key !== 'Escape') return;
-  if (!videoModal.classList.contains('hidden')) closeVideoModal();
-  if (!contactModal.classList.contains('hidden')) closeContactModal();
+  const videoOpen = !videoModal.classList.contains('hidden');
+  if (event.key === 'Escape') {
+    if (videoOpen) closeVideoModal();
+    if (!contactModal.classList.contains('hidden')) closeContactModal();
+    return;
+  }
+  if (!videoOpen) return;
+  if (event.key === 'ArrowRight' || event.key === 'j') {
+    event.preventDefault();
+    switchFilm(1);
+  } else if (event.key === 'ArrowLeft' || event.key === 'k') {
+    event.preventDefault();
+    switchFilm(-1);
+  }
 });
 
 const marqueeItems = [
