@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Open Graph / Twitter share card for Marta do Vale — 1200x630.
+  Regenerate PNG + JPG after edits:
+    node scripts/build-og-card.mjs
+  (renders this SVG via rsvg-convert and re-encodes via sharp).
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <style type="text/css"><![CDATA[
+      @font-face {
+        font-family: 'Cormorant Garamond';
+        font-weight: 700;
+        font-style: normal;
+        src: url('../fonts/CormorantGaramond-700.ttf') format('truetype');
+      }
+      @font-face {
+        font-family: 'Inter';
+        font-weight: 500;
+        font-style: normal;
+        src: url('../fonts/Inter-500.ttf') format('truetype');
+      }
+      .eyebrow {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-weight: 500;
+        font-size: 22px;
+        letter-spacing: 6.5px;
+        fill: #ccb07a;
+      }
+      .wordmark {
+        font-family: 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
+        font-weight: 700;
+        font-size: 172px;
+        letter-spacing: -5px;
+        fill: #f4f0e8;
+      }
+      .credentials {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-weight: 500;
+        font-size: 22px;
+        letter-spacing: 0.4px;
+        fill: #f4f0e8;
+        fill-opacity: 0.68;
+      }
+      .dot {
+        fill: #ccb07a;
+        fill-opacity: 0.85;
+      }
+    ]]></style>
+
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#111214"/>
+      <stop offset="100%" stop-color="#09090b"/>
+    </linearGradient>
+
+    <radialGradient id="warmGrad" cx="82%" cy="14%" r="62%">
+      <stop offset="0%" stop-color="#7e623b" stop-opacity="0.32"/>
+      <stop offset="60%" stop-color="#7e623b" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="coolGrad" cx="14%" cy="94%" r="58%">
+      <stop offset="0%" stop-color="#636e7e" stop-opacity="0.18"/>
+      <stop offset="60%" stop-color="#636e7e" stop-opacity="0"/>
+    </radialGradient>
+
+    <pattern id="grain" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
+      <circle cx="0.6" cy="0.6" r="0.45" fill="#ffffff" fill-opacity="0.7"/>
+    </pattern>
+  </defs>
+
+  <!-- background composition -->
+  <rect width="1200" height="630" fill="#0b0b0d"/>
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  <rect width="1200" height="630" fill="url(#warmGrad)"/>
+  <rect width="1200" height="630" fill="url(#coolGrad)"/>
+  <rect width="1200" height="630" fill="url(#grain)" opacity="0.085"/>
+
+  <!-- subtle inset frame, mirrors the site's hairline detailing -->
+  <rect x="36" y="36" width="1128" height="558" fill="none" stroke="#f4f0e8" stroke-opacity="0.07" stroke-width="1"/>
+
+  <!-- eyebrow -->
+  <text x="84" y="222" class="eyebrow">ART DIRECTOR · PRODUCTION DESIGNER · LISBON</text>
+
+  <!-- accent rule -->
+  <line x1="84" y1="248" x2="148" y2="248" stroke="#ccb07a" stroke-width="2"/>
+
+  <!-- wordmark -->
+  <text x="80" y="432" class="wordmark">Marta do Vale</text>
+
+  <!-- credentials line -->
+  <text x="84" y="514" class="credentials">Cannes Critics' Week 2018  ·  MOTELx 2014  ·  IMDb nm6185805</text>
+</svg>
