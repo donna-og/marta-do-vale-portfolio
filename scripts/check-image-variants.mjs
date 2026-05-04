@@ -32,11 +32,13 @@ const projectRoot = fileURLToPath(new URL('..', import.meta.url));
 const SITE_PREFIX = 'https://www.martadovale.pt/';
 
 // Directories whose JPG/PNG output is required to ship with .avif/.webp
-// siblings (modulo the allowlist below). Other asset roots — fonts,
-// cinema/, the un-optimized originals in assets/posters/ — are out of
-// scope and are not walked.
+// siblings (modulo the allowlist below). Other asset roots — fonts, the
+// abstract SVGs in assets/cinema/, the un-optimized originals in
+// assets/posters/ and assets/cinema/posters/ — are out of scope and are
+// not walked.
 const SCOPE_DIRS = [
   'assets/posters/optimized',
+  'assets/cinema/posters/optimized',
   'assets/images/optimized',
   'assets/icons',
   'assets/social',
@@ -127,7 +129,7 @@ function normalizePath(raw) {
 }
 
 const ASSET_PATH_RE =
-  /(?:https:\/\/www\.martadovale\.pt\/)?assets\/(?:posters|images|icons|social)\/[^"'\s)<>]+?\.(?:jpe?g|png|avif|webp)/gi;
+  /(?:https:\/\/www\.martadovale\.pt\/)?assets\/(?:posters|images|icons|social|cinema)\/[^"'\s)<>]+?\.(?:jpe?g|png|avif|webp)/gi;
 
 function collectFromText(text, set) {
   if (!text) return;

@@ -26,6 +26,12 @@ const SOURCES = [
     sourceDir: join(projectRoot, 'assets', 'posters'),
     outputDir: join(projectRoot, 'assets', 'posters', 'optimized'),
     widths: [400, 800]
+  },
+  {
+    label: 'cinema posters',
+    sourceDir: join(projectRoot, 'assets', 'cinema', 'posters'),
+    outputDir: join(projectRoot, 'assets', 'cinema', 'posters', 'optimized'),
+    widths: [400, 800]
   }
 ];
 

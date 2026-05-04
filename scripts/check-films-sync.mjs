@@ -52,8 +52,8 @@ const projectRoot = fileURLToPath(new URL('..', import.meta.url));
 const SITE = 'https://www.martadovale.pt/';
 const POSTER_PREFIX = `${SITE}assets/posters/optimized/`;
 const CINEMA_PREFIX = `${SITE}assets/cinema/`;
-const COMMERCIAL_LIST_NAME = 'Selected commercial work — Marta do Vale';
-const CINEMA_LIST_NAME = 'Selected cinema credits — Marta do Vale';
+const COMMERCIAL_LIST_NAME = 'Selected commercial work · Marta do Vale';
+const CINEMA_LIST_NAME = 'Selected cinema credits · Marta do Vale';
 
 // ---------- shared helpers ----------
 
@@ -187,7 +187,7 @@ async function commercialPass(scriptJs, indexHtml, sitemapXml) {
 
   const titleMismatches = [];
   for (let i = 0; i < Math.min(films.length, jsonld.length); i++) {
-    const tile = films[i].title + (films[i].subtitle ? ' — ' + films[i].subtitle : '');
+    const tile = films[i].title + (films[i].subtitle ? ' · ' + films[i].subtitle : '');
     const name = jsonld[i].name || '';
     if (normalizeTitle(tile) !== normalizeTitle(name)) {
       titleMismatches.push(`#${i + 1}  films=${JSON.stringify(tile)}  jsonld=${JSON.stringify(name)}`);

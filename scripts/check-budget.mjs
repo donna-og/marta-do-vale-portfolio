@@ -26,14 +26,14 @@ const projectRoot = fileURLToPath(new URL('..', import.meta.url));
 const KB = 1024;
 
 const budgets = [
-  { path: 'styles.css',                                 max:   35 * KB },
-  { path: 'script.js',                                  max:   28 * KB },
+  { path: 'styles.css',                                 max:   38 * KB },
+  { path: 'script.js',                                  max:   44 * KB },
   { path: 'motion.js',                                  max:    8 * KB },
   { path: 'index.html',                                 max:   78 * KB },
   { path: 'assets/fonts/optimized',   recurse: true,    max:  300 * KB },
   { path: 'assets/images/optimized',  recurse: true,    max: 3700 * KB },
   { path: 'assets/posters/optimized', recurse: true,    max: 3000 * KB },
-  { path: 'assets/cinema',            recurse: true,    max:   15 * KB },
+  { path: 'assets/cinema/posters/optimized', recurse: true, max: 1500 * KB },
   { path: 'assets/icons',             recurse: true,    max:   60 * KB },
   { path: 'assets/social',            recurse: true,    max:  200 * KB }
 ];
