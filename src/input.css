@@ -162,6 +162,37 @@
     }
   }
 
+  .nav-link {
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.45rem;
+    height: 1px;
+    background-color: #ccb07a;
+    transform: scaleX(0);
+    transform-origin: left center;
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .nav-link::after {
+      transition: transform var(--dur-mid) var(--ease-classy);
+    }
+  }
+
+  .nav-link.is-active {
+    color: rgb(244 240 232);
+  }
+
+  .nav-link.is-active::after {
+    transform: scaleX(1);
+  }
+
   .lang-toggle {
     display: inline-flex;
     align-items: center;
