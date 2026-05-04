@@ -7,6 +7,8 @@
       'brand.home': 'Marta do Vale — home',
       'brand.eyebrow': 'Art Direction',
 
+      'a11y.skipToMain': 'Skip to content',
+
       'nav.cinema': 'Cinema',
       'nav.commercial': 'Commercial',
       'nav.about': 'About',
@@ -107,6 +109,8 @@
 
       'brand.home': 'Marta do Vale — início',
       'brand.eyebrow': 'Direção de Arte',
+
+      'a11y.skipToMain': 'Ir para o conteúdo',
 
       'nav.cinema': 'Cinema',
       'nav.commercial': 'Comercial',
