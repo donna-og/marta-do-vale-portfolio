@@ -114,6 +114,12 @@
         "@type": "Person",
         "name": "Marta do Vale",
         "jobTitle": "Art Director and Production Designer",
+        "hasOccupation": {
+          "@type": "Occupation",
+          "name": "Production Designer",
+          "occupationLocation": { "@type": "City", "name": "Lisbon, Portugal" }
+        },
+        "knowsAbout": ["Production Design", "Art Direction", "Set Decoration", "Cinema", "Commercial Production"],
         "birthDate": "1990-08-19",
         "birthPlace": { "@type": "Place", "name": "Lisbon, Portugal" },
         "nationality": "Portuguese",
@@ -153,7 +159,17 @@
                 { "@type": "Person", "name": "Daniel Schmidt" }
               ],
               "url": "https://www.imdb.com/title/tt6522668/",
-              "award": "Grand Prize, Semaine de la Critique, Cannes 2018",
+              "subjectOf": [
+                {
+                  "@type": "Event",
+                  "name": "Cannes Critics' Week 2018",
+                  "startDate": "2018-05-09",
+                  "endDate": "2018-05-17",
+                  "location": { "@type": "Place", "name": "Cannes, France" },
+                  "url": "https://www.semainedelacritique.com/"
+                }
+              ],
+              "award": ["Grand Prize, Semaine de la Critique, Cannes 2018"],
               "trailer": {
                 "@type": "VideoObject",
                 "name": "Diamantino — Official Trailer",
@@ -193,7 +209,17 @@
               "datePublished": "2014",
               "director": { "@type": "Person", "name": "João P. Nunes" },
               "url": "https://www.imdb.com/title/tt3728222/",
-              "award": "Best Short Film, MOTELx 2014",
+              "subjectOf": [
+                {
+                  "@type": "Event",
+                  "name": "MOTELx 2014",
+                  "startDate": "2014-09-09",
+                  "endDate": "2014-09-14",
+                  "location": { "@type": "Place", "name": "Lisbon, Portugal" },
+                  "url": "https://motelx.org/"
+                }
+              ],
+              "award": ["Best Short Film, MOTELx 2014"],
               "trailer": {
                 "@type": "VideoObject",
                 "name": "Pela Boca Morre o Peixe — Teaser",
