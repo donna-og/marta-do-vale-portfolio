@@ -581,14 +581,6 @@ videoCards.forEach((card) => {
     if (event.target.closest('[data-cinema-secondary]')) return;
     openVideoModal(card);
   });
-  if (card.tagName !== 'BUTTON') {
-    card.addEventListener('keydown', (event) => {
-      if (event.key !== 'Enter' && event.key !== ' ') return;
-      if (event.target.closest('[data-cinema-secondary]')) return;
-      event.preventDefault();
-      openVideoModal(card);
-    });
-  }
 });
 
 document.querySelectorAll('[data-cinema-secondary]').forEach((link) => {
