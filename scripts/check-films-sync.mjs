@@ -24,6 +24,14 @@
 // across files, missing or orphaned URL entries, missing poster file
 // on disk. Soft-warn (commercial only): per-entry thumbnailUrl
 // divergence between films array and JSON-LD.
+//
+// Festival metadata (Movie.subjectOf, Movie.award) lives only on the
+// JSON-LD side — the cinema cards in index.html and the films array in
+// script.js do not carry festival selections or awards. This script
+// therefore treats the JSON-LD as the source of truth for those fields
+// and intentionally does not compare them across surfaces. A future
+// contributor adding festival data should record it in the cinema
+// Movie JSON-LD, not propagate it back into the cards or films array.
 
 import { readFile, access } from 'node:fs/promises';
 import { join } from 'node:path';
