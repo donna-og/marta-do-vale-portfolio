@@ -113,6 +113,7 @@
     <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" />
     <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
     <link rel="manifest" href="site.webmanifest" />
+    <link rel="me" href="assets/contact/marta-do-vale.vcf" type="text/vcard" />
     <script>
       if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         document.documentElement.classList.add('js-reveals');
@@ -1043,6 +1044,22 @@
             </div>
             <p class="mt-6 inline-flex items-center gap-2 text-[0.78rem] uppercase tracking-[0.22em] text-accent">
               <span data-i18n="contact.imdb.action">Open IMDb profile</span>
+              <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
+            </p>
+          </a>
+
+          <a class="contact-card glass-panel group relative flex flex-col justify-between overflow-hidden rounded-[24px] p-8 transition hover:-translate-y-1 md:col-span-2 md:min-h-[180px] md:p-10"
+             href="assets/contact/marta-do-vale.vcf"
+             download="marta-do-vale.vcf"
+             type="text/vcard"
+             data-tilt data-sheen data-reveal style="--reveal-delay: 360ms">
+            <span class="card-sheen" aria-hidden="true"></span>
+            <div>
+              <p class="text-[0.72rem] uppercase tracking-[0.22em] text-accent" data-i18n="contact.vcard.eyebrow">vCard</p>
+              <p class="mt-4 font-serif text-[1.6rem] leading-[1] tracking-[-0.03em] md:text-[1.85rem]" data-i18n="contact.vcard.headline">Save to contacts</p>
+            </div>
+            <p class="mt-6 inline-flex items-center gap-2 text-[0.78rem] uppercase tracking-[0.22em] text-accent">
+              <span data-i18n="contact.vcard.action">Download .vcf</span>
               <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
             </p>
           </a>
