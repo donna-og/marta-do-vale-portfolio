@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="All the Dreams in the World / Todos os Sonhos do Mundo">
+  <defs>
+    <linearGradient id="dr-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1f2a36"/>
+      <stop offset="48%" stop-color="#10151c"/>
+      <stop offset="52%" stop-color="#0c0d0f"/>
+      <stop offset="100%" stop-color="#06070a"/>
+    </linearGradient>
+    <radialGradient id="dr-glow-top" cx="22%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="#7a93b0" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#1f2a36" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="dr-glow-bot" cx="78%" cy="82%" r="60%">
+      <stop offset="0%" stop-color="#ccb07a" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#06070a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#dr-bg)"/>
+  <rect width="1600" height="1000" fill="url(#dr-glow-top)"/>
+  <rect width="1600" height="1000" fill="url(#dr-glow-bot)"/>
+
+  <!-- horizon line -->
+  <line x1="120" y1="500" x2="1480" y2="500" stroke="#ccb07a" stroke-opacity="0.55"/>
+  <circle cx="1320" cy="500" r="6" fill="#ccb07a" fill-opacity="0.7"/>
+  <circle cx="180" cy="500" r="4" fill="#f4f0e8" fill-opacity="0.4"/>
+
+  <!-- filmstrip perforations -->
+  <g fill="#f4f0e8" fill-opacity="0.18">
+    <rect x="38" y="80" width="38" height="68" rx="5"/>
+    <rect x="38" y="190" width="38" height="68" rx="5"/>
+    <rect x="38" y="300" width="38" height="68" rx="5"/>
+    <rect x="38" y="410" width="38" height="68" rx="5"/>
+    <rect x="38" y="520" width="38" height="68" rx="5"/>
+    <rect x="38" y="630" width="38" height="68" rx="5"/>
+    <rect x="38" y="740" width="38" height="68" rx="5"/>
+    <rect x="38" y="850" width="38" height="68" rx="5"/>
+  </g>
+
+  <!-- vertical credit -->
+  <text transform="translate(1554 928) rotate(-90)" fill="#f4f0e8" fill-opacity="0.6"
+        font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="500" letter-spacing="6">DIR. LAURENCE FERREIRA BARBOSA &#183; 2017</text>
+
+  <!-- title — english (above horizon) -->
+  <g font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif" fill="#f4f0e8" letter-spacing="-5">
+    <text x="170" y="240" font-size="148" font-weight="500">All the Dreams</text>
+    <text x="170" y="380" font-size="148" font-weight="500" fill="#ccb07a">in the World</text>
+  </g>
+
+  <!-- title — portuguese (below horizon) -->
+  <g font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif" fill="#f4f0e8" fill-opacity="0.78" letter-spacing="-4" font-style="italic">
+    <text x="170" y="700" font-size="120" font-weight="500">Todos os Sonhos</text>
+    <text x="170" y="830" font-size="120" font-weight="500">do Mundo</text>
+  </g>
+</svg>

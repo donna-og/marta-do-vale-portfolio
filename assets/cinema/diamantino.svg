@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Diamantino">
+  <defs>
+    <radialGradient id="d-bg" cx="28%" cy="30%" r="82%">
+      <stop offset="0%" stop-color="#5b2922"/>
+      <stop offset="55%" stop-color="#22100d"/>
+      <stop offset="100%" stop-color="#0c0606"/>
+    </radialGradient>
+    <radialGradient id="d-orb" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f1c57c" stop-opacity="0.95"/>
+      <stop offset="55%" stop-color="#b27843" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#5b2922" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#d-bg)"/>
+
+  <!-- accent: dreamy sphere -->
+  <circle cx="1240" cy="320" r="250" fill="url(#d-orb)"/>
+  <circle cx="1240" cy="320" r="250" fill="none" stroke="#f4f0e8" stroke-opacity="0.06"/>
+  <circle cx="1320" cy="248" r="38" fill="#f4f0e8" fill-opacity="0.14"/>
+
+  <!-- filmstrip perforations -->
+  <g fill="#f4f0e8" fill-opacity="0.18">
+    <rect x="38" y="80" width="38" height="68" rx="5"/>
+    <rect x="38" y="190" width="38" height="68" rx="5"/>
+    <rect x="38" y="300" width="38" height="68" rx="5"/>
+    <rect x="38" y="410" width="38" height="68" rx="5"/>
+    <rect x="38" y="520" width="38" height="68" rx="5"/>
+    <rect x="38" y="630" width="38" height="68" rx="5"/>
+    <rect x="38" y="740" width="38" height="68" rx="5"/>
+    <rect x="38" y="850" width="38" height="68" rx="5"/>
+  </g>
+
+  <!-- vertical credit, right edge -->
+  <text transform="translate(1554 928) rotate(-90)" fill="#f4f0e8" fill-opacity="0.6"
+        font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="500" letter-spacing="6">DIR. GABRIEL ABRANTES &amp; DANIEL SCHMIDT &#183; 2018</text>
+
+  <!-- title -->
+  <g font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif" fill="#f4f0e8" letter-spacing="-9">
+    <text x="170" y="560" font-size="248" font-weight="500">Diaman</text>
+    <text x="240" y="780" font-size="248" font-weight="500" font-style="italic" fill="#ccb07a">tino</text>
+  </g>
+
+  <!-- thin column rule under title -->
+  <line x1="170" y1="838" x2="780" y2="838" stroke="#f4f0e8" stroke-opacity="0.12" stroke-width="1"/>
+</svg>
