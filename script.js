@@ -241,6 +241,11 @@ const contactTriggers = document.querySelectorAll('[data-contact-open]');
 
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
+window.addEventListener('beforeprint', () => {
+  const el = document.getElementById('print-date');
+  if (el) el.textContent = new Date().toISOString().slice(0, 10);
+});
+
 const filmHashPattern = /^#film=.+$/;
 
 window.addEventListener('load', () => {
