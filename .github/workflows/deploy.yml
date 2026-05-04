@@ -50,6 +50,9 @@ jobs:
           cp src/i18n.js _site/src/
           cp -R assets/. _site/assets/
 
+      - name: Stamp sitemap lastmod from git
+        run: node scripts/build-sitemap.mjs --out=_site/sitemap.xml
+
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
