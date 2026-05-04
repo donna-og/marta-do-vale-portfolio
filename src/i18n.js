@@ -84,6 +84,8 @@
       'commercial.eyebrow': 'Selected campaigns',
       'commercial.heading': 'Commercial',
       'commercial.sub': 'From automotive prestige to public-service campaigns — the through-line is the set.',
+      'commercial.noscript.heading': 'Selected commercials',
+      'commercial.noscript.lede': "If video isn't loading, open any spot directly:",
 
       'contact.eyebrow': 'Contact',
       'contact.headline': "Let's talk about the frame.",
@@ -190,6 +192,8 @@
       'commercial.eyebrow': 'Campanhas selecionadas',
       'commercial.heading': 'Comercial',
       'commercial.sub': 'Do prestígio automóvel às campanhas de serviço público — o que liga tudo é o cenário.',
+      'commercial.noscript.heading': 'Comerciais selecionados',
+      'commercial.noscript.lede': 'Se o vídeo não carregar, abre qualquer trabalho diretamente:',
 
       'contact.eyebrow': 'Contacto',
       'contact.headline': 'Vamos falar do enquadramento.',
