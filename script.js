@@ -1,3 +1,15 @@
+const slugify = (text) => String(text || '')
+  .normalize('NFD')
+  .replace(/[̀-ͯ]/g, '')
+  .toLowerCase()
+  .replace(/burguer/g, 'burger')
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/^-+|-+$/g, '');
+
+console.assert(slugify('Diamantino') === 'diamantino', 'slug: Diamantino');
+console.assert(slugify('All the Dreams in the World') === 'all-the-dreams-in-the-world', 'slug: Dreams');
+console.assert(slugify('Pela Boca Morre o Peixe') === 'pela-boca-morre-o-peixe', 'slug: Peixe');
+
 // When editing this array, also update the matching VideoObject ItemList
 // in index.html (the third application/ld+json block) so search engines
 // stay in sync with the rendered grid.
@@ -229,10 +241,13 @@ const contactTriggers = document.querySelectorAll('[data-contact-open]');
 
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
+const filmHashPattern = /^#film=.+$/;
+
 window.addEventListener('load', () => {
   const url = new URL(window.location.href);
-  if (url.hash) history.replaceState(null, '', `${url.pathname}${url.search}`);
-  window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  const isFilmHash = filmHashPattern.test(url.hash);
+  if (url.hash && !isFilmHash) history.replaceState(null, '', `${url.pathname}${url.search}`);
+  if (!isFilmHash) window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
 });
 
 scrollLinks.forEach((link) => {
@@ -263,6 +278,7 @@ filmGrid.innerHTML = films.map((film, idx) => {
     data-video-id="${film.videoId || ''}"
     data-video-src="${film.videoSrc || ''}"
     data-film-title="${film.title}"
+    data-film-slug="${slugify(`${film.title} ${film.subtitle || ''}`)}"
     data-tilt
     data-reveal
     style="--reveal-delay: ${(idx % 4) * 90}ms"
@@ -364,6 +380,9 @@ const closeVideoModal = () => {
     lastTrigger.video.focus();
     lastTrigger.video = null;
   }
+  if (filmHashPattern.test(window.location.hash)) {
+    history.pushState(null, '', window.location.pathname + window.location.search);
+  }
 };
 
 const openContactModal = () => {
@@ -414,7 +433,18 @@ const openVideoModal = (card) => {
   document.body.style.overflow = 'hidden';
   trapFocus(videoModal);
   closeButton.focus();
+
+  const slug = card.dataset.filmSlug;
+  if (slug) {
+    const desiredHash = '#film=' + slug;
+    if (window.location.hash !== desiredHash) {
+      history.pushState(null, '', window.location.pathname + window.location.search + desiredHash);
+    }
+  }
 };
+
+const findCardBySlug = (slug) => Array.from(document.querySelectorAll('[data-film-slug]'))
+  .find((el) => el.dataset.filmSlug === slug);
 
 videoCards.forEach((card) => {
   card.addEventListener('click', (event) => {
@@ -433,6 +463,31 @@ videoCards.forEach((card) => {
 
 document.querySelectorAll('[data-cinema-secondary]').forEach((link) => {
   link.addEventListener('click', (event) => event.stopPropagation());
+});
+
+const openFromHash = (hash) => {
+  const match = hash.match(/^#film=(.+)$/);
+  if (!match) return false;
+  let slug;
+  try { slug = decodeURIComponent(match[1]); }
+  catch (e) { return false; }
+  const card = findCardBySlug(slug);
+  if (!card) return false;
+  const section = card.closest('section');
+  if (section) section.scrollIntoView({ behavior: 'auto', block: 'center' });
+  openVideoModal(card);
+  return true;
+};
+
+openFromHash(window.location.hash);
+
+window.addEventListener('popstate', () => {
+  const isModalOpen = !videoModal.classList.contains('hidden');
+  if (filmHashPattern.test(window.location.hash)) {
+    if (!isModalOpen) openFromHash(window.location.hash);
+  } else if (isModalOpen) {
+    closeVideoModal();
+  }
 });
 
 contactTriggers.forEach((trigger) => {
