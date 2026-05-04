@@ -235,7 +235,9 @@ const player = document.getElementById('video-player');
 const closeButton = document.querySelector('.video-close');
 const prevButton = document.querySelector('.video-prev');
 const nextButton = document.querySelector('.video-next');
+const shareButton = document.querySelector('.video-share');
 const videoLive = document.getElementById('video-live');
+const videoToast = document.getElementById('video-toast');
 const contactCloseButton = document.querySelector('.contact-close');
 const scrollLinks = document.querySelectorAll('[data-scroll-target]');
 const contactTriggers = document.querySelectorAll('[data-contact-open]');
@@ -443,6 +445,7 @@ const closeVideoModal = () => {
     history.pushState(null, '', window.location.pathname + window.location.search);
   }
   if (videoLive) videoLive.textContent = '';
+  hideToast();
 };
 
 const openContactModal = () => {
@@ -492,6 +495,57 @@ const switchFilm = (direction) => {
   lastTrigger.video = nextCard;
   syncFilmHash(nextCard.dataset.filmSlug);
   if (videoLive) videoLive.textContent = nextCard.dataset.filmTitle || '';
+};
+
+let liveClearTimer = null;
+let toastHideTimer = null;
+const tr = (k, f) => (window.MDV_I18N && window.MDV_I18N.t(k)) || f;
+
+const announce = (msg) => {
+  if (!videoLive || !msg) return;
+  videoLive.textContent = msg;
+  clearTimeout(liveClearTimer);
+  liveClearTimer = setTimeout(() => { videoLive.textContent = ''; }, 3000);
+};
+
+const hideToast = () => {
+  if (!videoToast) return;
+  clearTimeout(toastHideTimer);
+  toastHideTimer = null;
+  videoToast.classList.remove('opacity-100');
+  videoToast.classList.add('opacity-0');
+};
+
+const showToast = (msg) => {
+  if (!videoToast || !msg) return;
+  videoToast.textContent = msg;
+  videoToast.classList.remove('opacity-0');
+  videoToast.classList.add('opacity-100');
+  clearTimeout(toastHideTimer);
+  toastHideTimer = setTimeout(hideToast, 2000);
+};
+
+const handleShare = async () => {
+  const card = lastTrigger.video;
+  const slug = card && card.dataset.filmSlug;
+  if (!slug) return;
+  const url = `${location.origin}${location.pathname}#film=${slug}`;
+  if (navigator.share) {
+    try {
+      await navigator.share({ title: card.dataset.filmTitle || 'Marta do Vale', url });
+      return;
+    } catch (err) {
+      if (err && err.name === 'AbortError') return;
+    }
+  }
+  try {
+    await navigator.clipboard.writeText(url);
+    const msg = tr('modal.video.shareCopied', 'Link copied');
+    announce(msg);
+    showToast(msg);
+  } catch (err) {
+    announce(`${tr('modal.video.shareFailed', 'Copy this link:')} ${url}`);
+  }
 };
 
 const findCardBySlug = (slug) => Array.from(document.querySelectorAll('[data-film-slug]'))
@@ -564,6 +618,7 @@ contactTriggers.forEach((trigger) => {
 closeButton.addEventListener('click', closeVideoModal);
 if (prevButton) prevButton.addEventListener('click', () => switchFilm(-1));
 if (nextButton) nextButton.addEventListener('click', () => switchFilm(1));
+if (shareButton) shareButton.addEventListener('click', handleShare);
 contactCloseButton.addEventListener('click', closeContactModal);
 
 videoModal.addEventListener('click', (event) => {

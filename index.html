@@ -1057,6 +1057,13 @@
 
     <div class="video-modal fixed inset-0 z-50 hidden items-center justify-center bg-black/82 p-4 backdrop-blur-xl" role="dialog" aria-modal="true" aria-label="Selected film player" data-i18n-attr="aria-label:modal.video.label" aria-hidden="true">
       <button type="button" class="video-close absolute right-4 top-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-4xl leading-none text-white transition hover:bg-white/20" aria-label="Close video" data-i18n-attr="aria-label:modal.video.close">×</button>
+      <button type="button" class="video-share absolute right-20 top-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20" aria-label="Share this film" data-i18n-attr="aria-label:modal.video.share">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="h-5 w-5">
+          <path d="M12 3v12"/>
+          <path d="M8 7l4-4 4 4"/>
+          <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/>
+        </svg>
+      </button>
       <button type="button" class="video-prev absolute left-4 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-3xl leading-none text-white transition hover:bg-white/20 sm:flex" aria-label="Previous film" data-i18n-attr="aria-label:modal.video.prev">‹</button>
       <button type="button" class="video-next absolute right-4 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-3xl leading-none text-white transition hover:bg-white/20 sm:flex" aria-label="Next film" data-i18n-attr="aria-label:modal.video.next">›</button>
       <div class="aspect-video w-full max-w-6xl overflow-hidden rounded-[24px] shadow-[0_40px_120px_rgba(0,0,0,0.5)]">
@@ -1064,6 +1071,7 @@
         <video id="video-player" controls playsinline class="hidden h-full w-full bg-black"></video>
       </div>
       <span id="video-live" class="sr-only" aria-live="polite" aria-atomic="true"></span>
+      <div id="video-toast" class="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 rounded-full bg-white/10 px-4 py-2 text-[0.78rem] uppercase tracking-[0.22em] text-cream opacity-0 transition-opacity duration-300" aria-hidden="true"></div>
     </div>
 
     <script src="src/i18n.js" defer></script>
