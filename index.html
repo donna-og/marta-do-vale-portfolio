@@ -9,6 +9,21 @@
       content="Marta do Vale is a Lisbon-based art director and production designer creating cinematic visual worlds for films and commercials."
     />
     <meta name="theme-color" content="#0b0b0d" />
+    <!--
+      Content-Security-Policy: privacy-first allowlist for a static portfolio.
+      External origins in use: youtube-nocookie (frame), i.ytimg.com (img),
+      video.wixstatic.com (media). Everything else is same-origin.
+      script-src hashes cover every inline <script> block. Adding, removing, or
+      editing an inline script (whitespace included) requires recomputing the
+      SHA-256 and updating the directive below — otherwise the script is blocked.
+      Current hashes:
+        sha256-BC3ggtZ4Jt9MZ4b6N/mqzDsXaWsICFgSaAHOjLaLgZU=  →  js-reveals bootstrap
+      JSON-LD blocks (type="application/ld+json") are not executable and do not
+      need hashes.
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-BC3ggtZ4Jt9MZ4b6N/mqzDsXaWsICFgSaAHOjLaLgZU='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com; media-src 'self' https://video.wixstatic.com; frame-src https://www.youtube-nocookie.com; font-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests" />
+    <meta http-equiv="Permissions-Policy" content="accelerometer=(), autoplay=(self &quot;https://www.youtube-nocookie.com&quot;), camera=(), display-capture=(), encrypted-media=(self &quot;https://www.youtube-nocookie.com&quot;), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(self &quot;https://www.youtube-nocookie.com&quot;), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(self), xr-spatial-tracking=()" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta property="og:title" content="Marta do Vale — Art Direction" />
     <meta
       property="og:description"
@@ -935,7 +950,7 @@
     <div class="video-modal fixed inset-0 z-50 hidden items-center justify-center bg-black/82 p-4 backdrop-blur-xl" role="dialog" aria-modal="true" aria-label="Selected film player" data-i18n-attr="aria-label:modal.video.label" aria-hidden="true">
       <button type="button" class="video-close absolute right-4 top-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-4xl leading-none text-white transition hover:bg-white/20" aria-label="Close video" data-i18n-attr="aria-label:modal.video.close">×</button>
       <div class="aspect-video w-full max-w-6xl overflow-hidden rounded-[24px] shadow-[0_40px_120px_rgba(0,0,0,0.5)]">
-        <iframe id="video-frame" src="" title="Selected film" data-i18n-attr="title:modal.video.label" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="hidden h-full w-full border-0 bg-black"></iframe>
+        <iframe id="video-frame" src="" title="Selected film" data-i18n-attr="title:modal.video.label" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen class="hidden h-full w-full border-0 bg-black"></iframe>
         <video id="video-player" controls playsinline class="hidden h-full w-full bg-black"></video>
       </div>
     </div>
